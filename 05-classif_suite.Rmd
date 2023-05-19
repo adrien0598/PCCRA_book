@@ -1,0 +1,113 @@
+# Classification des stress (suite) {#classif2}
+
+```{r library4, warning = FALSE, message = FALSE}
+library(tidyr)
+library(stringr)
+library(FactoMineR)
+library(mclust)
+library(umap)
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r recuperation4, echo = FALSE}
+d_merge = readRDS(file = "data/d_merge.rds")
+tab = read.csv2("data/All_stress_annotated.csv", sep = "\t", header = TRUE)
+y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Inconnu", "Autre", "Environement", 
+                                                        "Chelateur", "Antifongique",
+                                                        "Cytotoxique", "Divers", "Antibactériens", "Divers", "Kinase inhibiteur",
+                                                        "Divers", "Antioxydant", "Inhbiteur de la synthèse protéique", 
+                                                        "Inhibiteur de la synthèse d'acide nucléique",
+                                                        "Divers", "Divers", "Cytotoxique", "Divers", "Cytotoxique", "Divers",
+                                                        "Divers", "Divers", "Antiviral", "Inhibiteur de phosphatase", 
+                                                        "Inhibiteur d'enzyme", "Divers","Divers" , "Divers", "Divers", "Divers",
+                                                        "Divers", "Stress Oxydant", "Divers", "Divers", "Environement", "Divers"))
+tab[["Type_merge"]] = tab$Type %>% sapply(function(s){
+  y$type2[y$type1 == s]
+}) %>% unlist()
+gg = readRDS("data/classif_grosse.rds")
+```
+
+## Caractérisation des 18 groupes de stress
+
+```{r}
+for (i in seq(1,18)) {
+  cat("\n")
+  print(paste0("STRESS DE LA CLASSE ", i, " :"))
+  print(gg[gg$classe == i,]$name)
+}
+```
+
+## Enrichissement de classe 
+
+Es ce que le groupe de stress contenant la camptothecine est enrichit en un ou plusieurs types de stress ?
+
+```{r}
+gg[gg$name == "camptothecin_500um",]
+
+stress_campto <- gg[gg$classe == gg[gg$name == "camptothecin_500um",]$classe,]$name
+```
+
+```{r}
+gg_campto = data.frame(x = stress_campto, Type = stress_campto %>% sapply(function(y){
+  tab$Type[y == tab$x]
+}))
+
+full_count = data.frame(Type = tab$Type %>% unique(), Count = tab$Type %>% unique() %>% sapply(function(y){
+  tab$x[tab$Type == y] %>% length()
+}), groupe = rep("ALL", tab$Type %>% unique() %>% length()))
+campto_count = data.frame(Type = tab$Type %>% unique(), Count = tab$Type%>% unique()  %>% sapply(function(y){
+  gg_campto$x[gg_campto$Type == y] %>% length()
+}), groupe = rep("CPT", tab$Type %>% unique() %>% length()))
+
+gg_compar = full_count %>% rbind(campto_count)
+
+ggplot(gg_compar)+
+  aes(x = groupe, fill = Type, y = Count) +
+  geom_col(position = "fill")
+```
+
+```{r}
+gg_campto = data.frame(x = stress_campto, Type = stress_campto %>% sapply(function(y){
+  tab$Type_merge[y == tab$x]
+}))
+
+full_count = data.frame(Type = tab$Type_merge %>% unique(), Count = tab$Type_merge %>% unique() %>% sapply(function(y){
+  tab$x[tab$Type_merge == y] %>% length()
+}), groupe = rep("ALL", tab$Type_merge %>% unique() %>% length()))
+campto_count = data.frame(Type = tab$Type_merge %>% unique(), Count = tab$Type_merge %>% unique()  %>% sapply(function(y){
+  gg_campto$x[gg_campto$Type == y] %>% length()
+}), groupe = rep("CPT", tab$Type_merge %>% unique() %>% length()))
+
+gg_compar = full_count %>% rbind(campto_count)
+
+ggplot(gg_compar)+
+  aes(x = groupe, fill = Type, y = Count) +
+  geom_col(position = "fill")
+```
+
+Mesure de l'enrichissement dans chacune des catégories :
+
+On réalise un test de fisher exact pour les 16 catégories (loi hypergéométrique)
+
+```{r}
+alpha = 0.05
+tests = NULL
+for (categorie in full_count$Type) {
+  m = full_count$Count[full_count$Type == categorie] # total white balls
+  x = c(campto_count$Count[campto_count$Type == categorie]:m) # white balls tirées (hits)
+  n = full_count$Count[full_count$Type != categorie] %>% sum() # black balls total
+  k = campto_count$Count %>% sum() # tirage
+  mat = matrix(c(campto_count$Count[campto_count$Type == categorie], 
+                 k-campto_count$Count[campto_count$Type == categorie], 
+                 m-campto_count$Count[campto_count$Type == categorie], 
+                 n-(k-campto_count$Count[campto_count$Type == categorie])), 
+               nrow = 2)
+  #print(fisher.test(mat)$p.value)
+  tests = c(tests, dhyper(x, m, n, k, log = FALSE) %>% sum())
+}
+tf = data.frame(categories = full_count$Type, p_val = tests)
+tf[tf$p_val < alpha,]
+```
+Ce groupe est enrichis en composants **cyctotoxiques** et **inhibiteurs de la synthèse d'acides nucléiques**. Ces deux points coincident avec les trouvailles de la GO enrichissement.
+

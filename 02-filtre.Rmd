@@ -1,0 +1,88 @@
+# Filtre et nettoyage des données {#cleanup}
+
+```{r library1, warning = FALSE, message = FALSE}
+library(tidyr)
+library(stringr)
+library(FactoMineR)
+```
+
+```{r recuperation1, echo = FALSE}
+d = readRDS(file = "data/d.rds")
+stress = read.csv2("data/Hill.csv", sep = "\t", header = FALSE, dec = ".")[1,-c(1,2)] %>% 
+  as.vector() %>% 
+  unlist() 
+```
+
+```{r}
+((stress %>% table()) > 1) %>% sum()
+```
+
+94 stress ont au moins deux répétitions, certain en ont beaucoup plus (ex : methotrexate). Nous allons fusionner les replicat de manière à ne pas sur-representer ces stress. Lorsque le nombre de réplicat est suffisant, un filtrage des réplicats abhérent est possible :
+
+Fonctions de filtre des potentiels réplicats outlier
+
+```{r fonctions}
+# fonction de filtre des replicats
+## via ACP
+filtre_pca <- function(x){
+  NULL
+}
+## via correlation sans reduction (simple)
+filtre_cor <- function(x){
+  t <- cor(x)  %>% apply(1, function(x){sum(x)})
+  exclu <- t[t < length(t)/2] %>% names()
+  cat(paste0("Filtre de ", exclu %>% length(), " replicats ...", "\n"))
+  x[!(colnames(x) %in% exclu)] %>% as.data.frame()
+}
+
+## via correlation sans reduction (med +a*sd)
+filtre_med <- function(x){
+  alpha = 2 # cutoff
+  t <- cor(x) %>% apply(1, function(x){sum(x)})
+  borne <- c(median(t) + alpha*sd(t), median(t) - alpha*sd(t))
+  exclu <- t[t < borne[2] | t > borne[1]] %>% names()
+  cat(paste0("Filtre de ", exclu %>% length(), " replicats sur ", dim(x)[2], "\n"))
+  x[!(colnames(x) %in% exclu)] %>% as.data.frame()
+}
+```
+
+Nous utiliserons pour la suite la fonction *filtre_med()* avec $a = 2$
+
+```{r filtre}
+d_merge = data.frame(ORF = d$Orf, Gene = d$Gene)
+tmp = c()
+for (i in seq(1,length(stress))) {
+  tmp = c(tmp, stress[[i]])
+}
+tmp = tmp %>% unique()
+
+for (s in tmp) {
+  # sous tableau avec toutes les colonnes du même stress
+  sub_d = d[,(colnames(d) %>% sapply(function(x){
+    if ((x %>% str_locate(s %>% str_replace_all("[- /%(),+]", ".")))[1] %>% is.na()){FALSE} # regle les problèmes de nom de stress
+    else {TRUE}
+  }))]
+  
+  # nouvelle colonne égale à la moyenne des replicats conservés par le filtre
+  if (!(dim(sub_d) %>% is.null())){
+    if(dim(sub_d)[2] > 2){
+      cat(s)
+      d_merge[[s]] = sub_d %>% filtre_med() %>% apply(1, function(x){mean(x)})
+    }
+    else{
+      d_merge[[s]] = sub_d %>% apply(1, function(x){mean(x)})
+    }
+  }
+  else {
+    d_merge[[s]] = sub_d
+  }
+}
+
+saveRDS(d_merge, file = "data/d_merge.rds") # table avec une seule colonne par stress (et filtrée sur les replicat avant merge)
+```
+
+```{r}
+dim(d_merge)
+```
+
+

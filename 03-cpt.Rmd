@@ -1,0 +1,96 @@
+# Réponse à la Camptothecine {#cpt}
+
+```{r library2, warning = FALSE, message = FALSE}
+library(tidyr)
+library(stringr)
+library(FactoMineR)
+library(ggplot2)
+```
+
+```{r recuperation2, echo = FALSE}
+d_merge = readRDS(file = "data/d_merge.rds")
+```
+
+## Réponse des mutants à CPT
+
+```{r histo, message = FALSE}
+cpt = data.frame(ORF = d_merge$ORF, Reponse_cpt = d_merge$camptothecin_500um)
+ggplot(cpt) +
+  aes(x = Reponse_cpt) +
+  theme_classic()+
+  geom_histogram(aes(y = after_stat(density)), color = "grey", fill = "lightblue") +
+  geom_density(color = "grey", fill = "#F85700", alpha = 0.3)
+```
+
+```{r}
+cpt$ORF[cpt$Reponse_cpt > 2.5] %>% length()
+cpt$ORF[cpt$Reponse_cpt > 2] %>% length()
+cpt$ORF[cpt$Reponse_cpt > 1.5] %>% length()
+```
+```{r}
+cpt$ORF[cpt$Reponse_cpt < -1] %>% length()
+cpt$ORF[cpt$Reponse_cpt < -.8] %>% length()
+cpt$ORF[cpt$Reponse_cpt < -.7] %>% length()
+cpt$ORF[cpt$Reponse_cpt < -.6] %>% length()
+cpt$ORF[cpt$Reponse_cpt < -.5] %>% length()
+```
+
+## GO enrichissement
+
+En utilisant https://yeastgenome.org/goTermFinder, on regarde si le groupe des gènes dont la mutation entraine une plus grande sensibilité à cpt est enrichis par rapport au génome ebntier dans certaines fonctions moléculaire, localisations cellulaires ou processus biologiques :
+
+### Mutants les plus resistants à CPT
+
+```{r}
+# les 43 plus resistant à cpt
+write.table(data.frame(ORF = d_merge$Gene, Reponse_cpt = d_merge$camptothecin_500um)$ORF[cpt$Reponse_cpt > 1.5], file = "data/gene_15.txt", row.names = FALSE, quote = FALSE)
+```
+
+
+### Mutants les plus sensibles à CPT
+#### Les 61 plus sensibles
+```{r}
+# les 61 plus sensible à cpt
+write.table(data.frame(ORF = d_merge$Gene, Reponse_cpt = d_merge$camptothecin_500um)$ORF[cpt$Reponse_cpt < -.5], file = "data/gene_-5.txt", row.names = FALSE, quote = FALSE)
+```
+
+```{r}
+tmp = read.table("data/go/61_process.txt", sep = "\t", header = TRUE)
+tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
+
+knitr::kable(tmp, caption = "Biological Process")
+
+tmp = read.table("data/go/61_function.txt", sep = "\t", header = TRUE)
+tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
+
+knitr::kable(tmp, caption = "Molecular Function")
+
+tmp = read.table("data/go/61_component.txt", sep = "\t", header = TRUE)[c(1:10),]
+tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
+
+knitr::kable(tmp, caption = "Cellular Component")
+```
+
+### Les 24 plus sensibles
+
+```{r}
+# les 24 plus senssible à cpt
+write.table(data.frame(ORF = d_merge$Gene, Reponse_cpt = d_merge$camptothecin_500um)$ORF[cpt$Reponse_cpt < -.6], file = "data/gene_-6.txt", row.names = FALSE, quote = FALSE)
+```
+
+```{r}
+tmp = read.table("data/go/24_process.txt", sep = "\t", header = TRUE)
+tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
+
+knitr::kable(tmp, caption = "Biological Process")
+
+tmp = read.table("data/go/24_function.txt", sep = "\t", header = TRUE)
+tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
+
+knitr::kable(tmp, caption = "Molecular Function")
+
+tmp = read.table("data/go/24_component.txt", sep = "\t", header = TRUE)
+tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
+
+knitr::kable(tmp, caption = "Cellular Component")
+```

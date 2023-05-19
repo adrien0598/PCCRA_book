@@ -1,0 +1,147 @@
+# Classification des stress {#classif}
+
+```{r library3, warning = FALSE, message = FALSE}
+library(tidyr)
+library(stringr)
+library(FactoMineR)
+library(mclust)
+library(umap)
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r recuperation3, echo = FALSE}
+d_merge = readRDS(file = "data/d_merge.rds")
+```
+
+```{r umap}
+u_merge = d_merge[-c(1,2)] %>% t() %>% as.data.frame() %>% umap()
+```
+
+## Classification via les données publiques :
+
+En utilisant les indication de [@Hillenmeyer2008] sur les stress utilisés :
+
+```{r}
+tab = read.csv2("data/All_stress_annotated.csv", sep = "\t", header = TRUE)
+```
+
+```{r}
+gg = data.frame(x = u_merge$layout[,1], y = u_merge$layout[,2], type = tab$Type,
+                name = tab$x)
+ggplot(gg)+
+  aes(x = x, y = y, label = name)+
+  theme_classic()+
+  geom_label_repel(data          = subset(gg, name == "camptothecin_500um"),
+                  nudge_y       = 5 - subset(gg, name == "camptothecin_500um")$y,
+                  size          = 4,
+                  box.padding   = 1.5,
+                  point.padding = 0,
+                  force         = 100,
+                  segment.size  = 0.2,
+                  segment.color = "grey50") +
+  geom_point(aes(color = type))
+```
+
+
+Et en regroupant certains stress entre eux :
+
+- **Antibacterien** : antibacterial
+- **Antifungique** : antifungal
+- **Cytotoxique** : alkylating, antimetabolite, antineoplastic, cytoskeleton inhibitor
+- **Environment** : vitamine dropout, temperature change
+- **Divers** : anesthetic, anti-inflamatory, antihelminthic, antihistamine, antihypertensive, antimalarial, antiparkinson, diuretic, flavanoid, hormone, immunosuppressant, insecticide, ionic, laxative, lipid modifying, psychoactive, reagent, vitamin
+
+```{r}
+y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Inconnu", "Autre", "Environement", 
+                                                        "Chelateur", "Antifongique",
+                                                        "Cytotoxique", "Divers", "Antibactériens", "Divers", "Kinase inhibiteur",
+                                                        "Divers", "Antioxydant", "Inhbiteur de la synthèse protéique", 
+                                                        "Inhibiteur de la synthèse d'acide nucléique",
+                                                        "Divers", "Divers", "Cytotoxique", "Divers", "Cytotoxique", "Divers",
+                                                        "Divers", "Divers", "Antiviral", "Inhibiteur de phosphatase", 
+                                                        "Inhibiteur d'enzyme", "Divers","Divers" , "Divers", "Divers", "Divers",
+                                                        "Divers", "Stress Oxydant", "Divers", "Divers", "Environement", "Divers"))
+tab[["Type_merge"]] = tab$Type %>% sapply(function(s){
+  y$type2[y$type1 == s]
+}) %>% unlist()
+
+```
+
+```{r}
+gg[['type2']] = tab$Type_merge %>% as.factor()
+ggplot(gg)+
+  aes(x = x, y = y, label = name)+
+  theme_classic()+
+  geom_label_repel(data          = subset(gg, name == "camptothecin_500um"),
+                  nudge_y       = 5 - subset(gg, name == "camptothecin_500um")$y,
+                  size          = 4,
+                  box.padding   = 1.5,
+                  point.padding = 0,
+                  force         = 100,
+                  segment.size  = 0.2,
+                  segment.color = "grey50") +
+  geom_point(aes(color = type2))
+```
+
+
+## Classification non supervisée : modèle de mélange
+
+```{r classification 1, message = FALSE}
+mc <- Mclust(d_merge[-c(1,2)] %>% t() %>% as.data.frame(), G = seq(2,9)) # modèle de mélange avec choix automatique du modèle et du nombre de classe (entre 2 et 9)
+mc %>% summary()
+```
+
+```{r plot classif 1}
+gg = data.frame(x = u_merge$layout[,1], y = u_merge$layout[,2], classe = mc$classification %>% as.factor())
+gg[['name']] = gg %>% row.names()
+ggplot(gg)+
+  aes(x = x, y = y, label = name)+
+  theme_classic()+
+  geom_label_repel(data          = subset(gg, name == "camptothecin_500um"),
+                  nudge_y       = 6 - subset(gg, name == "camptothecin_500um")$y,
+                  size          = 4,
+                  box.padding   = 1.5,
+                  point.padding = 0.5,
+                  force         = 100,
+                  segment.size  = 0.2,
+                  segment.color = "grey50") +
+  geom_point(aes(color = classe))
+```
+
+```{r save classif 1, echo=FALSE}
+saveRDS(gg, file = "data/classif_petite.rds")
+```
+
+```{r classification 2, eval = FALSE}
+mc2 <- Mclust(d_merge[-c(1,2)] %>% t() %>% as.data.frame(), G = seq(10,20)) # modèle de mélange avec choix automatique du modèle et du nombre de classe (entre 10 et 20)
+mc2 %>% summary()
+```
+
+```{r, echo = FALSE}
+mc2 <- readRDS("data/mc2.rds")
+mc2 %>% summary()
+```
+
+```{r plot classif 2}
+gg = data.frame(x = u_merge$layout[,1], y = u_merge$layout[,2], classe = mc2$classification %>% as.factor())
+gg[['name']] = gg %>% row.names()
+ggplot(gg)+
+  aes(x = x, y = y, label = name)+
+  theme_classic()+
+  geom_label_repel(data          = subset(gg, name == "camptothecin_500um"),
+                  nudge_y       = 6 - subset(gg, name == "camptothecin_500um")$y,
+                  size          = 4,
+                  box.padding   = 1.5,
+                  point.padding = 0.5,
+                  force         = 100,
+                  segment.size  = 0.2,
+                  segment.color = "grey50") +
+  geom_point(aes(color = classe))
+
+```
+
+```{r, echo = FALSE}
+saveRDS(gg, file = "data/classif_grosse.rds")
+```
+

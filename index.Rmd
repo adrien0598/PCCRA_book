@@ -1,0 +1,26 @@
+--- 
+title: "Crible PCCRA"
+author: "Adrien"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+description: "Analyse du crible chimiogénétique PCCRA"
+---
+
+# Introduction {#index}
+
+We are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015]. **R** version 4.3.0 was used [@R-base].
+
+Les données utilisées sont issues d'un crible chimiogénétique de [@Hillenmeyer2008] qui ont mesuré le logarithme de la defection de fitness de 4276 mutants lorsqu'exposé à une mutitude drogues et stress en tout genre.
+
+```{r include=FALSE, eval = FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```

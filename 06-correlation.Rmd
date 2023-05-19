@@ -1,0 +1,29 @@
+# Correlation {#ccor}
+
+```{r library5, warning = FALSE, message = FALSE}
+library(tidyr)
+library(stringr)
+library(FactoMineR)
+library(ggplot2)
+library(ggrepel)
+```
+
+```{r recuperation5, echo = FALSE}
+d_merge = readRDS(file = "data/d_merge.rds")
+```
+
+## Mesure de correlation entre les mutants
+
+```{r}
+cor_mut <- d_merge[-c(1,2)] %>% t() %>% cor()
+#heatmap(cor_mut)
+```
+
+## Mesure de correlation entre les stress
+
+```{r}
+cor_stress <- d_merge[-c(1,2)] %>% cor()
+heatmap(cor_stress)
+```
+
+

@@ -1,0 +1,73 @@
+# Importation et résumé des données {#import}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r library0, warning = FALSE, message = FALSE}
+library(tidyr)
+```
+
+## Apperçu des données
+
+```{r data import}
+d = read.csv2("data/Hill.csv", sep = "\t", header = TRUE, dec = ".") %>% na.omit() %>% unique()
+d %>% dim()
+d[,1:6] %>% summary()
+```
+
+```{r, echo = FALSE}
+saveRDS(d, file = "data/d.rds")
+```
+
+## Stress
+
+```{r}
+stress_g = read.csv2("data/crible.csv", sep = ";", header = FALSE, dec = ".")[1,-c(1,2)] %>% 
+  as.vector() %>% 
+  unlist() %>% 
+  as.factor()# all stresses
+
+stress = read.csv2("data/Hill.csv", sep = "\t", header = FALSE, dec = ".")[1,-c(1,2)] %>% 
+  as.vector() %>% 
+  unlist()  # all stresses (at different concentration etc..)
+
+tmp = stress_g %>% table() %>% sort(decreasing = TRUE) %>% as.data.frame()
+knitr::kable(tmp[c(1:10),] %>% rbind(tmp[tmp$. == "camptothecin",]), 
+             caption = "Table des 10 stress les plus courants (toutes concentrations confondues)",
+             col.names = c("Stress", "Fréquence"),
+             align = "cc")
+
+tmp = stress %>% table() %>% sort(decreasing = TRUE) %>% as.data.frame()
+knitr::kable(tmp[c(1:10),] %>% rbind(tmp[tmp$. == "camptothecin_500um",]), 
+             caption = "Table des 10 stress les plus courants",
+             col.names = c("Stress", "Fréquence"),
+             align = "cc")
+
+(stress %>% table() %>% sort(decreasing = TRUE) %>% as.data.frame())[,2] %>% summary()
+```
+
+Nombre de stress distincts (ou d'intensité différentes) : 
+
+```{r}
+stress %>% unique() %>% length()
+```
+
+Nombre de stress distincts : 
+
+```{r}
+stress_g %>% unique() %>% length()
+```
+
+## Gènes
+
+Nombre d'ORF distinctes :
+```{r}
+d$Orf %>% unique() %>% length()
+```
+
+Nombre de gènes distincts :
+
+```{r}
+d$Gene[d$Gene != ""] %>% unique() %>% length()
+```

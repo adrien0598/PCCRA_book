@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Classification des stress (suite) | Crible PCCRA</title>
+  <meta name="description" content="Analyse du crible chimiogénétique PCCRA" />
+  <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Classification des stress (suite) | Crible PCCRA" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Analyse du crible chimiogénétique PCCRA" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Classification des stress (suite) | Crible PCCRA" />
+  
+  <meta name="twitter:description" content="Analyse du crible chimiogénétique PCCRA" />
+  
+
+<meta name="author" content="Adrien" />
+
+
+<meta name="date" content="2023-05-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="classif.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Importation et résumé des données</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="import.html"><a href="import.html#apperçu-des-données"><i class="fa fa-check"></i><b>2.1</b> Apperçu des données</a></li>
+<li class="chapter" data-level="2.2" data-path="import.html"><a href="import.html#stress"><i class="fa fa-check"></i><b>2.2</b> Stress</a></li>
+<li class="chapter" data-level="2.3" data-path="import.html"><a href="import.html#gènes"><i class="fa fa-check"></i><b>2.3</b> Gènes</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cleanup.html"><a href="cleanup.html"><i class="fa fa-check"></i><b>3</b> Filtre et nettoyage des données</a></li>
+<li class="chapter" data-level="4" data-path="cpt.html"><a href="cpt.html"><i class="fa fa-check"></i><b>4</b> Réponse à la Camptothecine</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="cpt.html"><a href="cpt.html#réponse-des-mutants-à-cpt"><i class="fa fa-check"></i><b>4.1</b> Réponse des mutants à CPT</a></li>
+<li class="chapter" data-level="4.2" data-path="cpt.html"><a href="cpt.html#go-enrichissement"><i class="fa fa-check"></i><b>4.2</b> GO enrichissement</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-resistants-à-cpt"><i class="fa fa-check"></i><b>4.2.1</b> Mutants les plus resistants à CPT</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-sensibles-à-cpt"><i class="fa fa-check"></i><b>4.2.2</b> Mutants les plus sensibles à CPT</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="classif.html"><a href="classif.html#classification-via-les-données-publiques"><i class="fa fa-check"></i><b>5.1</b> Classification via les données publiques :</a></li>
+<li class="chapter" data-level="5.2" data-path="classif.html"><a href="classif.html#classification-non-supervisée-modèle-de-mélange"><i class="fa fa-check"></i><b>5.2</b> Classification non supervisée : modèle de mélange</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="classif2.html"><a href="classif2.html"><i class="fa fa-check"></i><b>6</b> Classification des stress (suite)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="classif2.html"><a href="classif2.html#caractérisation-des-18-groupes-de-stress"><i class="fa fa-check"></i><b>6.1</b> Caractérisation des 18 groupes de stress</a></li>
+<li class="chapter" data-level="6.2" data-path="classif2.html"><a href="classif2.html#enrichissement-de-classe"><i class="fa fa-check"></i><b>6.2</b> Enrichissement de classe</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Crible PCCRA</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="classif2" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Classification des stress (suite)<a href="classif2.html#classif2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="classif2.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-2"><a href="classif2.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-3"><a href="classif2.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb1-4"><a href="classif2.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mclust)</span>
+<span id="cb1-5"><a href="classif2.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(umap)</span>
+<span id="cb1-6"><a href="classif2.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-7"><a href="classif2.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<div id="caractérisation-des-18-groupes-de-stress" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Caractérisation des 18 groupes de stress<a href="classif2.html#caractérisation-des-18-groupes-de-stress" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="classif2.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">18</span>)) {</span>
+<span id="cb2-2"><a href="classif2.html#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb2-3"><a href="classif2.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste0</span>(<span class="st">&quot;STRESS DE LA CLASSE &quot;</span>, i, <span class="st">&quot; :&quot;</span>))</span>
+<span id="cb2-4"><a href="classif2.html#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(gg[gg<span class="sc">$</span>classe <span class="sc">==</span> i,]<span class="sc">$</span>name)</span>
+<span id="cb2-5"><a href="classif2.html#cb2-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## 
+## [1] &quot;STRESS DE LA CLASSE 1 :&quot;
+##  [1] &quot;methotrexate_250um&quot;                      
+##  [2] &quot;methotrexate_125um&quot;                      
+##  [3] &quot;acriflavinium hydrochloride_250um&quot;       
+##  [4] &quot;nitromide_1000um&quot;                        
+##  [5] &quot;lovastatin_154.5um&quot;                      
+##  [6] &quot;methotrexate_500um&quot;                      
+##  [7] &quot;thiabendazole_500um&quot;                     
+##  [8] &quot;caspofungin_50nm&quot;                        
+##  [9] &quot;atorvastatin_125um&quot;                      
+## [10] &quot;dyclonine_500um&quot;                         
+## [11] &quot;embelin_125um&quot;                           
+## [12] &quot;mebendazole_1000um&quot;                      
+## [13] &quot;formestane_1000um&quot;                       
+## [14] &quot;tomatine_62.5um&quot;                         
+## [15] &quot;phenothrin_1000um&quot;                       
+## [16] &quot;semustine_62.5um&quot;                        
+## [17] &quot;mechlorethamine_62.5um&quot;                  
+## [18] &quot;lefunamide_250um&quot;                        
+## [19] &quot;aklavin hydrochloride_250um&quot;             
+## [20] &quot;emodin_1000um&quot;                           
+## [21] &quot;chlorambucil_1000um&quot;                     
+## [22] &quot;5-fluorouracil_125um&quot;                    
+## [23] &quot;nimustine_1000um&quot;                        
+## [24] &quot;lovastatin_62.5um&quot;                       
+## [25] &quot;atorvastatin_62.5um&quot;                     
+## [26] &quot;dyclonine_250um&quot;                         
+## [27] &quot;alverine citrate, 30ul total up/dn_500um&quot;
+## [28] &quot;methotrexate, 30ul total up/dn_250um&quot;    
+## [29] &quot;alverine citrate, 60ul total up/dn_500um&quot;
+## [30] &quot;methotrexate, 60ul total up/dn_250um&quot;    
+## [31] &quot;paraquat_2000um&quot;                         
+## [32] &quot;paraquat_5000um&quot;                         
+## 
+## [1] &quot;STRESS DE LA CLASSE 2 :&quot;
+##  [1] &quot;5-fluorouracil_19.2um&quot;                  
+##  [2] &quot;benomyl_27.6um&quot;                         
+##  [3] &quot;hygromycin_0.4um&quot;                       
+##  [4] &quot;clotrimazole_2um&quot;                       
+##  [5] &quot;ketoconazole_1um&quot;                       
+##  [6] &quot;miconazole_50nm&quot;                        
+##  [7] &quot;amphotericin B_10um&quot;                    
+##  [8] &quot;hydroxyurea_50000um&quot;                    
+##  [9] &quot;progesterone_250um&quot;                     
+## [10] &quot;cisplatin_125um&quot;                        
+## [11] &quot;estradiol_1000um&quot;                       
+## [12] &quot;5-fluorouracil_4.8um&quot;                   
+## [13] &quot;miconazole_25nm&quot;                        
+## [14] &quot;clozapine_125um&quot;                        
+## [15] &quot;carmustine_31.25um&quot;                     
+## [16] &quot;fenpropimorph_1.65nm&quot;                   
+## [17] &quot;mitoxanthrone hydrochloride_50um&quot;       
+## [18] &quot;mechlorethamine_50um&quot;                   
+## [19] &quot;mitotane_100um&quot;                         
+## [20] &quot;daunorubicin_125um&quot;                     
+## [21] &quot;chlorambucil_800um&quot;                     
+## [22] &quot;5-fluorocytosine_15.6um&quot;                
+## [23] &quot;RIL1 (Biomol)_50ug/ml&quot;                  
+## [24] &quot;alverine citrate_500um&quot;                 
+## [25] &quot;brefeldin A_1000um&quot;                     
+## [26] &quot;novobiocin_1000um&quot;                      
+## [27] &quot;rhizoxin_200um&quot;                         
+## [28] &quot;gossypol_1000um&quot;                        
+## [29] &quot;fenpropimorph_0.4nm&quot;                    
+## [30] &quot;splitomicin_500um&quot;                      
+## [31] &quot;splitomicin_250um&quot;                      
+## [32] &quot;cisplatin_31.25um&quot;                      
+## [33] &quot;haloperidol_250um&quot;                      
+## [34] &quot;terbinafine_7.2um&quot;                      
+## [35] &quot;haloperidol_125um&quot;                      
+## [36] &quot;PP2_100um&quot;                              
+## [37] &quot;wortmannin_50um&quot;                        
+## [38] &quot;indirubin_100um&quot;                        
+## [39] &quot;damnacanthal_200um&quot;                     
+## [40] &quot;damnacanthal_100um&quot;                     
+## [41] &quot;bay 11-7082_12.5um&quot;                     
+## [42] &quot;phosphatase inhibitor_100um&quot;            
+## [43] &quot;PP1_100um&quot;                              
+## [44] &quot;cantharidin disodium_100um&quot;             
+## [45] &quot;tyrphostin_200um&quot;                       
+## [46] &quot;ansamitocin_500um&quot;                      
+## [47] &quot;thio-tepa_1000um&quot;                       
+## [48] &quot;podophyllotoxin_200um&quot;                  
+## [49] &quot;aminopterin_125um&quot;                      
+## [50] &quot;ciclopirox olamine_1000um&quot;              
+## [51] &quot;aphidicolin glycinate_125um&quot;            
+## [52] &quot;adenophostin A_500um&quot;                   
+## [53] &quot;terreic acid_1000um&quot;                    
+## [54] &quot;thiolutin_7.81um&quot;                       
+## [55] &quot;chloroxine_3.91um&quot;                      
+## [56] &quot;trifluoperazine dihydrochloride_31.25um&quot;
+## [57] &quot;vitamin K3_15.63um&quot;                     
+## [58] &quot;fusarubin_250um&quot;                        
+## [59] &quot;streptovitacin_62.5um&quot;                  
+## [60] &quot;menadione epoxide_62.5um&quot;               
+## [61] &quot;trichostatin A_3.91um&quot;                  
+## [62] &quot;phenanthroline monohydrochloride_62.5um&quot;
+## [63] &quot;BCNU_62.5um&quot;                            
+## [64] &quot;phloretin_500um&quot;                        
+## [65] &quot;borrelidin_15.63um&quot;                     
+## [66] &quot;4-isopropyltropolone_15.63um&quot;           
+## [67] &quot;ciclopirox olamine_1.95um&quot;              
+## [68] &quot;psoralen_62.5um&quot;                        
+## [69] &quot;AG 1478 (Biomol)_100um&quot;                 
+## [70] &quot;nsc95397_125um&quot;                         
+## [71] &quot;telomerase inhibitor ix (Biomol)_500um&quot; 
+## [72] &quot;zaluzanin C_1000um&quot;                     
+## [73] &quot;cyclamin_62.5um&quot;                        
+## [74] &quot;distamycin A_250um&quot;                     
+## [75] &quot;CID 403818_125um&quot;                       
+## [76] &quot;thujaplicin alpha_15.63um&quot;              
+## [77] &quot;papuamide B_0.7ug/ml&quot;                   
+## [78] &quot;monastrol_100um&quot;                        
+## [79] &quot;cantharidin_200um&quot;                      
+## [80] &quot;NaF_20000um&quot;                            
+## [81] &quot;NaF_10000um&quot;                            
+## [82] &quot;benzaldehyde_0.003%&quot;                    
+## [83] &quot;bisphenol_8.75um&quot;                       
+## [84] &quot;PP1_3um&quot;                                
+## [85] &quot;PP2_3um&quot;                                
+## 
+## [1] &quot;STRESS DE LA CLASSE 3 :&quot;
+##  [1] &quot;37 degrees C&quot;                     &quot;nystatin_5um&quot;                    
+##  [3] &quot;cantharidin_250um&quot;                &quot;caracemide_62.5um&quot;               
+##  [5] &quot;idarubicin_15.63um&quot;               &quot;aclacinomycin A_15.63um&quot;         
+##  [7] &quot;calvatic acid_15.63um&quot;            &quot;bouvardin_1000um&quot;                
+##  [9] &quot;melphalan_200um&quot;                  &quot;juglone_200um&quot;                   
+## [11] &quot;bostrycoidin_100um&quot;               &quot;coralyne_100um&quot;                  
+## [13] &quot;neomycin sulfate_100um&quot;           &quot;lipoxamycin_0.975um&quot;             
+## [15] &quot;verrucarin A_7.5nm&quot;               &quot;PABA_500um&quot;                      
+## [17] &quot;emodin_500um&quot;                     &quot;reserpine_100um&quot;                 
+## [19] &quot;filipin_100um&quot;                    &quot;dimethylellipticinium_100um&quot;     
+## [21] &quot;RO 106-9920 (Calbio)_125um&quot;       &quot;dianemycin_250um&quot;                
+## [23] &quot;cycloheximide_0.03nm&quot;             &quot;bruceantin_0.98um&quot;               
+## [25] &quot;cinerubin_12.5um&quot;                 &quot;triphenyltin_3.13um&quot;             
+## [27] &quot;AG 957 (Biomol)_500um&quot;            &quot;AG 1387 (Biomol)_250um&quot;          
+## [29] &quot;carbendazine_62.5um&quot;              &quot;staurosporine_6.25um&quot;            
+## [31] &quot;alizarin_125um&quot;                   &quot;lawsone_500um&quot;                   
+## [33] &quot;biochanin A_3.95um&quot;               &quot;quercetin_3.95um&quot;                
+## [35] &quot;ferulic acid_3.95um&quot;              &quot;resveratrol_2000um&quot;              
+## [37] &quot;nerol_1000um&quot;                     &quot;5-fluorouracil_38.4um&quot;           
+## [39] &quot;curcumin_125um&quot;                   &quot;rotenone_250um&quot;                  
+## [41] &quot;sirtinol_50um&quot;                    &quot;xanthohumol_6.2um&quot;               
+## [43] &quot;cantharidin analog_250um&quot;         &quot;cantharidin analog_125um&quot;        
+## [45] &quot;curcumin_500um&quot;                   &quot;parkinson-inducing peptide_250um&quot;
+## [47] &quot;L-dopa_12.5ug/ml&quot;                
+## 
+## [1] &quot;STRESS DE LA CLASSE 4 :&quot;
+##  [1] &quot;miconazole_100um&quot;           &quot;doxorubicin_62.5um&quot;        
+##  [3] &quot;lapachol_1000um&quot;            &quot;itraconazole_35.4um&quot;       
+##  [5] &quot;itraconazole_17.7um&quot;        &quot;itraconazole_8.8um&quot;        
+##  [7] &quot;miconazole_0.2um&quot;           &quot;fluconazole_130.6um&quot;       
+##  [9] &quot;anisomycin_62.5um&quot;          &quot;cloxyquin_15.6um&quot;          
+## [11] &quot;itraconazole_37.6um&quot;        &quot;itraconazole_4.4um&quot;        
+## [13] &quot;sulconazole nitrate_0.24um&quot; &quot;econazole nitrate_0.24um&quot;  
+## [15] &quot;bufexamac_1000um&quot;           &quot;caspofungin_10nm&quot;          
+## [17] &quot;fenpropimorph_4.7um&quot;       
+## 
+## [1] &quot;STRESS DE LA CLASSE 5 :&quot;
+## [1] &quot;nocodazole_2ug/ml&quot;
+## 
+## [1] &quot;STRESS DE LA CLASSE 6 :&quot;
+##  [1] &quot;20 degrees C&quot;                         
+##  [2] &quot;DMSO 1%_1um&quot;                          
+##  [3] &quot;DMSO 2%_2um&quot;                          
+##  [4] &quot;DMSO 4%_4um&quot;                          
+##  [5] &quot;fenbendazole_500um&quot;                   
+##  [6] &quot;mycophenolic acid_500um&quot;              
+##  [7] &quot;trichlormethine_1000um&quot;               
+##  [8] &quot;semustine_125um&quot;                      
+##  [9] &quot;latrunculin_2.8um&quot;                    
+## [10] &quot;latrunculin_1.8um&quot;                    
+## [11] &quot;parthenolide_125um&quot;                   
+## [12] &quot;sanguinarine sulfate_250um&quot;           
+## [13] &quot;solasodine_250um&quot;                     
+## [14] &quot;emodin_250um&quot;                         
+## [15] &quot;mechlorethamine_500um&quot;                
+## [16] &quot;helenine_250um&quot;                       
+## [17] &quot;thiabendazole_250um&quot;                  
+## [18] &quot;quinacrine hydrochloride_1000um&quot;      
+## [19] &quot;aklavin hydrochloride_500um&quot;          
+## [20] &quot;citrinin_1um&quot;                         
+## [21] &quot;5-fluorouracil_76.9um&quot;                
+## [22] &quot;estradiol_2500um&quot;                     
+## [23] &quot;hexestrol_125um&quot;                      
+## [24] &quot;dieldrin_1000um&quot;                      
+## [25] &quot;amitriptyline hydrochloride_250um&quot;    
+## [26] &quot;benztropine_1um&quot;                      
+## [27] &quot;ipriflavone_1000um&quot;                   
+## [28] &quot;usnic acid_500um&quot;                     
+## [29] &quot;methoxyvone_1000um&quot;                   
+## [30] &quot;beclomethasone dipropionate_1000um&quot;   
+## [31] &quot;bisacodyl_1000um&quot;                     
+## [32] &quot;bathophenanthroline disulfonate_100um&quot;
+## [33] &quot;BCS_200um&quot;                            
+## [34] &quot;BCS_100um&quot;                            
+## [35] &quot;floxuridine_80000um&quot;                  
+## [36] &quot;floxuridine_40000um&quot;                  
+## [37] &quot;lovastatin_77.2um&quot;                    
+## [38] &quot;bithionol_75um&quot;                       
+## [39] &quot;bromocriptine mesylate_1000um&quot;        
+## [40] &quot;5-fluorouracil_38.5um&quot;                
+## [41] &quot;leucovorin_500um&quot;                     
+## 
+## [1] &quot;STRESS DE LA CLASSE 7 :&quot;
+## [1] &quot;latrunculin_4.2um&quot; &quot;clotrimazole_1um&quot; 
+## 
+## [1] &quot;STRESS DE LA CLASSE 8 :&quot;
+## [1] &quot;lapachol_500um&quot;
+## 
+## [1] &quot;STRESS DE LA CLASSE 9 :&quot;
+## [1] &quot;aklavin hydrochloride_125um&quot;         
+## [2] &quot;estradiol acetate_500um&quot;             
+## [3] &quot;estradiol propionate_500um&quot;          
+## [4] &quot;estrone acetate_1000um&quot;              
+## [5] &quot;piperidolate hydrochloride_1000um&quot;   
+## [6] &quot;tolfenamic acid_1000um&quot;              
+## [7] &quot;domperidone_1000um&quot;                  
+## [8] &quot;phenoxybenzamine hydrochloride_500um&quot;
+## [9] &quot;fluconazole_65.3um&quot;                  
+## 
+## [1] &quot;STRESS DE LA CLASSE 10 :&quot;
+## [1] &quot;metergoline_250um&quot;             &quot;propiomazine maleate_500um&quot;   
+## [3] &quot;clozapine_500um&quot;               &quot;drofenine hydrochloride_750um&quot;
+## 
+## [1] &quot;STRESS DE LA CLASSE 11 :&quot;
+##  [1] &quot;chlorzoxazone_1000um&quot;             &quot;sodium meclofenamate_1000um&quot;     
+##  [3] &quot;mechlorethamine_250um&quot;            &quot;danthron_1000um&quot;                 
+##  [5] &quot;dichlofenac sodium_1000um&quot;        &quot;diflunisal_1000um&quot;               
+##  [7] &quot;prazosin hydrochloride_1000um&quot;    &quot;promethazine hydrochloride_250um&quot;
+##  [9] &quot;promazine hydrochloride_125um&quot;    &quot;reserpine_125um&quot;                 
+## [11] &quot;spironolactone_500um&quot;             &quot;pyrimethamine_1000um&quot;            
+## [13] &quot;triamterene_500um&quot;                &quot;tolnaftate_250um&quot;                
+## [15] &quot;trimeprazine tartrate_250um&quot;      &quot;aminophenazone_250um&quot;            
+## [17] &quot;mecysteine hydrochloride_62.5um&quot;  &quot;merbromin_62.5um&quot;                
+## [19] &quot;sulfanilamide_62.5um&quot;             &quot;ursodiol_1000um&quot;                 
+## [21] &quot;naringenin_1000um&quot;               
+## 
+## [1] &quot;STRESS DE LA CLASSE 12 :&quot;
+##  [1] &quot;nocodazole_6.6um&quot;                   &quot;trichlormethine_500um&quot;             
+##  [3] &quot;amphotericin B_0.31um&quot;              &quot;ketoconazole_2um&quot;                  
+##  [5] &quot;hexetidine_31.25um&quot;                 &quot;thiram_15.6um&quot;                     
+##  [7] &quot;glafenine_1000um&quot;                   &quot;5,6-dihydroxyflavone_250um&quot;        
+##  [9] &quot;nalidixic acid_1000um&quot;              &quot;fenoprofen_250um&quot;                  
+## [11] &quot;fluconazole_32.6um&quot;                 &quot;pyrithione zinc_1.95um&quot;            
+## [13] &quot;ciclopirox olamine_3.9um&quot;           &quot;chloroacetoxyquinoline_3.9um&quot;      
+## [15] &quot;exalamide_62.5um&quot;                   &quot;probucol_1000um&quot;                   
+## [17] &quot;aminacrine_250um&quot;                   &quot;berberine chloride_125um&quot;          
+## [19] &quot;flufenamic acid_62.5um&quot;             &quot;fenbendazole_250um&quot;                
+## [21] &quot;fendiline hydrochloride_125um&quot;      &quot;flunarizine hydrochloride_93.8um&quot;  
+## [23] &quot;fenbufen_500um&quot;                     &quot;meclocycline sulfosalicylate_375um&quot;
+## [25] &quot;thyronine_250um&quot;                    &quot;ethoxyquin_250um&quot;                  
+## [27] &quot;mefenamic acid_500um&quot;               &quot;citropten_750um&quot;                   
+## [29] &quot;piperine_250um&quot;                     &quot;flufenamic acid_31.25um&quot;           
+## [31] &quot;protoveratrine B_10000um&quot;           &quot;suxibuzone_1000um&quot;                 
+## [33] &quot;chrysin_500um&quot;                      &quot;ethaverine hydrochloride_500um&quot;    
+## [35] &quot;droperidol_1000um&quot;                  &quot;mebendazole_500um&quot;                 
+## [37] &quot;fenofibrate_500um&quot;                  &quot;metampicillin_1000um&quot;              
+## [39] &quot;niflumic acid_1000um&quot;               &quot;PABA_1000um&quot;                       
+## [41] &quot;ketoconazole_0.5um&quot;                 &quot;tolnaftate_125um&quot;                  
+## [43] &quot;anisomycin_31.25um&quot;                 &quot;hexetidine_15.6um&quot;                 
+## [45] &quot;cloxyquin_7.8um&quot;                    &quot;exalamide_31.25um&quot;                 
+## [47] &quot;econazole_0.12um&quot;                   &quot;azobenzene_1000um&quot;                 
+## [49] &quot;piromidic acid_1000um&quot;              &quot;cisplatin_1000um&quot;                  
+## [51] &quot;proadifen hydrochloride_500um&quot;      &quot;estradiol diacetate_1000um&quot;        
+## [53] &quot;cisplatin_62.5um&quot;                   &quot;fluconazole_31.25um&quot;               
+## [55] &quot;amphotericin B_0.62um&quot;              &quot;fenpropimorph_2.3um&quot;               
+## [57] &quot;fenpropimorph_1.2um&quot;               
+## 
+## [1] &quot;STRESS DE LA CLASSE 13 :&quot;
+##  [1] &quot;nicardipine hydrochloride_500um&quot;            
+##  [2] &quot;colchicine_250um&quot;                           
+##  [3] &quot;pimethixene maleate_125um&quot;                  
+##  [4] &quot;mitoxanthrone hydrochloride_250um&quot;          
+##  [5] &quot;nitrendipine_500um&quot;                         
+##  [6] &quot;paromomycin sulfate_500um&quot;                  
+##  [7] &quot;rutilantin_500um&quot;                           
+##  [8] &quot;pimpinellin_500um&quot;                          
+##  [9] &quot;dimercaptopropanol_500um&quot;                   
+## [10] &quot;osajin_1000um&quot;                              
+## [11] &quot;amoxepine_500um&quot;                            
+## [12] &quot;oxethazine_250um&quot;                           
+## [13] &quot;perillic acid_250um&quot;                        
+## [14] &quot;4,6-dichloroindole-2-carboxylic acid_1000um&quot;
+## [15] &quot;paroxetine hydrochloride_250um&quot;             
+## [16] &quot;benzyl benzoate_1000um&quot;                     
+## [17] &quot;clofoctol_1000um&quot;                           
+## [18] &quot;bromhexine hydrochloride_500um&quot;             
+## [19] &quot;fenpropimorph_8nm&quot;                          
+## [20] &quot;hydroxyurea_100000um&quot;                       
+## [21] &quot;hydroxyurea_25000um&quot;                        
+## [22] &quot;5-fluorouridine_95um&quot;                       
+## [23] &quot;5-fluorouridine_47.5um&quot;                     
+## [24] &quot;5-fluorouridine_23.8um&quot;                     
+## [25] &quot;fluconazole_16.3um&quot;                         
+## [26] &quot;itraconazole_2.2um&quot;                         
+## [27] &quot;parthenolide_1000um&quot;                        
+## [28] &quot;mycophenolic acid_125um&quot;                    
+## [29] &quot;teniposide_500um&quot;                           
+## [30] &quot;mitomycin c_1000um&quot;                         
+## [31] &quot;methoxsalen_500um&quot;                          
+## [32] &quot;tetrandrine_1000um&quot;                         
+## [33] &quot;amsacrine_500um&quot;                            
+## [34] &quot;caffeine_2000um&quot;                            
+## [35] &quot;camptothecin_500um&quot;                         
+## [36] &quot;cytarabine_2000um&quot;                          
+## [37] &quot;dicumarol_1000um&quot;                           
+## [38] &quot;thiotepa_1000um&quot;                            
+## 
+## [1] &quot;STRESS DE LA CLASSE 14 :&quot;
+##  [1] &quot;cantharidin_100um&quot;                 &quot;mitoxanthrone_62.5um&quot;             
+##  [3] &quot;paclitaxel_250um&quot;                  &quot;rapamycin_4.88nm&quot;                 
+##  [5] &quot;allyl disulfide_0.06%&quot;             &quot;norcantharidin_2500um&quot;            
+##  [7] &quot;5-fluorouracil_76.8um&quot;             &quot;rapamycin_5nm&quot;                    
+##  [9] &quot;allyl disulfide_0.016%&quot;            &quot;latrunculin_1.95um&quot;               
+## [11] &quot;cycloheximide_100um&quot;               &quot;chemical diversity labs 6842_62um&quot;
+## [13] &quot;chemical diversity labs 6842_31um&quot; &quot;chemical diversity labs 218_250um&quot;
+## [15] &quot;chemical diversity labs 218_125um&quot; &quot;chemical diversity labs 41_500um&quot; 
+## [17] &quot;chemical diversity labs 41_250um&quot;  &quot;chemical diversity labs 246_62um&quot; 
+## [19] &quot;chemical diversity labs 246_31um&quot;  &quot;chemical diversity labs 275_125um&quot;
+## [21] &quot;chemical diversity labs 275_62um&quot;  &quot;chemical diversity labs 232_62um&quot; 
+## [23] &quot;chemical diversity labs 232_31um&quot;  &quot;meclizine hydrochloride_250um&quot;    
+## [25] &quot;norcantharidin_100um&quot;              &quot;1,4-dimethylendothall_100um&quot;      
+## [27] &quot;1,4-dimethylendothall_1000um&quot;      &quot;1,4-dimethylendothall_500um&quot;      
+## [29] &quot;phenolphthalein_250um&quot;             &quot;benfluorex hydrochloride_250um&quot;   
+## [31] &quot;wiskostatin_19um&quot;                  &quot;alizarin_66um&quot;                    
+## [33] &quot;FK506_100um&quot;                       &quot;FK506_50um&quot;                       
+## [35] &quot;allyl sulfide_0.12%&quot;               &quot;allyl disulfide_0.01%&quot;            
+## [37] &quot;propyl disulfide_0.49%&quot;            &quot;papuamide B_0.37ug/ml&quot;            
+## [39] &quot;papuamide B_0.25ug/ml&quot;             &quot;papuamide B_0.125ug/ml&quot;           
+## [41] &quot;1,8-nonadiene_0.99%&quot;               &quot;rapamycin_6nm&quot;                    
+## [43] &quot;rapamycin_9nm&quot;                     &quot;calyculin A_2.5um&quot;                
+## 
+## [1] &quot;STRESS DE LA CLASSE 15 :&quot;
+## [1] &quot;tryptanthrin_250um&quot;
+## 
+## [1] &quot;STRESS DE LA CLASSE 16 :&quot;
+## [1] &quot;latrunculin_3.91um&quot;
+## 
+## [1] &quot;STRESS DE LA CLASSE 17 :&quot;
+## [1] &quot;wiskostatin_29um&quot;
+## 
+## [1] &quot;STRESS DE LA CLASSE 18 :&quot;
+##  [1] &quot;DNA protein kinase inhibitor&quot;        &quot;1,3-diallylurea_10000um&quot;            
+##  [3] &quot;1,7-octadiene_0.25%&quot;                 &quot;chemical diversity labs 14a_6.2um&quot;  
+##  [5] &quot;chemical diversity labs 14f_6.2um&quot;   &quot;chemical diversity labs 1c10_1.5um&quot; 
+##  [7] &quot;chemical diversity labs 1c10_0.75um&quot; &quot;chemical diversity labs 3f2_12.5um&quot; 
+##  [9] &quot;CID 144303_1.9um&quot;                    &quot;CID 604586_31.25um&quot;                 
+## [11] &quot;CID 622648_31.25um&quot;                  &quot;CID 630688_250um&quot;                   
+## [13] &quot;CID 632839_62.5um&quot;                   &quot;CID 652287_500um&quot;                   
+## [15] &quot;CID 678146_1.9um&quot;                    &quot;CID 683517_15.6um&quot;                  
+## [17] &quot;CID 621889_125um&quot;                    &quot;CID 688028_1.9um&quot;                   
+## [19] &quot;CID 693573_250um&quot;                    &quot;CID 693632_62.5um&quot;                  
+## [21] &quot;CID 697443_0.95um&quot;                   &quot;1,3-diallylurea_5000um&quot;             
+## [23] &quot;FeCl4_2500um&quot;                        &quot;CuSO4_10000um&quot;                      
+## [25] &quot;ZnCl2_468.8um&quot;                       &quot;CoCl2_1250um&quot;                       
+## [27] &quot;sodium arsenite_625um&quot;               &quot;HgCl2_7.81um&quot;                       
+## [29] &quot;K2Cr2O7_6.25um&quot;                      &quot;MPP+_500ug/ml&quot;                      
+## [31] &quot;MPP+_250ug/ml&quot;                       &quot;mitomycin c_50um&quot;                   
+## [33] &quot;potassium disulfite_2500um&quot;          &quot;curcumin_150um&quot;                     
+## [35] &quot;thimerosal_125nm&quot;                    &quot;motuporamine_7.5um&quot;                 
+## [37] &quot;motuporamine_15um&quot;                   &quot;myriocin_0.15ug/ml&quot;                 
+## [39] &quot;aureobasidin A_0.02ug/ml&quot;</code></pre>
+</div>
+<div id="enrichissement-de-classe" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Enrichissement de classe<a href="classif2.html#enrichissement-de-classe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Es ce que le groupe de stress contenant la camptothecine est enrichit en un ou plusieurs types de stress ?</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="classif2.html#cb4-1" aria-hidden="true" tabindex="-1"></a>gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]</span></code></pre></div>
+<pre><code>##                             x          y classe               name
+## camptothecin_500um -0.8844429 -0.9805979     13 camptothecin_500um</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="classif2.html#cb6-1" aria-hidden="true" tabindex="-1"></a>stress_campto <span class="ot">&lt;-</span> gg[gg<span class="sc">$</span>classe <span class="sc">==</span> gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]<span class="sc">$</span>classe,]<span class="sc">$</span>name</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="classif2.html#cb7-1" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto, <span class="at">Type =</span> stress_campto <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
+<span id="cb7-2"><a href="classif2.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>Type[y <span class="sc">==</span> tab<span class="sc">$</span>x]</span>
+<span id="cb7-3"><a href="classif2.html#cb7-3" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb7-4"><a href="classif2.html#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="classif2.html#cb7-5" aria-hidden="true" tabindex="-1"></a>full_count <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Type =</span> tab<span class="sc">$</span>Type <span class="sc">%&gt;%</span> <span class="fu">unique</span>(), <span class="at">Count =</span> tab<span class="sc">$</span>Type <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
+<span id="cb7-6"><a href="classif2.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>x[tab<span class="sc">$</span>Type <span class="sc">==</span> y] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb7-7"><a href="classif2.html#cb7-7" aria-hidden="true" tabindex="-1"></a>}), <span class="at">groupe =</span> <span class="fu">rep</span>(<span class="st">&quot;ALL&quot;</span>, tab<span class="sc">$</span>Type <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()))</span>
+<span id="cb7-8"><a href="classif2.html#cb7-8" aria-hidden="true" tabindex="-1"></a>campto_count <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Type =</span> tab<span class="sc">$</span>Type <span class="sc">%&gt;%</span> <span class="fu">unique</span>(), <span class="at">Count =</span> tab<span class="sc">$</span>Type<span class="sc">%&gt;%</span> <span class="fu">unique</span>()  <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
+<span id="cb7-9"><a href="classif2.html#cb7-9" aria-hidden="true" tabindex="-1"></a>  gg_campto<span class="sc">$</span>x[gg_campto<span class="sc">$</span>Type <span class="sc">==</span> y] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb7-10"><a href="classif2.html#cb7-10" aria-hidden="true" tabindex="-1"></a>}), <span class="at">groupe =</span> <span class="fu">rep</span>(<span class="st">&quot;CPT&quot;</span>, tab<span class="sc">$</span>Type <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()))</span>
+<span id="cb7-11"><a href="classif2.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="classif2.html#cb7-12" aria-hidden="true" tabindex="-1"></a>gg_compar <span class="ot">=</span> full_count <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(campto_count)</span>
+<span id="cb7-13"><a href="classif2.html#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="classif2.html#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_compar)<span class="sc">+</span></span>
+<span id="cb7-15"><a href="classif2.html#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> groupe, <span class="at">fill =</span> Type, <span class="at">y =</span> Count) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="classif2.html#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="classif2.html#cb8-1" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto, <span class="at">Type =</span> stress_campto <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
+<span id="cb8-2"><a href="classif2.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>Type_merge[y <span class="sc">==</span> tab<span class="sc">$</span>x]</span>
+<span id="cb8-3"><a href="classif2.html#cb8-3" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb8-4"><a href="classif2.html#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="classif2.html#cb8-5" aria-hidden="true" tabindex="-1"></a>full_count <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Type =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>(), <span class="at">Count =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
+<span id="cb8-6"><a href="classif2.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>x[tab<span class="sc">$</span>Type_merge <span class="sc">==</span> y] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb8-7"><a href="classif2.html#cb8-7" aria-hidden="true" tabindex="-1"></a>}), <span class="at">groupe =</span> <span class="fu">rep</span>(<span class="st">&quot;ALL&quot;</span>, tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()))</span>
+<span id="cb8-8"><a href="classif2.html#cb8-8" aria-hidden="true" tabindex="-1"></a>campto_count <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Type =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>(), <span class="at">Count =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>()  <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
+<span id="cb8-9"><a href="classif2.html#cb8-9" aria-hidden="true" tabindex="-1"></a>  gg_campto<span class="sc">$</span>x[gg_campto<span class="sc">$</span>Type <span class="sc">==</span> y] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
+<span id="cb8-10"><a href="classif2.html#cb8-10" aria-hidden="true" tabindex="-1"></a>}), <span class="at">groupe =</span> <span class="fu">rep</span>(<span class="st">&quot;CPT&quot;</span>, tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()))</span>
+<span id="cb8-11"><a href="classif2.html#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="classif2.html#cb8-12" aria-hidden="true" tabindex="-1"></a>gg_compar <span class="ot">=</span> full_count <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(campto_count)</span>
+<span id="cb8-13"><a href="classif2.html#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="classif2.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_compar)<span class="sc">+</span></span>
+<span id="cb8-15"><a href="classif2.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> groupe, <span class="at">fill =</span> Type, <span class="at">y =</span> Count) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="classif2.html#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Mesure de l’enrichissement dans chacune des catégories :</p>
+<p>On réalise un test de fisher exact pour les 16 catégories (loi hypergéométrique)</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="classif2.html#cb9-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
+<span id="cb9-2"><a href="classif2.html#cb9-2" aria-hidden="true" tabindex="-1"></a>tests <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb9-3"><a href="classif2.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (categorie <span class="cf">in</span> full_count<span class="sc">$</span>Type) {</span>
+<span id="cb9-4"><a href="classif2.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">==</span> categorie] <span class="co"># total white balls</span></span>
+<span id="cb9-5"><a href="classif2.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">c</span>(campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie]<span class="sc">:</span>m) <span class="co"># white balls tirées (hits)</span></span>
+<span id="cb9-6"><a href="classif2.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">!=</span> categorie] <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># black balls total</span></span>
+<span id="cb9-7"><a href="classif2.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">=</span> campto_count<span class="sc">$</span>Count <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># tirage</span></span>
+<span id="cb9-8"><a href="classif2.html#cb9-8" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
+<span id="cb9-9"><a href="classif2.html#cb9-9" aria-hidden="true" tabindex="-1"></a>                 k<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
+<span id="cb9-10"><a href="classif2.html#cb9-10" aria-hidden="true" tabindex="-1"></a>                 m<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
+<span id="cb9-11"><a href="classif2.html#cb9-11" aria-hidden="true" tabindex="-1"></a>                 n<span class="sc">-</span>(k<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie])), </span>
+<span id="cb9-12"><a href="classif2.html#cb9-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb9-13"><a href="classif2.html#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(fisher.test(mat)$p.value)</span></span>
+<span id="cb9-14"><a href="classif2.html#cb9-14" aria-hidden="true" tabindex="-1"></a>  tests <span class="ot">=</span> <span class="fu">c</span>(tests, <span class="fu">dhyper</span>(x, m, n, k, <span class="at">log =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">sum</span>())</span>
+<span id="cb9-15"><a href="classif2.html#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-16"><a href="classif2.html#cb9-16" aria-hidden="true" tabindex="-1"></a>tf <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">categories =</span> full_count<span class="sc">$</span>Type, <span class="at">p_val =</span> tests)</span>
+<span id="cb9-17"><a href="classif2.html#cb9-17" aria-hidden="true" tabindex="-1"></a>tf[tf<span class="sc">$</span>p_val <span class="sc">&lt;</span> alpha,]</span></code></pre></div>
+<pre><code>##                                     categories      p_val
+## 1                                  Cytotoxique 0.03581433
+## 12 Inhibiteur de la synthèse d&#39;acide nucléique 0.03313218</code></pre>
+<p>Ce groupe est enrichis en composants <strong>cyctotoxiques</strong> et <strong>inhibiteurs de la synthèse d’acides nucléiques</strong>. Ces deux points coincident avec les trouvailles de la GO enrichissement.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="classif.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-classif_suite.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
