@@ -255,6 +255,7 @@ div.csl-indent {
 <h3><span class="header-section-number">4.2.1</span> Mutants les plus resistants à CPT<a href="cpt.html#mutants-les-plus-resistants-à-cpt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="cpt.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 43 plus resistant à cpt</span></span>
 <span id="cb19-2"><a href="cpt.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">1.5</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_15.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>rien de ouf, marche pas trop</p>
 </div>
 <div id="mutants-les-plus-sensibles-à-cpt" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Mutants les plus sensibles à CPT<a href="cpt.html#mutants-les-plus-sensibles-à-cpt" class="anchor-section" aria-label="Anchor link to header"></a></h3>

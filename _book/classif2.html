@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="classif.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="ccor.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -162,7 +162,7 @@ div.csl-indent {
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Importation et résumé des données</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="import.html"><a href="import.html#apperçu-des-données"><i class="fa fa-check"></i><b>2.1</b> Apperçu des données</a></li>
@@ -177,6 +177,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-resistants-à-cpt"><i class="fa fa-check"></i><b>4.2.1</b> Mutants les plus resistants à CPT</a></li>
 <li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-sensibles-à-cpt"><i class="fa fa-check"></i><b>4.2.2</b> Mutants les plus sensibles à CPT</a></li>
+<li class="chapter" data-level="4.2.3" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.3</b> Les 24 plus sensibles</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
@@ -188,6 +189,11 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="6.1" data-path="classif2.html"><a href="classif2.html#caractérisation-des-18-groupes-de-stress"><i class="fa fa-check"></i><b>6.1</b> Caractérisation des 18 groupes de stress</a></li>
 <li class="chapter" data-level="6.2" data-path="classif2.html"><a href="classif2.html#enrichissement-de-classe"><i class="fa fa-check"></i><b>6.2</b> Enrichissement de classe</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ccor.html"><a href="ccor.html"><i class="fa fa-check"></i><b>7</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-mutants"><i class="fa fa-check"></i><b>7.1</b> Mesure de correlation entre les mutants</a></li>
+<li class="chapter" data-level="7.2" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-stress"><i class="fa fa-check"></i><b>7.2</b> Mesure de correlation entre les stress</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -595,8 +601,8 @@ div.csl-indent {
 <h2><span class="header-section-number">6.2</span> Enrichissement de classe<a href="classif2.html#enrichissement-de-classe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Es ce que le groupe de stress contenant la camptothecine est enrichit en un ou plusieurs types de stress ?</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="classif2.html#cb4-1" aria-hidden="true" tabindex="-1"></a>gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]</span></code></pre></div>
-<pre><code>##                             x          y classe               name
-## camptothecin_500um -0.8844429 -0.9805979     13 camptothecin_500um</code></pre>
+<pre><code>##                            x         y classe               name
+## camptothecin_500um -1.721581 0.5696006     13 camptothecin_500um</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="classif2.html#cb6-1" aria-hidden="true" tabindex="-1"></a>stress_campto <span class="ot">&lt;-</span> gg[gg<span class="sc">$</span>classe <span class="sc">==</span> gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]<span class="sc">$</span>classe,]<span class="sc">$</span>name</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="classif2.html#cb7-1" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto, <span class="at">Type =</span> stress_campto <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
 <span id="cb7-2"><a href="classif2.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>Type[y <span class="sc">==</span> tab<span class="sc">$</span>x]</span>
@@ -664,7 +670,7 @@ div.csl-indent {
         </div>
       </div>
 <a href="classif.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ccor.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -695,7 +701,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-classif_suite.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-classif_suite.Rmd",
 "text": "Edit"
 },
 "history": {

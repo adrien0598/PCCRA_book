@@ -46,6 +46,7 @@ En utilisant https://yeastgenome.org/goTermFinder, on regarde si le groupe des g
 write.table(data.frame(ORF = d_merge$Gene, Reponse_cpt = d_merge$camptothecin_500um)$ORF[cpt$Reponse_cpt > 1.5], file = "data/gene_15.txt", row.names = FALSE, quote = FALSE)
 ```
 
+rien de ouf, marche pas trop
 
 ### Mutants les plus sensibles à CPT
 #### Les 61 plus sensibles
