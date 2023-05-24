@@ -46,6 +46,7 @@ Es ce que le groupe de stress contenant la camptothecine est enrichit en un ou p
 gg[gg$name == "camptothecin_500um",]
 
 stress_campto <- gg[gg$classe == gg[gg$name == "camptothecin_500um",]$classe,]$name
+saveRDS(stress_campto, file = "stress_campto.rds")
 ```
 
 ```{r}
