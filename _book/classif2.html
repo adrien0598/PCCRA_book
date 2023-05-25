@@ -179,6 +179,10 @@ div.csl-indent {
 <li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-sensibles-à-cpt"><i class="fa fa-check"></i><b>4.2.2</b> Mutants les plus sensibles à CPT</a></li>
 <li class="chapter" data-level="4.2.3" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.3</b> Les 24 plus sensibles</a></li>
 </ul></li>
+<li class="chapter" data-level="4.3" data-path="cpt.html"><a href="cpt.html#nouvelle-approche-pénalisée"><i class="fa fa-check"></i><b>4.3</b> Nouvelle approche (pénalisée)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="cpt.html"><a href="cpt.html#go-enrichissement-1"><i class="fa fa-check"></i><b>4.3.1</b> GO enrichissement</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
 <ul>
@@ -193,8 +197,10 @@ div.csl-indent {
 <li class="chapter" data-level="7" data-path="ccor.html"><a href="ccor.html"><i class="fa fa-check"></i><b>7</b> Correlation</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-mutants"><i class="fa fa-check"></i><b>7.1</b> Mesure de correlation entre les mutants</a></li>
-<li class="chapter" data-level="7.2" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-stress"><i class="fa fa-check"></i><b>7.2</b> Mesure de correlation entre les stress</a></li>
-<li class="chapter" data-level="7.3" data-path="ccor.html"><a href="ccor.html#autre"><i class="fa fa-check"></i><b>7.3</b> Autre</a></li>
+<li class="chapter" data-level="7.2" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-stress"><i class="fa fa-check"></i><b>7.2</b> Mesure de correlation entre les stress</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ccor.html"><a href="ccor.html#stress-du-groupe-camptothecine"><i class="fa fa-check"></i><b>7.2.1</b> Stress du groupe Camptothecine</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -603,7 +609,7 @@ div.csl-indent {
 <p>Es ce que le groupe de stress contenant la camptothecine est enrichit en un ou plusieurs types de stress ?</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="classif2.html#cb4-1" aria-hidden="true" tabindex="-1"></a>gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]</span></code></pre></div>
 <pre><code>##                            x        y classe               name
-## camptothecin_500um -1.725965 1.069941     13 camptothecin_500um</code></pre>
+## camptothecin_500um -1.351724 1.212643     13 camptothecin_500um</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="classif2.html#cb6-1" aria-hidden="true" tabindex="-1"></a>stress_campto <span class="ot">&lt;-</span> gg[gg<span class="sc">$</span>classe <span class="sc">==</span> gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]<span class="sc">$</span>classe,]<span class="sc">$</span>name</span>
 <span id="cb6-2"><a href="classif2.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stress_campto, <span class="at">file =</span> <span class="st">&quot;stress_campto.rds&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="classif2.html#cb7-1" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto, <span class="at">Type =</span> stress_campto <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
@@ -622,7 +628,7 @@ div.csl-indent {
 <span id="cb7-14"><a href="classif2.html#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_compar)<span class="sc">+</span></span>
 <span id="cb7-15"><a href="classif2.html#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> groupe, <span class="at">fill =</span> Type, <span class="at">y =</span> Count) <span class="sc">+</span></span>
 <span id="cb7-16"><a href="classif2.html#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/plota-1.png" width="672" /></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="classif2.html#cb8-1" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto, <span class="at">Type =</span> stress_campto <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
 <span id="cb8-2"><a href="classif2.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>Type_merge[y <span class="sc">==</span> tab<span class="sc">$</span>x]</span>
 <span id="cb8-3"><a href="classif2.html#cb8-3" aria-hidden="true" tabindex="-1"></a>}))</span>
@@ -639,7 +645,7 @@ div.csl-indent {
 <span id="cb8-14"><a href="classif2.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_compar)<span class="sc">+</span></span>
 <span id="cb8-15"><a href="classif2.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> groupe, <span class="at">fill =</span> Type, <span class="at">y =</span> Count) <span class="sc">+</span></span>
 <span id="cb8-16"><a href="classif2.html#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/plotb-1.png" width="672" /></p>
 <p>Mesure de l’enrichissement dans chacune des catégories :</p>
 <p>On réalise un test de fisher exact pour les 16 catégories (loi hypergéométrique)</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="classif2.html#cb9-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>

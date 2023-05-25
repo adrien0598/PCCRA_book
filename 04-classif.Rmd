@@ -26,7 +26,7 @@ En utilisant les indication de [@Hillenmeyer2008] sur les stress utilisés :
 tab = read.csv2("data/All_stress_annotated.csv", sep = "\t", header = TRUE)
 ```
 
-```{r}
+```{r tt}
 gg = data.frame(x = u_merge$layout[,1], y = u_merge$layout[,2], type = tab$Type,
                 name = tab$x)
 ggplot(gg)+
@@ -52,7 +52,7 @@ Et en regroupant certains stress entre eux :
 - **Environment** : vitamine dropout, temperature change
 - **Divers** : anesthetic, anti-inflamatory, antihelminthic, antihistamine, antihypertensive, antimalarial, antiparkinson, diuretic, flavanoid, hormone, immunosuppressant, insecticide, ionic, laxative, lipid modifying, psychoactive, reagent, vitamin
 
-```{r}
+```{r tt1}
 y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Inconnu", "Autre", "Environement", 
                                                         "Chelateur", "Antifongique",
                                                         "Cytotoxique", "Divers", "Antibactériens", "Divers", "Kinase inhibiteur",
@@ -68,7 +68,7 @@ tab[["Type_merge"]] = tab$Type %>% sapply(function(s){
 
 ```
 
-```{r}
+```{r tt3}
 gg[['type2']] = tab$Type_merge %>% as.factor()
 ggplot(gg)+
   aes(x = x, y = y, label = name)+

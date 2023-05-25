@@ -23,7 +23,7 @@
 <meta name="author" content="Adrien" />
 
 
-<meta name="date" content="2023-05-19" />
+<meta name="date" content="2023-05-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -179,6 +179,10 @@ div.csl-indent {
 <li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-sensibles-à-cpt"><i class="fa fa-check"></i><b>4.2.2</b> Mutants les plus sensibles à CPT</a></li>
 <li class="chapter" data-level="4.2.3" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.3</b> Les 24 plus sensibles</a></li>
 </ul></li>
+<li class="chapter" data-level="4.3" data-path="cpt.html"><a href="cpt.html#nouvelle-approche-pénalisée"><i class="fa fa-check"></i><b>4.3</b> Nouvelle approche (pénalisée)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="cpt.html"><a href="cpt.html#go-enrichissement-1"><i class="fa fa-check"></i><b>4.3.1</b> GO enrichissement</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
 <ul>
@@ -193,7 +197,10 @@ div.csl-indent {
 <li class="chapter" data-level="7" data-path="ccor.html"><a href="ccor.html"><i class="fa fa-check"></i><b>7</b> Correlation</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-mutants"><i class="fa fa-check"></i><b>7.1</b> Mesure de correlation entre les mutants</a></li>
-<li class="chapter" data-level="7.2" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-stress"><i class="fa fa-check"></i><b>7.2</b> Mesure de correlation entre les stress</a></li>
+<li class="chapter" data-level="7.2" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-stress"><i class="fa fa-check"></i><b>7.2</b> Mesure de correlation entre les stress</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ccor.html"><a href="ccor.html#stress-du-groupe-camptothecine"><i class="fa fa-check"></i><b>7.2.1</b> Stress du groupe Camptothecine</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -575,6 +582,78 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
+<p>les mutant “les plus senssible” à cpt sont en réalité des mutants qui ont des fitness defect significatif dans pratiquement toutes les conditions. Ces mutant sont probablement les plus senssible à tout type de stress/drogue car leurs mutations sont graves.</p>
+<p>Exemple de RPL30 :</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="cpt.html#cb28-1" aria-hidden="true" tabindex="-1"></a>RPL30 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb28-2"><a href="cpt.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="cpt.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Fitness_d =</span> RPL30)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="cpt.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Fitness_d)<span class="sc">+</span></span>
+<span id="cb28-5"><a href="cpt.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
+<span id="cb28-6"><a href="cpt.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="co"># 0</span></span>
+<span id="cb28-7"><a href="cpt.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> RPL30 <span class="sc">%&gt;%</span> <span class="fu">mean</span>(), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co">#moyenne</span></span>
+<span id="cb28-8"><a href="cpt.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,]<span class="sc">$</span>camptothecin_500um, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="co">#CPT response</span></span>
+<span id="cb28-9"><a href="cpt.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+</div>
+<div id="nouvelle-approche-pénalisée" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Nouvelle approche (pénalisée)<a href="cpt.html#nouvelle-approche-pénalisée" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Pour être considéré comme sensible à CPT, un gène doit être plus senssible à CPT qu’aux autres stress :</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="cpt.html#cb29-1" aria-hidden="true" tabindex="-1"></a>gene <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
+<span id="cb29-2"><a href="cpt.html#cb29-2" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb29-3"><a href="cpt.html#cb29-3" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
+<pre><code>## [1] 1848  448</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="cpt.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correction par rapport à la médianne </span></span>
+<span id="cb31-2"><a href="cpt.html#cb31-2" aria-hidden="true" tabindex="-1"></a>tmp_med <span class="ot">=</span> cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){</span>
+<span id="cb31-3"><a href="cpt.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">-</span> <span class="fu">median</span>(x)</span>
+<span id="cb31-4"><a href="cpt.html#cb31-4" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb31-5"><a href="cpt.html#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="cpt.html#cb31-6" aria-hidden="true" tabindex="-1"></a>tmp_med<span class="sc">$</span>camptothecin_500um <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -1.54474 -0.26967 -0.17085 -0.19652 -0.09517  0.31935</code></pre>
+<p>Marche pas du tout à cause du bazard négatif positif etc. Pas le temps de ce pencher dessus pour de vrai.</p>
+<p>Autre approche : prendre pour chaque mutant les 5% stress qui le mette le plus en pls. On part en fait de l’hypothèse que comme CPT est très toxique (introduction), elle est parmis les drogues les plus efficace pour eliminer les souches mutantes dans des voies liées à son mode d’action.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="cpt.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les plus sensible</span></span>
+<span id="cb33-2"><a href="cpt.html#cb33-2" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb33-3"><a href="cpt.html#cb33-3" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">25</span></span>
+<span id="cb33-4"><a href="cpt.html#cb33-4" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.4</span></span>
+<span id="cb33-5"><a href="cpt.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
+<span id="cb33-6"><a href="cpt.html#cb33-6" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge), <span class="at">fd =</span> cpt_d_merge[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
+<span id="cb33-7"><a href="cpt.html#cb33-7" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(tmp<span class="sc">$</span>fd),]</span>
+<span id="cb33-8"><a href="cpt.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
+<span id="cb33-9"><a href="cpt.html#cb33-9" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
+<span id="cb33-10"><a href="cpt.html#cb33-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb33-11"><a href="cpt.html#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb33-12"><a href="cpt.html#cb33-12" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
+<span id="cb33-13"><a href="cpt.html#cb33-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb33-14"><a href="cpt.html#cb33-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-15"><a href="cpt.html#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="cpt.html#cb33-16" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&lt;</span> cutoff]</span>
+<span id="cb33-17"><a href="cpt.html#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_-genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb33-18"><a href="cpt.html#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-19"><a href="cpt.html#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-20"><a href="cpt.html#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Les moins sensibles</span></span>
+<span id="cb33-21"><a href="cpt.html#cb33-21" aria-hidden="true" tabindex="-1"></a>gene2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
+<span id="cb33-22"><a href="cpt.html#cb33-22" aria-hidden="true" tabindex="-1"></a>cpt_d_merge2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb33-23"><a href="cpt.html#cb33-23" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb33-24"><a href="cpt.html#cb33-24" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">15</span></span>
+<span id="cb33-25"><a href="cpt.html#cb33-25" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb33-26"><a href="cpt.html#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene2 <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
+<span id="cb33-27"><a href="cpt.html#cb33-27" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge2), <span class="at">fd =</span> cpt_d_merge2[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
+<span id="cb33-28"><a href="cpt.html#cb33-28" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(<span class="sc">-</span>tmp<span class="sc">$</span>fd),]</span>
+<span id="cb33-29"><a href="cpt.html#cb33-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
+<span id="cb33-30"><a href="cpt.html#cb33-30" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
+<span id="cb33-31"><a href="cpt.html#cb33-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb33-32"><a href="cpt.html#cb33-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb33-33"><a href="cpt.html#cb33-33" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
+<span id="cb33-34"><a href="cpt.html#cb33-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb33-35"><a href="cpt.html#cb33-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-36"><a href="cpt.html#cb33-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-37"><a href="cpt.html#cb33-37" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&gt;</span> cutoff]</span>
+<span id="cb33-38"><a href="cpt.html#cb33-38" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_+genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div id="go-enrichissement-1" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> GO enrichissement<a href="cpt.html#go-enrichissement-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Ya rien qui marche bordel</p>
 
 </div>
 </div>

@@ -30,3 +30,6 @@ ccor
 mesure-de-correlation-entre-les-mutants
 mesure-de-correlation-entre-les-stress
 autre
+stress-du-groupe-camptothecine
+nouvelle-approche-pénalisée
+go-enrichissement-1

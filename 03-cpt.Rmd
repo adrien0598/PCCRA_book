@@ -95,3 +95,86 @@ tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_
 
 knitr::kable(tmp, caption = "Cellular Component")
 ```
+
+les mutant "les plus senssible" à cpt sont en réalité des mutants qui ont des fitness defect significatif dans pratiquement toutes les conditions. Ces mutant sont probablement les plus senssible à tout type de stress/drogue car leurs mutations sont graves.
+
+Exemple de RPL30 :
+
+```{r}
+RPL30 = d_merge[d_merge$Gene == "RPL30",][-c(1,2)] %>% unlist()
+
+ggplot(data.frame(Fitness_d = RPL30)) +
+  aes(x = Fitness_d)+
+  geom_density()+
+  geom_vline(xintercept = 0, color = "black") + # 0
+  geom_vline(xintercept = RPL30 %>% mean(), color = "blue", linetype = "dashed") + #moyenne
+  geom_vline(xintercept = d_merge[d_merge$Gene == "RPL30",]$camptothecin_500um, color = "green") + #CPT response
+  theme_classic()
+```
+
+
+## Nouvelle approche (pénalisée)
+
+Pour être considéré comme sensible à CPT, un gène doit être plus senssible à CPT qu'aux autres stress :
+
+```{r}
+gene = d_merge[d_merge$camptothecin_500um < 0,]$Gene
+cpt_d_merge = d_merge[d_merge$camptothecin_500um < 0,][-c(1,2)]
+cpt_d_merge %>% dim()
+
+# correction par rapport à la médianne 
+tmp_med = cpt_d_merge %>% apply(1, function(x){
+  x - median(x)
+}) %>% as.data.frame() %>% t() %>% as.data.frame()
+
+tmp_med$camptothecin_500um %>% summary()
+
+```
+Marche pas du tout à cause du bazard négatif positif etc. Pas le temps de ce pencher dessus pour de vrai.
+
+Autre approche : prendre pour chaque mutant les 5% stress qui le mette le plus en pls. On part en fait de l'hypothèse que comme CPT est très toxique (introduction), elle est parmis les drogues les plus efficace pour eliminer les souches mutantes dans des voies liées à son mode d'action.
+
+```{r}
+# les plus sensible
+classement = NULL
+nb = 25
+cutoff = -0.4
+for (i in c(1:(gene %>% length()))) {
+  tmp = data.frame(stress = colnames(cpt_d_merge), fd = cpt_d_merge[i,] %>% unlist())
+  tmp = tmp[order(tmp$fd),]
+  if (classement %>% is.null()){
+    classement = data.frame(gene = rep(gene[i], nb), stress = tmp$stress[1:nb], fd = tmp$fd[1:nb])
+  }
+  else {
+    classement = classement %>% rbind(data.frame(gene = rep(gene[i], nb), stress = tmp$stress[1:nb], fd = tmp$fd[1:nb]))
+  }
+}
+
+selection = classement$gene[classement$stress == "camptothecin_500um" & classement$fd < cutoff]
+write.table(selection, file = "data/top_-genes.txt", quote = FALSE, row.names = FALSE)
+
+
+# Les moins sensibles
+gene2 = d_merge[d_merge$camptothecin_500um > 0,]$Gene
+cpt_d_merge2 = d_merge[d_merge$camptothecin_500um > 0,][-c(1,2)]
+classement = NULL
+nb = 15
+cutoff = 1
+for (i in c(1:(gene2 %>% length()))) {
+  tmp = data.frame(stress = colnames(cpt_d_merge2), fd = cpt_d_merge2[i,] %>% unlist())
+  tmp = tmp[order(-tmp$fd),]
+  if (classement %>% is.null()){
+    classement = data.frame(gene = rep(gene2[i], nb), stress = tmp$stress[1:nb], fd = tmp$fd[1:nb])
+  }
+  else {
+    classement = classement %>% rbind(data.frame(gene = rep(gene2[i], nb), stress = tmp$stress[1:nb], fd = tmp$fd[1:nb]))
+  }
+}
+
+selection = classement$gene[classement$stress == "camptothecin_500um" & classement$fd > cutoff]
+write.table(selection, file = "data/top_+genes.txt", quote = FALSE, row.names = FALSE)
+```
+
+### GO enrichissement
+
+Ya rien qui marche bordel

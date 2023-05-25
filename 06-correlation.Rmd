@@ -22,14 +22,14 @@ cor_mut <- d_merge[-c(1,2)] %>% t() %>% cor()
 
 ## Mesure de correlation entre les stress
 
-```{r}
+```{r correlation}
 cor_stress <- d_merge[-c(1,2)] %>% cor()
 heatmap(cor_stress)
 ```
 
-## Autre
+### Stress du groupe Camptothecine
 
-```{r}
+```{r correlation2}
 cor_stress_red = d_merge[colnames(d_merge) %>% sapply(function(x){
   if(x %in% stress_campto){
     TRUE
@@ -43,13 +43,13 @@ cor_mut_red = d_merge[colnames(d_merge) %>% sapply(function(x){
   else {FALSE}
 })] %>% t() %>% cor()
 
-heatmap(cor_stress_red)
+tmp = heatmap(cor_stress_red)
 #heatmap(cor_mut_red)
 ```
 
-3 sous groupes sont visibles
+3 sous groupes sont visibles, mesure de l'enrichissement du sous groupe contenant la camptothecine :
 
-```{r}
+```{r t1}
 tab = read.csv2("data/All_stress_annotated.csv", sep = "\t", header = TRUE)
 y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Inconnu", "Autre", "Environement", 
                                                         "Chelateur", "Antifongique",
@@ -64,7 +64,7 @@ tab[["Type_merge"]] = tab$Type %>% sapply(function(s){
   y$type2[y$type1 == s]
 }) %>% unlist()
 
-stress_campto2 = stress_campto[heatmap(cor_stress_red)$rowInd[c(15:24)]]
+stress_campto2 = stress_campto[tmp$rowInd[c(15:24)]]
 
 gg_campto = data.frame(x = stress_campto2, Type = stress_campto2 %>% sapply(function(y){
   tab$Type_merge[y == tab$x]
@@ -84,7 +84,7 @@ ggplot(gg_compar)+
   geom_col(position = "fill")
 ```
 
-```{r}
+```{r t2}
 alpha = 0.05
 tests = NULL
 for (categorie in full_count$Type) {

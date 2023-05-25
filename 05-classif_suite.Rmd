@@ -49,7 +49,7 @@ stress_campto <- gg[gg$classe == gg[gg$name == "camptothecin_500um",]$classe,]$n
 saveRDS(stress_campto, file = "stress_campto.rds")
 ```
 
-```{r}
+```{r plota}
 gg_campto = data.frame(x = stress_campto, Type = stress_campto %>% sapply(function(y){
   tab$Type[y == tab$x]
 }))
@@ -68,7 +68,7 @@ ggplot(gg_compar)+
   geom_col(position = "fill")
 ```
 
-```{r}
+```{r plotb}
 gg_campto = data.frame(x = stress_campto, Type = stress_campto %>% sapply(function(y){
   tab$Type_merge[y == tab$x]
 }))
@@ -91,7 +91,7 @@ Mesure de l'enrichissement dans chacune des catégories :
 
 On réalise un test de fisher exact pour les 16 catégories (loi hypergéométrique)
 
-```{r}
+```{r testf}
 alpha = 0.05
 tests = NULL
 for (categorie in full_count$Type) {
