@@ -23,7 +23,7 @@
 <meta name="author" content="Adrien" />
 
 
-<meta name="date" content="2023-05-19" />
+<meta name="date" content="2023-05-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -194,6 +194,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-mutants"><i class="fa fa-check"></i><b>7.1</b> Mesure de correlation entre les mutants</a></li>
 <li class="chapter" data-level="7.2" data-path="ccor.html"><a href="ccor.html#mesure-de-correlation-entre-les-stress"><i class="fa fa-check"></i><b>7.2</b> Mesure de correlation entre les stress</a></li>
+<li class="chapter" data-level="7.3" data-path="ccor.html"><a href="ccor.html#autre"><i class="fa fa-check"></i><b>7.3</b> Autre</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -601,9 +602,10 @@ div.csl-indent {
 <h2><span class="header-section-number">6.2</span> Enrichissement de classe<a href="classif2.html#enrichissement-de-classe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Es ce que le groupe de stress contenant la camptothecine est enrichit en un ou plusieurs types de stress ?</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="classif2.html#cb4-1" aria-hidden="true" tabindex="-1"></a>gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]</span></code></pre></div>
-<pre><code>##                            x         y classe               name
-## camptothecin_500um -1.721581 0.5696006     13 camptothecin_500um</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="classif2.html#cb6-1" aria-hidden="true" tabindex="-1"></a>stress_campto <span class="ot">&lt;-</span> gg[gg<span class="sc">$</span>classe <span class="sc">==</span> gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]<span class="sc">$</span>classe,]<span class="sc">$</span>name</span></code></pre></div>
+<pre><code>##                            x        y classe               name
+## camptothecin_500um -1.725965 1.069941     13 camptothecin_500um</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="classif2.html#cb6-1" aria-hidden="true" tabindex="-1"></a>stress_campto <span class="ot">&lt;-</span> gg[gg<span class="sc">$</span>classe <span class="sc">==</span> gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]<span class="sc">$</span>classe,]<span class="sc">$</span>name</span>
+<span id="cb6-2"><a href="classif2.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stress_campto, <span class="at">file =</span> <span class="st">&quot;stress_campto.rds&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="classif2.html#cb7-1" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto, <span class="at">Type =</span> stress_campto <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
 <span id="cb7-2"><a href="classif2.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>Type[y <span class="sc">==</span> tab<span class="sc">$</span>x]</span>
 <span id="cb7-3"><a href="classif2.html#cb7-3" aria-hidden="true" tabindex="-1"></a>}))</span>
