@@ -176,8 +176,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="cpt.html"><a href="cpt.html#go-enrichissement"><i class="fa fa-check"></i><b>4.2</b> GO enrichissement</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-resistants-à-cpt"><i class="fa fa-check"></i><b>4.2.1</b> Mutants les plus resistants à CPT</a></li>
-<li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-sensibles-à-cpt"><i class="fa fa-check"></i><b>4.2.2</b> Mutants les plus sensibles à CPT</a></li>
-<li class="chapter" data-level="4.2.3" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.3</b> Les 24 plus sensibles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.2</b> Les 24 plus sensibles</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="cpt.html"><a href="cpt.html#nouvelle-approche-pénalisée"><i class="fa fa-check"></i><b>4.3</b> Nouvelle approche (pénalisée)</a>
 <ul>
@@ -265,213 +264,16 @@ div.csl-indent {
 <span id="cb19-2"><a href="cpt.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">1.5</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_15.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>rien de ouf, marche pas trop</p>
 </div>
-<div id="mutants-les-plus-sensibles-à-cpt" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Mutants les plus sensibles à CPT<a href="cpt.html#mutants-les-plus-sensibles-à-cpt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="les-61-plus-sensibles" class="section level4 hasAnchor" number="4.2.2.1">
-<h4><span class="header-section-number">4.2.2.1</span> Les 61 plus sensibles<a href="cpt.html#les-61-plus-sensibles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="cpt.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 61 plus sensible à cpt</span></span>
-<span id="cb20-2"><a href="cpt.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">5</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_-5.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="cpt.html#cb21-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/61_process.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<div id="les-24-plus-sensibles" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Les 24 plus sensibles<a href="cpt.html#les-24-plus-sensibles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="cpt.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 24 plus senssible à cpt</span></span>
+<span id="cb20-2"><a href="cpt.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">6</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_-6.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="cpt.html#cb21-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_process.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb21-2"><a href="cpt.html#cb21-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
 <span id="cb21-3"><a href="cpt.html#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="cpt.html#cb21-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Biological Process&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-6">Table 4.1: </span>Biological Process</caption>
-<colgroup>
-<col width="9%" />
-<col width="2%" />
-<col width="1%" />
-<col width="86%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Term</th>
-<th align="right">p_value</th>
-<th align="left">FDR</th>
-<th align="left">Gene</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">metabolic process</td>
-<td align="right">0.0010175</td>
-<td align="left">0.00%</td>
-<td align="left">HAL5, IFM1, HSM3, RPL5, RVB2, TRM112, CSL4, REC107, RPL16B, MRPL6, PRP11, SNP1, RPS1A, VAM3, MRPL20, ARP5, SMD2, BUB1, MCM5, COX5A, SPP41, DFM1, GFA1, STE14, RRP9, RPL6B, HRD3, NRG2, ARO9, RPS29B, ISA2, PDC6, YEF3, RLP7, CDC8, RPL19A, POP2, RPL43A, MOD5, SRB7, RPB8, MRPL37, THS1, SKI6, FPK1, GAL7, SPT6, BSC5, CIT1, ALG12, UTP14, FIS1, RPL30</td>
-</tr>
-<tr class="even">
-<td align="left">macromolecule metabolic process</td>
-<td align="right">0.0018761</td>
-<td align="left">0.00%</td>
-<td align="left">ALG12, BSC5, SPT6, UTP14, RPL30, MOD5, SRB7, THS1, MRPL37, RPB8, FPK1, SKI6, RLP7, YEF3, RPL43A, POP2, RPL19A, RPS29B, ISA2, DFM1, RRP9, GFA1, STE14, RPL6B, NRG2, HRD3, ARP5, MRPL20, BUB1, MCM5, SMD2, SPP41, CSL4, RPL16B, REC107, PRP11, MRPL6, RPS1A, SNP1, HAL5, HSM3, IFM1, TRM112, RPL5, RVB2</td>
-</tr>
-<tr class="odd">
-<td align="left">primary metabolic process</td>
-<td align="right">0.0024242</td>
-<td align="left">0.00%</td>
-<td align="left">COX5A, ARP5, MRPL20, BUB1, MCM5, SMD2, RPL6B, NRG2, HRD3, DFM1, GFA1, STE14, RRP9, RPL5, RVB2, TRM112, HAL5, IFM1, HSM3, MRPL6, PRP11, RPS1A, SNP1, CSL4, REC107, RPL16B, RPB8, THS1, MRPL37, FPK1, SKI6, MOD5, SRB7, UTP14, RPL30, GAL7, SPT6, CIT1, ALG12, BSC5, RPS29B, ISA2, PDC6, ARO9, CDC8, POP2, RPL19A, RPL43A, RLP7, YEF3</td>
-</tr>
-<tr class="even">
-<td align="left">gene expression</td>
-<td align="right">0.0025560</td>
-<td align="left">0.00%</td>
-<td align="left">IFM1, TRM112, RPS29B, RPL5, RVB2, ISA2, CSL4, YEF3, RPL16B, RLP7, PRP11, MRPL6, SNP1, RPS1A, RPL43A, RPL19A, POP2, MRPL20, ARP5, MOD5, SMD2, MCM5, SRB7, MRPL37, SPP41, THS1, RPB8, SKI6, RRP9, SPT6, STE14, RPL6B, UTP14, RPL30, NRG2</td>
-</tr>
-<tr class="odd">
-<td align="left">organic substance metabolic process</td>
-<td align="right">0.0033974</td>
-<td align="left">0.00%</td>
-<td align="left">RPB8, THS1, MRPL37, FPK1, SKI6, MOD5, SRB7, UTP14, RPL30, GAL7, SPT6, CIT1, ALG12, BSC5, RPS29B, ISA2, PDC6, ARO9, CDC8, POP2, RPL19A, RPL43A, RLP7, YEF3, COX5A, SPP41, ARP5, MRPL20, BUB1, MCM5, SMD2, RPL6B, HRD3, NRG2, DFM1, GFA1, STE14, RRP9, RPL5, RVB2, TRM112, HAL5, IFM1, HSM3, MRPL6, PRP11, RPS1A, SNP1, CSL4, REC107, RPL16B</td>
-</tr>
-<tr class="even">
-<td align="left">nitrogen compound metabolic process</td>
-<td align="right">0.0035272</td>
-<td align="left">0.00%</td>
-<td align="left">RRP9, GFA1, STE14, DFM1, NRG2, HRD3, RPL6B, MCM5, BUB1, SMD2, ARP5, MRPL20, COX5A, RPL16B, REC107, CSL4, RPS1A, SNP1, PRP11, MRPL6, HSM3, IFM1, HAL5, TRM112, RVB2, RPL5, ALG12, BSC5, SPT6, RPL30, UTP14, SRB7, MOD5, FPK1, SKI6, THS1, MRPL37, RPB8, RLP7, YEF3, RPL43A, POP2, RPL19A, CDC8, ARO9, PDC6, ISA2, RPS29B</td>
-</tr>
-<tr class="odd">
-<td align="left">cellular metabolic process</td>
-<td align="right">0.0054347</td>
-<td align="left">0.00%</td>
-<td align="left">RPS1A, VAM3, SNP1, MRPL6, PRP11, REC107, RPL16B, CSL4, RVB2, RPL5, TRM112, IFM1, HSM3, HAL5, NRG2, HRD3, RPL6B, GFA1, STE14, RRP9, DFM1, COX5A, BUB1, MCM5, SMD2, ARP5, MRPL20, POP2, RPL19A, RPL43A, CDC8, RLP7, YEF3, ISA2, PDC6, RPS29B, ARO9, RPL30, FIS1, UTP14, SPT6, CIT1, ALG12, BSC5, FPK1, SKI6, RPB8, THS1, MRPL37, SRB7, MOD5</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="cpt.html#cb22-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/61_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-2"><a href="cpt.html#cb22-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb22-3"><a href="cpt.html#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="cpt.html#cb22-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-6">Table 4.1: </span>Molecular Function</caption>
-<colgroup>
-<col width="10%" />
-<col width="2%" />
-<col width="1%" />
-<col width="84%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Term</th>
-<th align="right">p_value</th>
-<th align="left">FDR</th>
-<th align="left">Gene</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">structural constituent of ribosome</td>
-<td align="right">0.0000397</td>
-<td align="left">0.00%</td>
-<td align="left">RPL43A, MRPL20, MRPL37, MRPL6, RPL19A, RPL5, RLP7, RPL30, RPS1A, RPL16B, RPL6B, RPS29B</td>
-</tr>
-<tr class="even">
-<td align="left">structural molecule activity</td>
-<td align="right">0.0067415</td>
-<td align="left">2.00%</td>
-<td align="left">RPS29B, RPL6B, RPL30, RPL16B, RPS1A, RLP7, RPL5, RPL19A, MRPL6, MRPL37, MRPL20, RPL43A</td>
-</tr>
-<tr class="odd">
-<td align="left">binding</td>
-<td align="right">0.0076213</td>
-<td align="left">1.33%</td>
-<td align="left">YEF3, IFM1, RPL30, CDC25, CCT4, CDC8, THS1, RPS29B, FPK1, RVS167, POP2, UTP14, GFA1, MRPL6, MCM5, HAL5, TRM112, RRP9, MOD5, DFM1, SKI6, SYT1, ARO9, PDC6, PRP11, RPL5, RPL19A, ARP3, RPL16B, CSL4, VAM3, SPT6, SNP1, RLP7, NRG2, RPL6B, ISA2, SMD2, RVB2, HSM3, BUB1, SRB7, GAL7, RPB8, RPL43A</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="cpt.html#cb23-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/61_component.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>),]</span>
-<span id="cb23-2"><a href="cpt.html#cb23-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb23-3"><a href="cpt.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="cpt.html#cb23-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Cellular Component&quot;</span>)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-6">Table 4.1: </span>Cellular Component</caption>
-<colgroup>
-<col width="12%" />
-<col width="2%" />
-<col width="1%" />
-<col width="82%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Term</th>
-<th align="right">p_value</th>
-<th align="left">FDR</th>
-<th align="left">Gene</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">ribosome</td>
-<td align="right">0.0000354</td>
-<td align="left">0.00%</td>
-<td align="left">YEF3, MRPL37, RPL43A, MRPL20, RPL19A, RPL16B, RPS29B, MRPL6, RLP7, RPL6B, RPL30, RPL5, RPS1A</td>
-</tr>
-<tr class="even">
-<td align="left">large ribosomal subunit</td>
-<td align="right">0.0000387</td>
-<td align="left">0.00%</td>
-<td align="left">RPL16B, RPL30, RPL5, MRPL6, RLP7, RPL6B, MRPL37, RPL43A, MRPL20, RPL19A</td>
-</tr>
-<tr class="odd">
-<td align="left">ribosomal subunit</td>
-<td align="right">0.0000983</td>
-<td align="left">0.00%</td>
-<td align="left">RPL19A, RPL43A, MRPL20, MRPL37, MRPL6, RPS29B, RPL16B, RPL6B, RLP7, RPL5, RPS1A, RPL30</td>
-</tr>
-<tr class="even">
-<td align="left">macromolecular complex</td>
-<td align="right">0.0001199</td>
-<td align="left">0.00%</td>
-<td align="left">SNP1, RPS1A, RPL5, UTP14, VAM3, COX5A, RPL30, BUB1, ARP3, SKI6, MCM5, POP2, CCT4, RLP7, MRPL6, SMD2, SRB7, HRD3, TRM112, RPS29B, RPL43A, MRPL37, YEF3, ARP5, RVS167, CSL4, PRP11, RVB2, RPL6B, NRG2, DFM1, RRP9, BSC5, RPL16B, RPL19A, MRPL20, RPB8, SPT6</td>
-</tr>
-<tr class="odd">
-<td align="left">cytosolic ribosome</td>
-<td align="right">0.0001384</td>
-<td align="left">0.00%</td>
-<td align="left">RPL43A, RPL19A, RLP7, YEF3, RPL6B, RPS1A, RPL5, RPL30, RPL16B, RPS29B</td>
-</tr>
-<tr class="even">
-<td align="left">non-membrane-bounded organelle</td>
-<td align="right">0.0003751</td>
-<td align="left">0.00%</td>
-<td align="left">SPT6, RPB8, MRPL20, RPL19A, RPL16B, MOD5, RRP9, RPL6B, RVB2, CSL4, REC107, RVS167, ARP5, YEF3, MRPL37, RPL43A, TRM112, RPS29B, MRPL6, RLP7, POP2, SKI6, MCM5, ARP3, BUB1, RPL30, UTP14, RPL5, RPS1A</td>
-</tr>
-<tr class="odd">
-<td align="left">intracellular non-membrane-bounded organelle</td>
-<td align="right">0.0003751</td>
-<td align="left">0.00%</td>
-<td align="left">RPL30, UTP14, RPL5, RPS1A, RLP7, POP2, SKI6, MCM5, ARP3, BUB1, TRM112, RPS29B, MRPL6, ARP5, YEF3, MRPL37, RPL43A, REC107, RVS167, RPL6B, RVB2, CSL4, RPL16B, RRP9, MOD5, SPT6, RPB8, MRPL20, RPL19A</td>
-</tr>
-<tr class="even">
-<td align="left">cytosolic part</td>
-<td align="right">0.0005134</td>
-<td align="left">0.00%</td>
-<td align="left">RPS1A, RPL5, RPL16B, RPL30, RPS29B, RPL43A, RPL19A, RLP7, YEF3, RPL6B, CCT4</td>
-</tr>
-<tr class="odd">
-<td align="left">intracellular ribonucleoprotein complex</td>
-<td align="right">0.0014082</td>
-<td align="left">0.22%</td>
-<td align="left">RPL19A, RPL43A, MRPL20, MRPL37, YEF3, SMD2, MRPL6, RRP9, RPS29B, RPL16B, PRP11, RPL6B, POP2, RLP7, RPL5, RPS1A, SNP1, UTP14, RPL30</td>
-</tr>
-<tr class="even">
-<td align="left">intracellular organelle part</td>
-<td align="right">0.0014617</td>
-<td align="left">0.20%</td>
-<td align="left">RRP9, SYT1, RPL16B, MRPL20, REC107, NRG2, DFM1, RPL6B, CDC25, SRB7, MRPL6, SMD2, STE14, TRM112, RPL43A, RPS1A, RPL5, COX5A, ARP3, BUB1, RLP7, MCM5, MOD5, RPL19A, SPT6, ALG12, RPB8, OM45, RVS167, RVB2, PRP11, CSL4, HRD3, ISA2, CIT1, RPS29B, ARP5, MRPL37, SNP1, RPL30, VAM3, FIS1, UTP14, SKI6</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="les-24-plus-sensibles" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Les 24 plus sensibles<a href="cpt.html#les-24-plus-sensibles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="cpt.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 24 plus senssible à cpt</span></span>
-<span id="cb24-2"><a href="cpt.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">6</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_-6.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="cpt.html#cb25-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_process.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb25-2"><a href="cpt.html#cb25-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb25-3"><a href="cpt.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="cpt.html#cb25-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Biological Process&quot;</span>)</span></code></pre></div>
-<table>
-<caption><span id="tab:unnamed-chunk-8">Table 4.2: </span>Biological Process</caption>
+<caption><span id="tab:unnamed-chunk-8">Table 4.1: </span>Biological Process</caption>
 <colgroup>
 <col width="30%" />
 <col width="8%" />
@@ -501,12 +303,12 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="cpt.html#cb26-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-2"><a href="cpt.html#cb26-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb26-3"><a href="cpt.html#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="cpt.html#cb26-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="cpt.html#cb22-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-2"><a href="cpt.html#cb22-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb22-3"><a href="cpt.html#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="cpt.html#cb22-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-8">Table 4.2: </span>Molecular Function</caption>
+<caption><span id="tab:unnamed-chunk-8">Table 4.1: </span>Molecular Function</caption>
 <colgroup>
 <col width="18%" />
 <col width="5%" />
@@ -536,12 +338,12 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="cpt.html#cb27-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_component.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb27-2"><a href="cpt.html#cb27-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb27-3"><a href="cpt.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="cpt.html#cb27-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Cellular Component&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="cpt.html#cb23-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_component.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-2"><a href="cpt.html#cb23-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb23-3"><a href="cpt.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="cpt.html#cb23-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Cellular Component&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-8">Table 4.2: </span>Cellular Component</caption>
+<caption><span id="tab:unnamed-chunk-8">Table 4.1: </span>Cellular Component</caption>
 <colgroup>
 <col width="15%" />
 <col width="6%" />
@@ -585,73 +387,73 @@ div.csl-indent {
 </table>
 <p>les mutant “les plus senssible” à cpt sont en réalité des mutants qui ont des fitness defect significatif dans pratiquement toutes les conditions. Ces mutant sont probablement les plus senssible à tout type de stress/drogue car leurs mutations sont graves.</p>
 <p>Exemple de RPL30 :</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="cpt.html#cb28-1" aria-hidden="true" tabindex="-1"></a>RPL30 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
-<span id="cb28-2"><a href="cpt.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="cpt.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Fitness_d =</span> RPL30)) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="cpt.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Fitness_d)<span class="sc">+</span></span>
-<span id="cb28-5"><a href="cpt.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb28-6"><a href="cpt.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="co"># 0</span></span>
-<span id="cb28-7"><a href="cpt.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> RPL30 <span class="sc">%&gt;%</span> <span class="fu">mean</span>(), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co">#moyenne</span></span>
-<span id="cb28-8"><a href="cpt.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,]<span class="sc">$</span>camptothecin_500um, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="co">#CPT response</span></span>
-<span id="cb28-9"><a href="cpt.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="cpt.html#cb24-1" aria-hidden="true" tabindex="-1"></a>RPL30 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb24-2"><a href="cpt.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="cpt.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Fitness_d =</span> RPL30)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="cpt.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Fitness_d)<span class="sc">+</span></span>
+<span id="cb24-5"><a href="cpt.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
+<span id="cb24-6"><a href="cpt.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="co"># 0</span></span>
+<span id="cb24-7"><a href="cpt.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> RPL30 <span class="sc">%&gt;%</span> <span class="fu">mean</span>(), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co">#moyenne</span></span>
+<span id="cb24-8"><a href="cpt.html#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,]<span class="sc">$</span>camptothecin_500um, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="co">#CPT response</span></span>
+<span id="cb24-9"><a href="cpt.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
 </div>
 <div id="nouvelle-approche-pénalisée" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Nouvelle approche (pénalisée)<a href="cpt.html#nouvelle-approche-pénalisée" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Pour être considéré comme sensible à CPT, un gène doit être plus senssible à CPT qu’aux autres stress :</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="cpt.html#cb29-1" aria-hidden="true" tabindex="-1"></a>gene <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
-<span id="cb29-2"><a href="cpt.html#cb29-2" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
-<span id="cb29-3"><a href="cpt.html#cb29-3" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="cpt.html#cb25-1" aria-hidden="true" tabindex="-1"></a>gene <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
+<span id="cb25-2"><a href="cpt.html#cb25-2" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb25-3"><a href="cpt.html#cb25-3" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
 <pre><code>## [1] 1848  448</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="cpt.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correction par rapport à la médianne </span></span>
-<span id="cb31-2"><a href="cpt.html#cb31-2" aria-hidden="true" tabindex="-1"></a>tmp_med <span class="ot">=</span> cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){</span>
-<span id="cb31-3"><a href="cpt.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">-</span> <span class="fu">median</span>(x)</span>
-<span id="cb31-4"><a href="cpt.html#cb31-4" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
-<span id="cb31-5"><a href="cpt.html#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="cpt.html#cb31-6" aria-hidden="true" tabindex="-1"></a>tmp_med<span class="sc">$</span>camptothecin_500um <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="cpt.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correction par rapport à la médianne </span></span>
+<span id="cb27-2"><a href="cpt.html#cb27-2" aria-hidden="true" tabindex="-1"></a>tmp_med <span class="ot">=</span> cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){</span>
+<span id="cb27-3"><a href="cpt.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">-</span> <span class="fu">median</span>(x)</span>
+<span id="cb27-4"><a href="cpt.html#cb27-4" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb27-5"><a href="cpt.html#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-6"><a href="cpt.html#cb27-6" aria-hidden="true" tabindex="-1"></a>tmp_med<span class="sc">$</span>camptothecin_500um <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ## -1.54474 -0.26967 -0.17085 -0.19652 -0.09517  0.31935</code></pre>
 <p>Marche pas du tout à cause du bazard négatif positif etc. Pas le temps de ce pencher dessus pour de vrai.</p>
 <p>Autre approche : prendre pour chaque mutant les 5% stress qui le mette le plus en pls. On part en fait de l’hypothèse que comme CPT est très toxique (introduction), elle est parmis les drogues les plus efficace pour eliminer les souches mutantes dans des voies liées à son mode d’action.</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="cpt.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les plus sensible</span></span>
-<span id="cb33-2"><a href="cpt.html#cb33-2" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
-<span id="cb33-3"><a href="cpt.html#cb33-3" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">25</span></span>
-<span id="cb33-4"><a href="cpt.html#cb33-4" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.4</span></span>
-<span id="cb33-5"><a href="cpt.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
-<span id="cb33-6"><a href="cpt.html#cb33-6" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge), <span class="at">fd =</span> cpt_d_merge[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
-<span id="cb33-7"><a href="cpt.html#cb33-7" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(tmp<span class="sc">$</span>fd),]</span>
-<span id="cb33-8"><a href="cpt.html#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
-<span id="cb33-9"><a href="cpt.html#cb33-9" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
-<span id="cb33-10"><a href="cpt.html#cb33-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb33-11"><a href="cpt.html#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
-<span id="cb33-12"><a href="cpt.html#cb33-12" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
-<span id="cb33-13"><a href="cpt.html#cb33-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb33-14"><a href="cpt.html#cb33-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb33-15"><a href="cpt.html#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-16"><a href="cpt.html#cb33-16" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&lt;</span> cutoff]</span>
-<span id="cb33-17"><a href="cpt.html#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_-genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb33-18"><a href="cpt.html#cb33-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-19"><a href="cpt.html#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-20"><a href="cpt.html#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Les moins sensibles</span></span>
-<span id="cb33-21"><a href="cpt.html#cb33-21" aria-hidden="true" tabindex="-1"></a>gene2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
-<span id="cb33-22"><a href="cpt.html#cb33-22" aria-hidden="true" tabindex="-1"></a>cpt_d_merge2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
-<span id="cb33-23"><a href="cpt.html#cb33-23" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
-<span id="cb33-24"><a href="cpt.html#cb33-24" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">15</span></span>
-<span id="cb33-25"><a href="cpt.html#cb33-25" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb33-26"><a href="cpt.html#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene2 <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
-<span id="cb33-27"><a href="cpt.html#cb33-27" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge2), <span class="at">fd =</span> cpt_d_merge2[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
-<span id="cb33-28"><a href="cpt.html#cb33-28" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(<span class="sc">-</span>tmp<span class="sc">$</span>fd),]</span>
-<span id="cb33-29"><a href="cpt.html#cb33-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
-<span id="cb33-30"><a href="cpt.html#cb33-30" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
-<span id="cb33-31"><a href="cpt.html#cb33-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb33-32"><a href="cpt.html#cb33-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
-<span id="cb33-33"><a href="cpt.html#cb33-33" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
-<span id="cb33-34"><a href="cpt.html#cb33-34" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb33-35"><a href="cpt.html#cb33-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb33-36"><a href="cpt.html#cb33-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-37"><a href="cpt.html#cb33-37" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&gt;</span> cutoff]</span>
-<span id="cb33-38"><a href="cpt.html#cb33-38" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_+genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="cpt.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les plus sensible</span></span>
+<span id="cb29-2"><a href="cpt.html#cb29-2" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb29-3"><a href="cpt.html#cb29-3" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">25</span></span>
+<span id="cb29-4"><a href="cpt.html#cb29-4" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.4</span></span>
+<span id="cb29-5"><a href="cpt.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
+<span id="cb29-6"><a href="cpt.html#cb29-6" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge), <span class="at">fd =</span> cpt_d_merge[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
+<span id="cb29-7"><a href="cpt.html#cb29-7" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(tmp<span class="sc">$</span>fd),]</span>
+<span id="cb29-8"><a href="cpt.html#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
+<span id="cb29-9"><a href="cpt.html#cb29-9" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
+<span id="cb29-10"><a href="cpt.html#cb29-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-11"><a href="cpt.html#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb29-12"><a href="cpt.html#cb29-12" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
+<span id="cb29-13"><a href="cpt.html#cb29-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-14"><a href="cpt.html#cb29-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-15"><a href="cpt.html#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-16"><a href="cpt.html#cb29-16" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&lt;</span> cutoff]</span>
+<span id="cb29-17"><a href="cpt.html#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_-genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb29-18"><a href="cpt.html#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-19"><a href="cpt.html#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="cpt.html#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Les moins sensibles</span></span>
+<span id="cb29-21"><a href="cpt.html#cb29-21" aria-hidden="true" tabindex="-1"></a>gene2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
+<span id="cb29-22"><a href="cpt.html#cb29-22" aria-hidden="true" tabindex="-1"></a>cpt_d_merge2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb29-23"><a href="cpt.html#cb29-23" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb29-24"><a href="cpt.html#cb29-24" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">15</span></span>
+<span id="cb29-25"><a href="cpt.html#cb29-25" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb29-26"><a href="cpt.html#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene2 <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
+<span id="cb29-27"><a href="cpt.html#cb29-27" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge2), <span class="at">fd =</span> cpt_d_merge2[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
+<span id="cb29-28"><a href="cpt.html#cb29-28" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(<span class="sc">-</span>tmp<span class="sc">$</span>fd),]</span>
+<span id="cb29-29"><a href="cpt.html#cb29-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
+<span id="cb29-30"><a href="cpt.html#cb29-30" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
+<span id="cb29-31"><a href="cpt.html#cb29-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-32"><a href="cpt.html#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb29-33"><a href="cpt.html#cb29-33" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
+<span id="cb29-34"><a href="cpt.html#cb29-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-35"><a href="cpt.html#cb29-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb29-36"><a href="cpt.html#cb29-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-37"><a href="cpt.html#cb29-37" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&gt;</span> cutoff]</span>
+<span id="cb29-38"><a href="cpt.html#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_+genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div id="go-enrichissement-1" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> GO enrichissement<a href="cpt.html#go-enrichissement-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ya rien qui marche bordel</p>
@@ -659,18 +461,18 @@ div.csl-indent {
 <div id="preuve-que-la-première-approche-est-fausse" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Preuve que la première approche est fausse<a href="cpt.html#preuve-que-la-première-approche-est-fausse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>En selectionnant les mutant dont la medianne de fitness defect est la plus basse, on obtient le même enrichissement :</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="cpt.html#cb34-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">medianne =</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){<span class="fu">median</span>(x)}), <span class="at">gene =</span> d_merge<span class="sc">$</span>Gene)</span>
-<span id="cb34-2"><a href="cpt.html#cb34-2" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> med[<span class="fu">order</span>(med<span class="sc">$</span>medianne),]</span>
-<span id="cb34-3"><a href="cpt.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="cpt.html#cb34-4" aria-hidden="true" tabindex="-1"></a>week_mut <span class="ot">=</span> med<span class="sc">$</span>gene[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
-<span id="cb34-5"><a href="cpt.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(week_mut, <span class="at">file =</span> <span class="st">&quot;data/week_mut.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb34-6"><a href="cpt.html#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-7"><a href="cpt.html#cb34-7" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/preuve_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb34-8"><a href="cpt.html#cb34-8" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb34-9"><a href="cpt.html#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-10"><a href="cpt.html#cb34-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="cpt.html#cb30-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">medianne =</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){<span class="fu">median</span>(x)}), <span class="at">gene =</span> d_merge<span class="sc">$</span>Gene)</span>
+<span id="cb30-2"><a href="cpt.html#cb30-2" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> med[<span class="fu">order</span>(med<span class="sc">$</span>medianne),]</span>
+<span id="cb30-3"><a href="cpt.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="cpt.html#cb30-4" aria-hidden="true" tabindex="-1"></a>week_mut <span class="ot">=</span> med<span class="sc">$</span>gene[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
+<span id="cb30-5"><a href="cpt.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(week_mut, <span class="at">file =</span> <span class="st">&quot;data/week_mut.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb30-6"><a href="cpt.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="cpt.html#cb30-7" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/preuve_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb30-8"><a href="cpt.html#cb30-8" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb30-9"><a href="cpt.html#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="cpt.html#cb30-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-12">Table 4.3: </span>Molecular Function</caption>
+<caption><span id="tab:unnamed-chunk-12">Table 4.2: </span>Molecular Function</caption>
 <colgroup>
 <col width="14%" />
 <col width="4%" />

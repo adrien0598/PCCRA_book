@@ -48,14 +48,12 @@ write.table(data.frame(ORF = d_merge$Gene, Reponse_cpt = d_merge$camptothecin_50
 
 rien de ouf, marche pas trop
 
-### Mutants les plus sensibles à CPT
-#### Les 61 plus sensibles
-```{r}
+```{r, eval = FALSE, echo = FALSE}
 # les 61 plus sensible à cpt
 write.table(data.frame(ORF = d_merge$Gene, Reponse_cpt = d_merge$camptothecin_500um)$ORF[cpt$Reponse_cpt < -.5], file = "data/gene_-5.txt", row.names = FALSE, quote = FALSE)
 ```
 
-```{r}
+```{r, eval = FALSE, echo = FALSE}
 tmp = read.table("data/go/61_process.txt", sep = "\t", header = TRUE)
 tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
 
