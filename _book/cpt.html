@@ -23,7 +23,7 @@
 <meta name="author" content="Adrien" />
 
 
-<meta name="date" content="2023-05-25" />
+<meta name="date" content="2023-05-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -182,6 +182,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3" data-path="cpt.html"><a href="cpt.html#nouvelle-approche-pénalisée"><i class="fa fa-check"></i><b>4.3</b> Nouvelle approche (pénalisée)</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="cpt.html"><a href="cpt.html#go-enrichissement-1"><i class="fa fa-check"></i><b>4.3.1</b> GO enrichissement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="cpt.html"><a href="cpt.html#preuve-que-la-première-approche-est-fausse"><i class="fa fa-check"></i><b>4.3.2</b> Preuve que la première approche est fausse</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
@@ -654,6 +655,69 @@ div.csl-indent {
 <div id="go-enrichissement-1" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> GO enrichissement<a href="cpt.html#go-enrichissement-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Ya rien qui marche bordel</p>
+</div>
+<div id="preuve-que-la-première-approche-est-fausse" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Preuve que la première approche est fausse<a href="cpt.html#preuve-que-la-première-approche-est-fausse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>En selectionnant les mutant dont la medianne de fitness defect est la plus basse, on obtient le même enrichissement :</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="cpt.html#cb34-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">medianne =</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){<span class="fu">median</span>(x)}), <span class="at">gene =</span> d_merge<span class="sc">$</span>Gene)</span>
+<span id="cb34-2"><a href="cpt.html#cb34-2" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> med[<span class="fu">order</span>(med<span class="sc">$</span>medianne),]</span>
+<span id="cb34-3"><a href="cpt.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="cpt.html#cb34-4" aria-hidden="true" tabindex="-1"></a>week_mut <span class="ot">=</span> med<span class="sc">$</span>gene[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
+<span id="cb34-5"><a href="cpt.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(week_mut, <span class="at">file =</span> <span class="st">&quot;data/week_mut.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb34-6"><a href="cpt.html#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="cpt.html#cb34-7" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/preuve_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb34-8"><a href="cpt.html#cb34-8" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb34-9"><a href="cpt.html#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="cpt.html#cb34-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-12">Table 4.3: </span>Molecular Function</caption>
+<colgroup>
+<col width="14%" />
+<col width="4%" />
+<col width="2%" />
+<col width="78%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Term</th>
+<th align="right">p_value</th>
+<th align="left">FDR</th>
+<th align="left">Gene</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">structural constituent of ribosome</td>
+<td align="right">0.0000000</td>
+<td align="left">0.00%</td>
+<td align="left">RPS8A, RPS12, RPS0B, RPS21A, RPS29A, RPS2, RPL26B, RPL40A, RPS23B, RPS23A, RPL30, RPP1A, RPL22A, RPS24A, RPL5, RPL16B, RPS13, RPP1B, RPS21B, RPS29B, RPS6A, RPS3, RPL2B</td>
+</tr>
+<tr class="even">
+<td align="left">structural molecule activity</td>
+<td align="right">0.0000000</td>
+<td align="left">0.00%</td>
+<td align="left">RPS12, RPS8A, RPS21A, NUP84, RPN9, NUP120, RPL40A, RPL30, RPP1A, RPS23B, RPS13, RPL5, RPS21B, RPS6A, RPS29B, RPS29A, RPS0B, RPS2, RPL26B, RPS23A, RPL22A, RPP1B, RPS24A, RPL16B, RPS3, RPL2B</td>
+</tr>
+<tr class="odd">
+<td align="left">RNA binding</td>
+<td align="right">0.0000075</td>
+<td align="left">0.00%</td>
+<td align="left">RRP4, NMD3, NOP58, MTR3, RRP9, RPL22A, RPL30, NOP56, SMD2, RPS2, RPL26B, CSL4, TIF6, RPS13, MRT4, RPL16B, RPL5, RPL2B, RPS3, NOP1</td>
+</tr>
+<tr class="even">
+<td align="left">nucleic acid binding</td>
+<td align="right">0.0057705</td>
+<td align="left">3.50%</td>
+<td align="left">RPS2, RPL26B, RPL30, NOP56, RPL22A, SMD2, NOP58, RRP9, MTR3, NMD3, RRP4, RPS3, NOP1, RPL2B, RPS13, MRT4, RPL5, RPL16B, CSL4, TIF6</td>
+</tr>
+<tr class="odd">
+<td align="left">rRNA binding</td>
+<td align="right">0.0071161</td>
+<td align="left">3.60%</td>
+<td align="left">RPS2, RPL2B, RPL5, MRT4, RPS13, NMD3</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>

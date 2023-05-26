@@ -178,3 +178,21 @@ write.table(selection, file = "data/top_+genes.txt", quote = FALSE, row.names = 
 ### GO enrichissement
 
 Ya rien qui marche bordel
+
+### Preuve que la première approche est fausse
+
+En selectionnant les mutant dont la medianne de fitness defect est la plus basse, on obtient le même enrichissement :
+
+```{r}
+med = data.frame(medianne = d_merge[-c(1,2)] %>% apply(1, function(x){median(x)}), gene = d_merge$Gene)
+med = med[order(med$medianne),]
+
+week_mut = med$gene[1:40]
+write.table(week_mut, file = "data/week_mut.txt", quote = FALSE, row.names = FALSE)
+
+tmp = read.table("data/go/preuve_function.txt", sep = "\t", header = TRUE)
+tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_RATE, Gene = tmp$ANNOTATED_GENES)
+
+knitr::kable(tmp, caption = "Molecular Function")
+```
+
