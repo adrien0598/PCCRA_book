@@ -98,7 +98,7 @@ les mutant "les plus senssible" à cpt sont en réalité des mutants qui ont des
 
 Exemple de RPL30 :
 
-```{r}
+```{r density_rpl30}
 RPL30 = d_merge[d_merge$Gene == "RPL30",][-c(1,2)] %>% unlist()
 
 ggplot(data.frame(Fitness_d = RPL30)) +
@@ -193,4 +193,31 @@ tmp = data.frame(Term = tmp$TERM, p_value = tmp$CORRECTED_PVALUE, FDR = tmp$FDR_
 
 knitr::kable(tmp, caption = "Molecular Function")
 ```
+
+## Encore une autre approche
+
+Répartition de la médianne des fitness defect de chaque mutant
+
+```{r density_med}
+med = d_merge[-c(1,2)] %>% apply(MARGIN = 1, function(x){
+  median(x)
+})
+
+ggplot(data.frame(medianne = med)) +
+  aes(x = medianne)+
+  geom_density()
+```
+
+```{r second filtre}
+seuil_min = -0.1
+seuil_max = 0.2
+d_merge_filtre = d_merge[med > seuil_min & med < seuil_max,]
+
+cpt_filtre = data.frame(Gene = d_merge_filtre$Gene, Reponse_cpt = d_merge_filtre$camptothecin_500um)
+nb_gene = 50
+top_x = cpt_filtre[order(cpt_filtre$Reponse_cpt),]$Gene[c(1:nb_gene)]
+write.table(top_x, file = "data/top_x_gene.txt", quote = FALSE, row.names = FALSE)
+```
+
+Rien d'enrichis non plus... Sauf si on prend un seuil baas plus petit que -0.3 auquel cas on retrouve ce foutu ribosome
 
