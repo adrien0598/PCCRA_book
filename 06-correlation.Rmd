@@ -81,7 +81,10 @@ gg_compar = full_count %>% rbind(campto_count)
 
 ggplot(gg_compar)+
   aes(x = groupe, fill = Type, y = Count) +
-  geom_col(position = "fill")
+  scale_fill_ipsum() +
+  geom_col(position = "fill") +
+  labs(title = "Types de stress du sous groupe Camptothecine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
+  theme_ipsum()
 ```
 
 ```{r t2}

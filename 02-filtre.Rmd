@@ -38,12 +38,21 @@ filtre_cor <- function(x){
 ## via correlation sans reduction (med +a*sd)
 filtre_med <- function(x){
   alpha = 2 # cutoff
-  t <- cor(x) %>% apply(1, function(x){sum(x)})
+  
+  # Calcul de la somme de la corrélation de chaque réplicats avec tous les autres
+  t <- x %>% cor() %>% apply(1, function(x){x %>% sum()})
+  
+  # Définition d'un intervalle de sélection
   borne <- c(median(t) + alpha*sd(t), median(t) - alpha*sd(t))
-  exclu <- t[t < borne[2] | t > borne[1]] %>% names()
+  
+  # Sélection des réplicats en dehors de l'intervalle
+  exclu <- t[t < borne[2] | t > borne[1]] %>% names() 
   cat(paste0("Filtre de ", exclu %>% length(), " replicats sur ", dim(x)[2], "\n"))
+  
+  # Renvoi du tableau x filtré des réplicats aberrants
   x[!(colnames(x) %in% exclu)] %>% as.data.frame()
 }
+
 ```
 
 Nous utiliserons pour la suite la fonction *filtre_med()* avec $a = 2$

@@ -8,20 +8,21 @@ library(mclust)
 library(umap)
 library(ggplot2)
 library(ggrepel)
+library(hrbrthemes)
 ```
 
 ```{r recuperation4, echo = FALSE}
 d_merge = readRDS(file = "data/d_merge.rds")
 tab = read.csv2("data/All_stress_annotated.csv", sep = "\t", header = TRUE)
-y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Inconnu", "Autre", "Environement", 
-                                                        "Chelateur", "Antifongique",
-                                                        "Cytotoxique", "Divers", "Antibactériens", "Divers", "Kinase inhibiteur",
-                                                        "Divers", "Antioxydant", "Inhbiteur de la synthèse protéique", 
+y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Divers", "Divers", "Divers", 
+                                                        "Divers", "Antifongique",
+                                                        "Cytotoxique", "Divers", "Antibactériens / Antiviral", "Divers", "Inhibiteur de kinase",
+                                                        "Divers", "Divers", "Inhbiteur de la synthèse protéique", 
                                                         "Inhibiteur de la synthèse d'acide nucléique",
                                                         "Divers", "Divers", "Cytotoxique", "Divers", "Cytotoxique", "Divers",
-                                                        "Divers", "Divers", "Antiviral", "Inhibiteur de phosphatase", 
+                                                        "Divers", "Divers", "Antibactériens / Antiviral", "Inhibiteur de phosphatase", 
                                                         "Inhibiteur d'enzyme", "Divers","Divers" , "Divers", "Divers", "Divers",
-                                                        "Divers", "Stress Oxydant", "Divers", "Divers", "Environement", "Divers"))
+                                                        "Divers", "Divers", "Divers", "Divers", "Divers", "Divers"))
 tab[["Type_merge"]] = tab$Type %>% sapply(function(s){
   y$type2[y$type1 == s]
 }) %>% unlist()
@@ -84,7 +85,10 @@ gg_compar = full_count %>% rbind(campto_count)
 
 ggplot(gg_compar)+
   aes(x = groupe, fill = Type, y = Count) +
-  geom_col(position = "fill")
+  scale_fill_ipsum() +
+  geom_col(position = "fill") +
+  labs(title = "Types de stress du groupe Camptothecine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
+  theme_ipsum()
 ```
 
 Mesure de l'enrichissement dans chacune des catégories :
@@ -92,23 +96,29 @@ Mesure de l'enrichissement dans chacune des catégories :
 On réalise un test de fisher exact pour les 16 catégories (loi hypergéométrique)
 
 ```{r testf}
+
 alpha = 0.05
 tests = NULL
 for (categorie in full_count$Type) {
-  m = full_count$Count[full_count$Type == categorie] # total white balls
-  x = c(campto_count$Count[campto_count$Type == categorie]:m) # white balls tirées (hits)
-  n = full_count$Count[full_count$Type != categorie] %>% sum() # black balls total
-  k = campto_count$Count %>% sum() # tirage
+  m = full_count$Count[full_count$Type == categorie] # boules blanches totales
+  x = c(campto_count$Count[campto_count$Type == categorie]:m) # boules blanches tirées 
+  n = full_count$Count[full_count$Type != categorie] %>% sum() # boules noires totales
+  k = campto_count$Count %>% sum() # nb tirage
   mat = matrix(c(campto_count$Count[campto_count$Type == categorie], 
                  k-campto_count$Count[campto_count$Type == categorie], 
                  m-campto_count$Count[campto_count$Type == categorie], 
                  n-(k-campto_count$Count[campto_count$Type == categorie])), 
                nrow = 2)
-  #print(fisher.test(mat)$p.value)
+  
   tests = c(tests, dhyper(x, m, n, k, log = FALSE) %>% sum())
+  #équivaut à fisher.test(mat)$p.value
 }
+#Correction de Bonferonni
+#tests = tests / (full_count$Type %>% length())
+
 tf = data.frame(categories = full_count$Type, p_val = tests)
 tf[tf$p_val < alpha,]
+
 ```
 Ce groupe est enrichis en composants **cyctotoxiques** et **inhibiteurs de la synthèse d'acides nucléiques**. Ces deux points coincident avec les trouvailles de la GO enrichissement.
 
