@@ -23,7 +23,7 @@
 <meta name="author" content="Adrien" />
 
 
-<meta name="date" content="2023-05-26" />
+<meta name="date" content="2023-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -183,6 +183,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.1" data-path="cpt.html"><a href="cpt.html#go-enrichissement-1"><i class="fa fa-check"></i><b>4.3.1</b> GO enrichissement</a></li>
 <li class="chapter" data-level="4.3.2" data-path="cpt.html"><a href="cpt.html#preuve-que-la-première-approche-est-fausse"><i class="fa fa-check"></i><b>4.3.2</b> Preuve que la première approche est fausse</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="cpt.html"><a href="cpt.html#encore-une-autre-approche"><i class="fa fa-check"></i><b>4.4</b> Encore une autre approche</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
 <ul>
@@ -396,7 +397,7 @@ div.csl-indent {
 <span id="cb24-7"><a href="cpt.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> RPL30 <span class="sc">%&gt;%</span> <span class="fu">mean</span>(), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co">#moyenne</span></span>
 <span id="cb24-8"><a href="cpt.html#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,]<span class="sc">$</span>camptothecin_500um, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="co">#CPT response</span></span>
 <span id="cb24-9"><a href="cpt.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><img src="bookdown-demo_files/figure-html/density_rpl30-1.png" width="672" /></p>
 </div>
 </div>
 <div id="nouvelle-approche-pénalisée" class="section level2 hasAnchor" number="4.3">
@@ -472,7 +473,7 @@ div.csl-indent {
 <span id="cb30-9"><a href="cpt.html#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-10"><a href="cpt.html#cb30-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-12">Table 4.2: </span>Molecular Function</caption>
+<caption><span id="tab:unnamed-chunk-11">Table 4.2: </span>Molecular Function</caption>
 <colgroup>
 <col width="14%" />
 <col width="4%" />
@@ -520,8 +521,29 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-
 </div>
+</div>
+<div id="encore-une-autre-approche" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Encore une autre approche<a href="cpt.html#encore-une-autre-approche" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Répartition de la médianne des fitness defect de chaque mutant</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="cpt.html#cb31-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="cf">function</span>(x){</span>
+<span id="cb31-2"><a href="cpt.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median</span>(x)</span>
+<span id="cb31-3"><a href="cpt.html#cb31-3" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb31-4"><a href="cpt.html#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="cpt.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">medianne =</span> med)) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="cpt.html#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> medianne)<span class="sc">+</span></span>
+<span id="cb31-7"><a href="cpt.html#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/density_med-1.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="cpt.html#cb32-1" aria-hidden="true" tabindex="-1"></a>seuil_min <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.1</span></span>
+<span id="cb32-2"><a href="cpt.html#cb32-2" aria-hidden="true" tabindex="-1"></a>seuil_max <span class="ot">=</span> <span class="fl">0.2</span></span>
+<span id="cb32-3"><a href="cpt.html#cb32-3" aria-hidden="true" tabindex="-1"></a>d_merge_filtre <span class="ot">=</span> d_merge[med <span class="sc">&gt;</span> seuil_min <span class="sc">&amp;</span> med <span class="sc">&lt;</span> seuil_max,]</span>
+<span id="cb32-4"><a href="cpt.html#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="cpt.html#cb32-5" aria-hidden="true" tabindex="-1"></a>cpt_filtre <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Gene =</span> d_merge_filtre<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge_filtre<span class="sc">$</span>camptothecin_500um)</span>
+<span id="cb32-6"><a href="cpt.html#cb32-6" aria-hidden="true" tabindex="-1"></a>nb_gene <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb32-7"><a href="cpt.html#cb32-7" aria-hidden="true" tabindex="-1"></a>top_x <span class="ot">=</span> cpt_filtre[<span class="fu">order</span>(cpt_filtre<span class="sc">$</span>Reponse_cpt),]<span class="sc">$</span>Gene[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>nb_gene)]</span>
+<span id="cb32-8"><a href="cpt.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(top_x, <span class="at">file =</span> <span class="st">&quot;data/top_x_gene.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Rien d’enrichis non plus… Sauf si on prend un seuil baas plus petit que -0.3 auquel cas on retrouve ce foutu ribosome</p>
+
 </div>
 </div>
             </section>

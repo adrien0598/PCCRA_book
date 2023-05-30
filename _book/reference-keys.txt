@@ -35,3 +35,5 @@ nouvelle-approche-pénalisée
 go-enrichissement-1
 tab:unnamed-chunk-12
 preuve-que-la-première-approche-est-fausse
+tab:unnamed-chunk-11
+encore-une-autre-approche
