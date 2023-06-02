@@ -6,11 +6,12 @@ library(stringr)
 library(FactoMineR)
 library(ggplot2)
 library(ggrepel)
+library(hrbrthemes)
 ```
 
 ```{r recuperation5, echo = FALSE}
 d_merge = readRDS(file = "data/d_merge.rds")
-stress_campto = readRDS("stress_campto.rds")
+stress_campto = readRDS("data/stress_campto.rds")
 ```
 
 ## Mesure de correlation entre les mutants
@@ -70,6 +71,7 @@ gg_campto = data.frame(x = stress_campto2, Type = stress_campto2 %>% sapply(func
   tab$Type_merge[y == tab$x]
 }))
 
+
 full_count = data.frame(Type = tab$Type_merge %>% unique(), Count = tab$Type_merge %>% unique() %>% sapply(function(y){
   tab$x[tab$Type_merge == y] %>% length()
 }), groupe = rep("ALL", tab$Type_merge %>% unique() %>% length()))
@@ -81,7 +83,7 @@ gg_compar = full_count %>% rbind(campto_count)
 
 ggplot(gg_compar)+
   aes(x = groupe, fill = Type, y = Count) +
-  scale_fill_ipsum() +
+  scale_fill_npg()+
   geom_col(position = "fill") +
   labs(title = "Types de stress du sous groupe Camptothecine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
   theme_ipsum()

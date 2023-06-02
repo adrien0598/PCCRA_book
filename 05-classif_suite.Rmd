@@ -8,7 +8,10 @@ library(mclust)
 library(umap)
 library(ggplot2)
 library(ggrepel)
+library(RColorBrewer)
 library(hrbrthemes)
+library(viridis)
+library(ggsci)
 ```
 
 ```{r recuperation4, echo = FALSE}
@@ -47,7 +50,7 @@ Es ce que le groupe de stress contenant la camptothecine est enrichit en un ou p
 gg[gg$name == "camptothecin_500um",]
 
 stress_campto <- gg[gg$classe == gg[gg$name == "camptothecin_500um",]$classe,]$name
-saveRDS(stress_campto, file = "stress_campto.rds")
+saveRDS(stress_campto, file = "data/stress_campto.rds")
 ```
 
 ```{r plota}
@@ -69,7 +72,7 @@ ggplot(gg_compar)+
   geom_col(position = "fill")
 ```
 
-```{r plotb}
+```{r plotb, warning=FALSE}
 gg_campto = data.frame(x = stress_campto, Type = stress_campto %>% sapply(function(y){
   tab$Type_merge[y == tab$x]
 }))
@@ -85,7 +88,10 @@ gg_compar = full_count %>% rbind(campto_count)
 
 ggplot(gg_compar)+
   aes(x = groupe, fill = Type, y = Count) +
-  scale_fill_ipsum() +
+  #scale_fill_ipsum() +
+  #scale_fill_brewer(palette = "Pastel1")+
+  #scale_fill_viridis_d(option = "A")+
+  scale_fill_npg()+
   geom_col(position = "fill") +
   labs(title = "Types de stress du groupe Camptothecine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
   theme_ipsum()

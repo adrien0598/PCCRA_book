@@ -5,6 +5,7 @@ library(tidyr)
 library(stringr)
 library(FactoMineR)
 library(ggplot2)
+library(hrbrthemes)
 ```
 
 ```{r recuperation2, echo = FALSE}
@@ -17,9 +18,10 @@ d_merge = readRDS(file = "data/d_merge.rds")
 cpt = data.frame(ORF = d_merge$ORF, Reponse_cpt = d_merge$camptothecin_500um)
 ggplot(cpt) +
   aes(x = Reponse_cpt) +
-  theme_classic()+
-  geom_histogram(aes(y = after_stat(density)), color = "grey", fill = "lightblue") +
-  geom_density(color = "grey", fill = "#F85700", alpha = 0.3)
+  theme_ipsum()+
+  #geom_histogram(aes(y = after_stat(density)), color = "grey", fill = "#4DBBD5FF") +
+  labs(title = "Réponses à la Campthotecine par stress", x = "Perte de fitness (log)", y = "Densité", subtitle = "Parmis les 448 stress distincts")+
+  geom_density(color = "grey", fill = "#E64B35FF", alpha = 0.4)
 ```
 
 ```{r}
