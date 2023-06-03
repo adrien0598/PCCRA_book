@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Correlation | Crible PCCRA</title>
+  <title>Chapter 8 Correlation | Crible PCCRA</title>
   <meta name="description" content="Analyse du crible chimiogénétique PCCRA" />
   <meta name="generator" content="bookdown 0.34 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Correlation | Crible PCCRA" />
+  <meta property="og:title" content="Chapter 8 Correlation | Crible PCCRA" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Analyse du crible chimiogénétique PCCRA" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Correlation | Crible PCCRA" />
+  <meta name="twitter:title" content="Chapter 8 Correlation | Crible PCCRA" />
   
   <meta name="twitter:description" content="Analyse du crible chimiogénétique PCCRA" />
   
@@ -23,14 +23,14 @@
 <meta name="author" content="Adrien" />
 
 
-<meta name="date" content="2023-05-25" />
+<meta name="date" content="2023-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="classif2.html"/>
+<link rel="prev" href="ccor.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -176,13 +176,14 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="cpt.html"><a href="cpt.html#go-enrichissement"><i class="fa fa-check"></i><b>4.2</b> GO enrichissement</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-resistants-à-cpt"><i class="fa fa-check"></i><b>4.2.1</b> Mutants les plus resistants à CPT</a></li>
-<li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-sensibles-à-cpt"><i class="fa fa-check"></i><b>4.2.2</b> Mutants les plus sensibles à CPT</a></li>
-<li class="chapter" data-level="4.2.3" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.3</b> Les 24 plus sensibles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.2</b> Les 24 plus sensibles</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="cpt.html"><a href="cpt.html#nouvelle-approche-pénalisée"><i class="fa fa-check"></i><b>4.3</b> Nouvelle approche (pénalisée)</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="cpt.html"><a href="cpt.html#go-enrichissement-1"><i class="fa fa-check"></i><b>4.3.1</b> GO enrichissement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="cpt.html"><a href="cpt.html#preuve-que-la-première-approche-est-fausse"><i class="fa fa-check"></i><b>4.3.2</b> Preuve que la première approche est fausse</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="cpt.html"><a href="cpt.html#encore-une-autre-approche"><i class="fa fa-check"></i><b>4.4</b> Encore une autre approche</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
 <ul>
@@ -202,6 +203,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.2.1" data-path="ccor.html"><a href="ccor.html#stress-du-groupe-camptothecine"><i class="fa fa-check"></i><b>7.2.1</b> Stress du groupe Camptothecine</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="ccor.html"><a href="ccor.html#ccor"><i class="fa fa-check"></i><b>8</b> Correlation</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -223,104 +225,111 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ccor" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Correlation<a href="ccor.html#ccor" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ccor" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Correlation<a href="ccor.html#ccor" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="ccor.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb1-2"><a href="ccor.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb1-3"><a href="ccor.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
 <span id="cb1-4"><a href="ccor.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href="ccor.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
-<div id="mesure-de-correlation-entre-les-mutants" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Mesure de correlation entre les mutants<a href="ccor.html#mesure-de-correlation-entre-les-mutants" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ccor.html#cb2-1" aria-hidden="true" tabindex="-1"></a>cor_mut <span class="ot">&lt;-</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">cor</span>()</span>
-<span id="cb2-2"><a href="ccor.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#heatmap(cor_mut)</span></span></code></pre></div>
-</div>
-<div id="mesure-de-correlation-entre-les-stress" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> Mesure de correlation entre les stress<a href="ccor.html#mesure-de-correlation-entre-les-stress" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ccor.html#cb3-1" aria-hidden="true" tabindex="-1"></a>cor_stress <span class="ot">&lt;-</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">cor</span>()</span>
-<span id="cb3-2"><a href="ccor.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">heatmap</span>(cor_stress)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/correlation-1.png" width="672" /></p>
-<div id="stress-du-groupe-camptothecine" class="section level3 hasAnchor" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> Stress du groupe Camptothecine<a href="ccor.html#stress-du-groupe-camptothecine" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ccor.html#cb4-1" aria-hidden="true" tabindex="-1"></a>cor_stress_red <span class="ot">=</span> d_merge[<span class="fu">colnames</span>(d_merge) <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(x){</span>
-<span id="cb4-2"><a href="ccor.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">%in%</span> stress_campto){</span>
-<span id="cb4-3"><a href="ccor.html#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
-<span id="cb4-4"><a href="ccor.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-5"><a href="ccor.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {<span class="cn">FALSE</span>}</span>
-<span id="cb4-6"><a href="ccor.html#cb4-6" aria-hidden="true" tabindex="-1"></a>})] <span class="sc">%&gt;%</span> <span class="fu">cor</span>()</span>
-<span id="cb4-7"><a href="ccor.html#cb4-7" aria-hidden="true" tabindex="-1"></a>cor_mut_red <span class="ot">=</span> d_merge[<span class="fu">colnames</span>(d_merge) <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(x){</span>
-<span id="cb4-8"><a href="ccor.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">%in%</span> stress_campto){</span>
-<span id="cb4-9"><a href="ccor.html#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
-<span id="cb4-10"><a href="ccor.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb4-11"><a href="ccor.html#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {<span class="cn">FALSE</span>}</span>
-<span id="cb4-12"><a href="ccor.html#cb4-12" aria-hidden="true" tabindex="-1"></a>})] <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">cor</span>()</span>
-<span id="cb4-13"><a href="ccor.html#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="ccor.html#cb4-14" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">heatmap</span>(cor_stress_red)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/correlation2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ccor.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#heatmap(cor_mut_red)</span></span></code></pre></div>
-<p>3 sous groupes sont visibles, mesure de l’enrichissement du sous groupe contenant la camptothecine :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ccor.html#cb6-1" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">=</span> <span class="fu">read.csv2</span>(<span class="st">&quot;data/All_stress_annotated.csv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-2"><a href="ccor.html#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">type1 =</span> tab<span class="sc">$</span>Type <span class="sc">%&gt;%</span> <span class="fu">unique</span>(), <span class="at">type2 =</span> <span class="fu">c</span>(<span class="st">&quot;Cytotoxique&quot;</span>, <span class="st">&quot;Inconnu&quot;</span>, <span class="st">&quot;Autre&quot;</span>, <span class="st">&quot;Environement&quot;</span>, </span>
-<span id="cb6-3"><a href="ccor.html#cb6-3" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Chelateur&quot;</span>, <span class="st">&quot;Antifongique&quot;</span>,</span>
-<span id="cb6-4"><a href="ccor.html#cb6-4" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Cytotoxique&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Antibactériens&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Kinase inhibiteur&quot;</span>,</span>
-<span id="cb6-5"><a href="ccor.html#cb6-5" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Antioxydant&quot;</span>, <span class="st">&quot;Inhbiteur de la synthèse protéique&quot;</span>, </span>
-<span id="cb6-6"><a href="ccor.html#cb6-6" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Inhibiteur de la synthèse d&#39;acide nucléique&quot;</span>,</span>
-<span id="cb6-7"><a href="ccor.html#cb6-7" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Cytotoxique&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Cytotoxique&quot;</span>, <span class="st">&quot;Divers&quot;</span>,</span>
-<span id="cb6-8"><a href="ccor.html#cb6-8" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Antiviral&quot;</span>, <span class="st">&quot;Inhibiteur de phosphatase&quot;</span>, </span>
-<span id="cb6-9"><a href="ccor.html#cb6-9" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Inhibiteur d&#39;enzyme&quot;</span>, <span class="st">&quot;Divers&quot;</span>,<span class="st">&quot;Divers&quot;</span> , <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Divers&quot;</span>,</span>
-<span id="cb6-10"><a href="ccor.html#cb6-10" aria-hidden="true" tabindex="-1"></a>                                                        <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Stress Oxydant&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Divers&quot;</span>, <span class="st">&quot;Environement&quot;</span>, <span class="st">&quot;Divers&quot;</span>))</span>
-<span id="cb6-11"><a href="ccor.html#cb6-11" aria-hidden="true" tabindex="-1"></a>tab[[<span class="st">&quot;Type_merge&quot;</span>]] <span class="ot">=</span> tab<span class="sc">$</span>Type <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(s){</span>
-<span id="cb6-12"><a href="ccor.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  y<span class="sc">$</span>type2[y<span class="sc">$</span>type1 <span class="sc">==</span> s]</span>
-<span id="cb6-13"><a href="ccor.html#cb6-13" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb1-5"><a href="ccor.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-6"><a href="ccor.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb1-7"><a href="ccor.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggsci)</span></code></pre></div>
+<p>selection des genes</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ccor.html#cb2-1" aria-hidden="true" tabindex="-1"></a>gene <span class="ot">=</span> d_merge<span class="sc">$</span>Gene</span>
+<span id="cb2-2"><a href="ccor.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="ccor.html#cb2-3" aria-hidden="true" tabindex="-1"></a>cible <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;RFA1&quot;</span>, <span class="st">&quot;RFA2&quot;</span>, <span class="st">&quot;RFA3&quot;</span>, <span class="st">&quot;MEC1&quot;</span>, <span class="st">&quot;RAD9&quot;</span>, <span class="st">&quot;RAD53&quot;</span>,</span>
+<span id="cb2-4"><a href="ccor.html#cb2-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;RAD1&quot;</span>, <span class="st">&quot;APN2&quot;</span>, <span class="st">&quot;LIF1&quot;</span>, <span class="st">&quot;MSH2&quot;</span>, <span class="st">&quot;TOP1&quot;</span>, <span class="st">&quot;TEL1&quot;</span>, <span class="st">&quot;SLM1&quot;</span>, <span class="st">&quot;MEC1&quot;</span>,</span>
+<span id="cb2-5"><a href="ccor.html#cb2-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;MSH2&quot;</span>, <span class="st">&quot;MSH3&quot;</span>, <span class="st">&quot;MSH4&quot;</span>, <span class="st">&quot;MSH5&quot;</span>)</span></code></pre></div>
+<p>extra groupe</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ccor.html#cb3-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">=</span> d_merge[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){<span class="fu">var</span>(x)})</span>
+<span id="cb3-2"><a href="ccor.html#cb3-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">=</span> d_merge[,<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){<span class="fu">mean</span>(x)})</span>
+<span id="cb3-3"><a href="ccor.html#cb3-3" aria-hidden="true" tabindex="-1"></a>gene_v <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> d_merge<span class="sc">$</span>Gene, <span class="at">v =</span> v, <span class="at">m =</span> m)</span>
+<span id="cb3-4"><a href="ccor.html#cb3-4" aria-hidden="true" tabindex="-1"></a>gene_v <span class="ot">=</span> gene_v[<span class="fu">order</span>(gene_v<span class="sc">$</span>v),]</span>
+<span id="cb3-5"><a href="ccor.html#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="ccor.html#cb3-6" aria-hidden="true" tabindex="-1"></a>extra_g <span class="ot">=</span> gene_v[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),]<span class="sc">$</span>gene</span></code></pre></div>
+<p>restriction de la table</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ccor.html#cb4-1" aria-hidden="true" tabindex="-1"></a>cible_ok <span class="ot">=</span> <span class="fu">c</span>(cible, extra_g)</span>
+<span id="cb4-2"><a href="ccor.html#cb4-2" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="ot">=</span> d_merge[,stress_campto] <span class="sc">%&gt;%</span> <span class="fu">cbind</span>(<span class="fu">data.frame</span>(<span class="at">Gene =</span> d_merge<span class="sc">$</span>Gene))</span>
+<span id="cb4-3"><a href="ccor.html#cb4-3" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="ot">=</span> d_merge_sub[d_merge_sub<span class="sc">$</span>Gene <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(x){</span>
+<span id="cb4-4"><a href="ccor.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">%in%</span> cible_ok){</span>
+<span id="cb4-5"><a href="ccor.html#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
+<span id="cb4-6"><a href="ccor.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb4-7"><a href="ccor.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{<span class="cn">FALSE</span>}</span>
+<span id="cb4-8"><a href="ccor.html#cb4-8" aria-hidden="true" tabindex="-1"></a>}),]</span>
+<span id="cb4-9"><a href="ccor.html#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="ccor.html#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(d_merge_sub) <span class="ot">=</span> d_merge_sub<span class="sc">$</span>Gene</span>
+<span id="cb4-11"><a href="ccor.html#cb4-11" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="ot">=</span> d_merge_sub[,<span class="sc">-</span><span class="fu">dim</span>(d_merge_sub)[<span class="dv">2</span>]]</span></code></pre></div>
+<p>plots</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ccor.html#cb5-1" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="sc">%&gt;%</span> <span class="fu">dist</span>() <span class="sc">%&gt;%</span> <span class="fu">hclust</span>() <span class="sc">%&gt;%</span> <span class="fu">plot</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/abraca-1.png" width="672" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ccor.html#cb6-1" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb6-2"><a href="ccor.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> stress_campto){</span>
+<span id="cb6-3"><a href="ccor.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(gg <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
+<span id="cb6-4"><a href="ccor.html#cb6-4" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">row.names</span>(d_merge_sub), </span>
+<span id="cb6-5"><a href="ccor.html#cb6-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">stress =</span> <span class="fu">rep</span>(i, (<span class="fu">row.names</span>(d_merge_sub) <span class="sc">%&gt;%</span> <span class="fu">length</span>())),</span>
+<span id="cb6-6"><a href="ccor.html#cb6-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fitness =</span> d_merge_sub[[i]])</span>
+<span id="cb6-7"><a href="ccor.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-8"><a href="ccor.html#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb6-9"><a href="ccor.html#cb6-9" aria-hidden="true" tabindex="-1"></a>    gg <span class="ot">=</span> gg <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">row.names</span>(d_merge_sub), </span>
+<span id="cb6-10"><a href="ccor.html#cb6-10" aria-hidden="true" tabindex="-1"></a>                    <span class="at">stress =</span> <span class="fu">rep</span>(i, (<span class="fu">row.names</span>(d_merge_sub) <span class="sc">%&gt;%</span> <span class="fu">length</span>())),</span>
+<span id="cb6-11"><a href="ccor.html#cb6-11" aria-hidden="true" tabindex="-1"></a>                    <span class="at">fitness =</span> d_merge_sub[[i]]))</span>
+<span id="cb6-12"><a href="ccor.html#cb6-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-13"><a href="ccor.html#cb6-13" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb6-14"><a href="ccor.html#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="ccor.html#cb6-15" aria-hidden="true" tabindex="-1"></a>stress_campto2 <span class="ot">=</span> stress_campto[tmp<span class="sc">$</span>rowInd[<span class="fu">c</span>(<span class="dv">15</span><span class="sc">:</span><span class="dv">24</span>)]]</span>
-<span id="cb6-16"><a href="ccor.html#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="ccor.html#cb6-17" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto2, <span class="at">Type =</span> stress_campto2 <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
-<span id="cb6-18"><a href="ccor.html#cb6-18" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>Type_merge[y <span class="sc">==</span> tab<span class="sc">$</span>x]</span>
-<span id="cb6-19"><a href="ccor.html#cb6-19" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb6-20"><a href="ccor.html#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-21"><a href="ccor.html#cb6-21" aria-hidden="true" tabindex="-1"></a>full_count <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Type =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>(), <span class="at">Count =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
-<span id="cb6-22"><a href="ccor.html#cb6-22" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>x[tab<span class="sc">$</span>Type_merge <span class="sc">==</span> y] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb6-23"><a href="ccor.html#cb6-23" aria-hidden="true" tabindex="-1"></a>}), <span class="at">groupe =</span> <span class="fu">rep</span>(<span class="st">&quot;ALL&quot;</span>, tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()))</span>
-<span id="cb6-24"><a href="ccor.html#cb6-24" aria-hidden="true" tabindex="-1"></a>campto_count <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Type =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>(), <span class="at">Count =</span> tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>()  <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
-<span id="cb6-25"><a href="ccor.html#cb6-25" aria-hidden="true" tabindex="-1"></a>  gg_campto<span class="sc">$</span>x[gg_campto<span class="sc">$</span>Type <span class="sc">==</span> y] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span>
-<span id="cb6-26"><a href="ccor.html#cb6-26" aria-hidden="true" tabindex="-1"></a>}), <span class="at">groupe =</span> <span class="fu">rep</span>(<span class="st">&quot;CPT&quot;</span>, tab<span class="sc">$</span>Type_merge <span class="sc">%&gt;%</span> <span class="fu">unique</span>() <span class="sc">%&gt;%</span> <span class="fu">length</span>()))</span>
-<span id="cb6-27"><a href="ccor.html#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-28"><a href="ccor.html#cb6-28" aria-hidden="true" tabindex="-1"></a>gg_compar <span class="ot">=</span> full_count <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(campto_count)</span>
-<span id="cb6-29"><a href="ccor.html#cb6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-30"><a href="ccor.html#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_compar)<span class="sc">+</span></span>
-<span id="cb6-31"><a href="ccor.html#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> groupe, <span class="at">fill =</span> Type, <span class="at">y =</span> Count) <span class="sc">+</span></span>
-<span id="cb6-32"><a href="ccor.html#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
-<p><img src="bookdown-demo_files/figure-html/t1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ccor.html#cb7-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
-<span id="cb7-2"><a href="ccor.html#cb7-2" aria-hidden="true" tabindex="-1"></a>tests <span class="ot">=</span> <span class="cn">NULL</span></span>
-<span id="cb7-3"><a href="ccor.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (categorie <span class="cf">in</span> full_count<span class="sc">$</span>Type) {</span>
-<span id="cb7-4"><a href="ccor.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">==</span> categorie] <span class="co"># total white balls</span></span>
-<span id="cb7-5"><a href="ccor.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">c</span>(campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie]<span class="sc">:</span>m) <span class="co"># white balls tirées (hits)</span></span>
-<span id="cb7-6"><a href="ccor.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">!=</span> categorie] <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># black balls total</span></span>
-<span id="cb7-7"><a href="ccor.html#cb7-7" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">=</span> campto_count<span class="sc">$</span>Count <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># tirage</span></span>
-<span id="cb7-8"><a href="ccor.html#cb7-8" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
-<span id="cb7-9"><a href="ccor.html#cb7-9" aria-hidden="true" tabindex="-1"></a>                 k<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
-<span id="cb7-10"><a href="ccor.html#cb7-10" aria-hidden="true" tabindex="-1"></a>                 m<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
-<span id="cb7-11"><a href="ccor.html#cb7-11" aria-hidden="true" tabindex="-1"></a>                 n<span class="sc">-</span>(k<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie])), </span>
-<span id="cb7-12"><a href="ccor.html#cb7-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb7-13"><a href="ccor.html#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(fisher.test(mat)$p.value)</span></span>
-<span id="cb7-14"><a href="ccor.html#cb7-14" aria-hidden="true" tabindex="-1"></a>  tests <span class="ot">=</span> <span class="fu">c</span>(tests, <span class="fu">dhyper</span>(x, m, n, k, <span class="at">log =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">sum</span>())</span>
-<span id="cb7-15"><a href="ccor.html#cb7-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb7-16"><a href="ccor.html#cb7-16" aria-hidden="true" tabindex="-1"></a>tf <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">categories =</span> full_count<span class="sc">$</span>Type, <span class="at">p_val =</span> tests)</span>
-<span id="cb7-17"><a href="ccor.html#cb7-17" aria-hidden="true" tabindex="-1"></a>tf[tf<span class="sc">$</span>p_val <span class="sc">&lt;</span> alpha,]</span></code></pre></div>
-<pre><code>##    categories      p_val
-## 1 Cytotoxique 0.01465796</code></pre>
+<span id="cb6-15"><a href="ccor.html#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="ccor.html#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">y =</span> fitness, <span class="at">x =</span> gene)<span class="sc">+</span></span>
+<span id="cb6-17"><a href="ccor.html#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb6-18"><a href="ccor.html#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> <span class="fu">subset</span>(gg, stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>),</span>
+<span id="cb6-19"><a href="ccor.html#cb6-19" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">y =</span> fitness, <span class="at">x =</span> gene),</span>
+<span id="cb6-20"><a href="ccor.html#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/abraca-2.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="ccor.html#cb7-1" aria-hidden="true" tabindex="-1"></a>cible <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;RAD1&quot;</span>, <span class="st">&quot;APN2&quot;</span>, <span class="st">&quot;LIF1&quot;</span>, <span class="st">&quot;MSH2&quot;</span>, <span class="st">&quot;TOP1&quot;</span>, <span class="st">&quot;TEL1&quot;</span>, <span class="st">&quot;SLM1&quot;</span>, <span class="st">&quot;MEC1&quot;</span>)</span>
+<span id="cb7-2"><a href="ccor.html#cb7-2" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="ot">=</span> d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">%&gt;%</span> <span class="fu">cbind</span>(<span class="fu">data.frame</span>(<span class="at">Gene =</span> d_merge<span class="sc">$</span>Gene))</span>
+<span id="cb7-3"><a href="ccor.html#cb7-3" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="ot">=</span> d_merge_sub[d_merge_sub<span class="sc">$</span>Gene <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(x){</span>
+<span id="cb7-4"><a href="ccor.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">%in%</span> cible){</span>
+<span id="cb7-5"><a href="ccor.html#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
+<span id="cb7-6"><a href="ccor.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-7"><a href="ccor.html#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{<span class="cn">FALSE</span>}</span>
+<span id="cb7-8"><a href="ccor.html#cb7-8" aria-hidden="true" tabindex="-1"></a>}),]</span>
+<span id="cb7-9"><a href="ccor.html#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="ccor.html#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(d_merge_sub) <span class="ot">=</span> d_merge_sub<span class="sc">$</span>Gene</span>
+<span id="cb7-11"><a href="ccor.html#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d_merge_sub) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;fitness&quot;</span>, <span class="st">&quot;gene&quot;</span>)</span>
+<span id="cb7-12"><a href="ccor.html#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="ccor.html#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d_merge_sub)<span class="sc">+</span></span>
+<span id="cb7-14"><a href="ccor.html#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> fitness)<span class="sc">+</span></span>
+<span id="cb7-15"><a href="ccor.html#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb7-16"><a href="ccor.html#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_npg</span>()<span class="sc">+</span></span>
+<span id="cb7-17"><a href="ccor.html#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Réponse à la campthotecine des souches des TEG&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Mutant&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Fitness defect&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Selon les données du crible chimiogénétique&quot;</span>)<span class="sc">+</span></span>
+<span id="cb7-18"><a href="ccor.html#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/zed-1.png" width="672" /></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="ccor.html#cb8-1" aria-hidden="true" tabindex="-1"></a>cible <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;RFA1&quot;</span>, <span class="st">&quot;RFA2&quot;</span>, <span class="st">&quot;RFA3&quot;</span>, <span class="st">&quot;MEC1&quot;</span>, <span class="st">&quot;RAD9&quot;</span>, <span class="st">&quot;RAD53&quot;</span>,</span>
+<span id="cb8-2"><a href="ccor.html#cb8-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;MSH2&quot;</span>, <span class="st">&quot;MSH3&quot;</span>, <span class="st">&quot;MSH4&quot;</span>, <span class="st">&quot;MSH5&quot;</span>)</span>
+<span id="cb8-3"><a href="ccor.html#cb8-3" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="ot">=</span> d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">%&gt;%</span> <span class="fu">cbind</span>(<span class="fu">data.frame</span>(<span class="at">Gene =</span> d_merge<span class="sc">$</span>Gene))</span>
+<span id="cb8-4"><a href="ccor.html#cb8-4" aria-hidden="true" tabindex="-1"></a>d_merge_sub <span class="ot">=</span> d_merge_sub[d_merge_sub<span class="sc">$</span>Gene <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(x){</span>
+<span id="cb8-5"><a href="ccor.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">%in%</span> cible){</span>
+<span id="cb8-6"><a href="ccor.html#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span></span>
+<span id="cb8-7"><a href="ccor.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-8"><a href="ccor.html#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>{<span class="cn">FALSE</span>}</span>
+<span id="cb8-9"><a href="ccor.html#cb8-9" aria-hidden="true" tabindex="-1"></a>}),]</span>
+<span id="cb8-10"><a href="ccor.html#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="ccor.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(d_merge_sub) <span class="ot">=</span> d_merge_sub<span class="sc">$</span>Gene</span>
+<span id="cb8-12"><a href="ccor.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(d_merge_sub) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;fitness&quot;</span>, <span class="st">&quot;gene&quot;</span>)</span>
+<span id="cb8-13"><a href="ccor.html#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="ccor.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d_merge_sub)<span class="sc">+</span></span>
+<span id="cb8-15"><a href="ccor.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> gene, <span class="at">y =</span> fitness)<span class="sc">+</span></span>
+<span id="cb8-16"><a href="ccor.html#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb8-17"><a href="ccor.html#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_npg</span>()<span class="sc">+</span></span>
+<span id="cb8-18"><a href="ccor.html#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Réponse à la campthotecine de mutants de la réparation&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Mutant&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Fitness defect&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Selon les données du crible chimiogénétique&quot;</span>)<span class="sc">+</span></span>
+<span id="cb8-19"><a href="ccor.html#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/zed-2.png" width="672" /></p>
 
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="classif2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ccor.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -352,7 +361,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-correlation.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/07-test_mutants.Rmd",
 "text": "Edit"
 },
 "history": {

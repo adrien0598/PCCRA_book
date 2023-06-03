@@ -37,3 +37,6 @@ tab:unnamed-chunk-12
 preuve-que-la-première-approche-est-fausse
 tab:unnamed-chunk-11
 encore-une-autre-approche
+TEG
+basique
+comparaison-vrais-teg
