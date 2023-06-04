@@ -106,9 +106,8 @@ colnames(d_merge_sub) = c("fitness", "gene")
 
 ggplot(d_merge_sub)+
   aes(x = gene, y = fitness)+
-  geom_col()+
-  scale_fill_npg()+
-  labs(title = "Réponse à la campthotecine des souches des TEG", x = "Mutant", y = "Fitness defect", subtitle = "Selon les données du crible chimiogénétique")+
+  geom_col(fill = "#4DBBD5FF")+
+  labs(title = "Réponse à la camptothécine des souches des TEG", x = "Mutant", y = "Fitness defect", subtitle = "Selon les données du crible chimiogénétique")+
   theme_ipsum()
 
 cible = c("RFA1", "RFA2", "RFA3", "MEC1", "RAD9", "RAD53",
@@ -126,9 +125,8 @@ colnames(d_merge_sub) = c("fitness", "gene")
 
 ggplot(d_merge_sub)+
   aes(x = gene, y = fitness)+
-  geom_col()+
-  scale_fill_npg()+
-  labs(title = "Réponse à la campthotecine de mutants de la réparation", x = "Mutant", y = "Fitness defect", subtitle = "Selon les données du crible chimiogénétique")+
+  geom_col(fill = "#4DBBD5FF")+
+  labs(title = "Réponse à la camptothécine de mutants de la réparation", x = "Mutant", y = "Fitness defect", subtitle = "Selon les données du crible chimiogénétique")+
   theme_ipsum()
 
 ```
@@ -186,10 +184,9 @@ l12 %>% summary()
 
 ggplot(comparaison[-8,])+
   aes(x = fd.crible, y = viabi)+
-  geom_point()+
-  scale_color_npg()+
-  labs(title = "Prediction", x = "Viabilité selon le crible (fitness defect)", y = "Viabilité TEG", subtitle = "trop bien")+
-  geom_smooth(method=lm, se=FALSE)+
+  geom_point(color = "#E64B35FF")+
+  labs(title = "Relation linéaire entre les viabilités des mutants", x = "Viabilité selon le crible (fitness defect)", y = "Viabilité TEG", subtitle = "Selon le crible et les tests en goutte")+
+  geom_smooth(method=lm, se=FALSE, color = "#4DBBD5FF", linetype = "solid", size = 1)+
   theme_ipsum()
 ```
 
@@ -222,7 +219,7 @@ ggplot(gg)+
   aes(x = gene, y = viabilite, fill = m)+
   geom_col()+
   scale_fill_npg()+
-  labs(title = "Viabilité avec campthotecine de mutants des voies de réparation", x = "Mutant", y = "Viabilité", subtitle = "Selon les données du TEG et le données predite via le crible")+
+  labs(title = "Viabilité avec camptothécine de mutants des voies de réparation", x = "Mutant", y = "Viabilité", subtitle = "Selon les données du TEG et le données predite via le crible")+
   theme_ipsum()
 
 ################
@@ -244,7 +241,7 @@ ggplot(gg)+
   aes(x = gene, y = viabilite, fill = m)+
   geom_col()+
   scale_fill_npg()+
-  labs(title = "Viabilité de différents mutants des voies de réparation en présence de campthotecine", x = "Mutant", y = "Viabilité (/viabilité en DMSO)", subtitle = "Selon les données du TEG et le données predite via le crible")+
+  labs(title = "Viabilité de différents mutants des voies de réparation en présence de camptothécine", x = "Mutant", y = "Viabilité (/viabilité en DMSO)", subtitle = "Selon les données du TEG et le données predite via le crible")+
   theme_ipsum()
 ```
 

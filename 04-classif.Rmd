@@ -8,6 +8,8 @@ library(mclust)
 library(umap)
 library(ggplot2)
 library(ggrepel)
+library(hrbrthemes)
+library(ggsci)
 ```
 
 ```{r recuperation3, echo = FALSE}
@@ -97,7 +99,9 @@ gg = data.frame(x = u_merge$layout[,1], y = u_merge$layout[,2], classe = mc$clas
 gg[['name']] = gg %>% row.names()
 ggplot(gg)+
   aes(x = x, y = y, label = name)+
-  theme_classic()+
+  theme_ipsum()+
+  labs(title = "Classification par modèle de mélange des 448 stress du crible", x = "UMAP-1", y = "UMAP-2", subtitle = "
+       Avec choix automatique du nombre de classe (BIC)")+
   geom_label_repel(data          = subset(gg, name == "camptothecin_500um"),
                   nudge_y       = 6 - subset(gg, name == "camptothecin_500um")$y,
                   size          = 4,
@@ -144,4 +148,6 @@ ggplot(gg)+
 ```{r, echo = FALSE}
 saveRDS(gg, file = "data/classif_grosse.rds")
 ```
+
+
 

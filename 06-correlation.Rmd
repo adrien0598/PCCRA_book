@@ -52,15 +52,15 @@ tmp = heatmap(cor_stress_red)
 
 ```{r t1}
 tab = read.csv2("data/All_stress_annotated.csv", sep = "\t", header = TRUE)
-y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Inconnu", "Autre", "Environement", 
-                                                        "Chelateur", "Antifongique",
-                                                        "Cytotoxique", "Divers", "Antibactériens", "Divers", "Kinase inhibiteur",
-                                                        "Divers", "Antioxydant", "Inhbiteur de la synthèse protéique", 
+y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Divers", "Divers", "Divers", 
+                                                        "Divers", "Antifongique",
+                                                        "Cytotoxique", "Divers", "Antibactériens / Antiviral", "Divers", "Inhibiteur de kinase",
+                                                        "Divers", "Divers", "Inihbiteur de la synthèse protéique", 
                                                         "Inhibiteur de la synthèse d'acide nucléique",
                                                         "Divers", "Divers", "Cytotoxique", "Divers", "Cytotoxique", "Divers",
-                                                        "Divers", "Divers", "Antiviral", "Inhibiteur de phosphatase", 
+                                                        "Divers", "Divers", "Antibactériens / Antiviral", "Inhibiteur de phosphatase", 
                                                         "Inhibiteur d'enzyme", "Divers","Divers" , "Divers", "Divers", "Divers",
-                                                        "Divers", "Stress Oxydant", "Divers", "Divers", "Environement", "Divers"))
+                                                        "Divers", "Divers", "Divers", "Divers", "Divers", "Divers"))
 tab[["Type_merge"]] = tab$Type %>% sapply(function(s){
   y$type2[y$type1 == s]
 }) %>% unlist()
@@ -85,7 +85,7 @@ ggplot(gg_compar)+
   aes(x = groupe, fill = Type, y = Count) +
   scale_fill_npg()+
   geom_col(position = "fill") +
-  labs(title = "Types de stress du sous groupe Camptothecine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
+  labs(title = "Types de stress du sous groupe Camptothécine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
   theme_ipsum()
 ```
 

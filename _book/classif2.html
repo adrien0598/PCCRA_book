@@ -23,7 +23,7 @@
 <meta name="author" content="Adrien" />
 
 
-<meta name="date" content="2023-05-25" />
+<meta name="date" content="2023-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,13 +176,14 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="cpt.html"><a href="cpt.html#go-enrichissement"><i class="fa fa-check"></i><b>4.2</b> GO enrichissement</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-resistants-à-cpt"><i class="fa fa-check"></i><b>4.2.1</b> Mutants les plus resistants à CPT</a></li>
-<li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#mutants-les-plus-sensibles-à-cpt"><i class="fa fa-check"></i><b>4.2.2</b> Mutants les plus sensibles à CPT</a></li>
-<li class="chapter" data-level="4.2.3" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.3</b> Les 24 plus sensibles</a></li>
+<li class="chapter" data-level="4.2.2" data-path="cpt.html"><a href="cpt.html#les-24-plus-sensibles"><i class="fa fa-check"></i><b>4.2.2</b> Les 24 plus sensibles</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="cpt.html"><a href="cpt.html#nouvelle-approche-pénalisée"><i class="fa fa-check"></i><b>4.3</b> Nouvelle approche (pénalisée)</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="cpt.html"><a href="cpt.html#go-enrichissement-1"><i class="fa fa-check"></i><b>4.3.1</b> GO enrichissement</a></li>
+<li class="chapter" data-level="4.3.2" data-path="cpt.html"><a href="cpt.html#preuve-que-la-première-approche-est-fausse"><i class="fa fa-check"></i><b>4.3.2</b> Preuve que la première approche est fausse</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="cpt.html"><a href="cpt.html#encore-une-autre-approche"><i class="fa fa-check"></i><b>4.4</b> Encore une autre approche</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="classif.html"><a href="classif.html"><i class="fa fa-check"></i><b>5</b> Classification des stress</a>
 <ul>
@@ -201,6 +202,11 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="ccor.html"><a href="ccor.html#stress-du-groupe-camptothecine"><i class="fa fa-check"></i><b>7.2.1</b> Stress du groupe Camptothecine</a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="TEG.html"><a href="TEG.html"><i class="fa fa-check"></i><b>8</b> TEG virtuel</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="TEG.html"><a href="TEG.html#basique"><i class="fa fa-check"></i><b>8.1</b> Basique</a></li>
+<li class="chapter" data-level="8.2" data-path="TEG.html"><a href="TEG.html#comparaison-vrais-teg"><i class="fa fa-check"></i><b>8.2</b> Comparaison vrais teg</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -231,7 +237,11 @@ div.csl-indent {
 <span id="cb1-4"><a href="classif2.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mclust)</span>
 <span id="cb1-5"><a href="classif2.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(umap)</span>
 <span id="cb1-6"><a href="classif2.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-7"><a href="classif2.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<span id="cb1-7"><a href="classif2.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb1-8"><a href="classif2.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb1-9"><a href="classif2.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb1-10"><a href="classif2.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb1-11"><a href="classif2.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggsci)</span></code></pre></div>
 <div id="caractérisation-des-18-groupes-de-stress" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> Caractérisation des 18 groupes de stress<a href="classif2.html#caractérisation-des-18-groupes-de-stress" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="classif2.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">18</span>)) {</span>
@@ -611,7 +621,7 @@ div.csl-indent {
 <pre><code>##                            x        y classe               name
 ## camptothecin_500um -1.351724 1.212643     13 camptothecin_500um</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="classif2.html#cb6-1" aria-hidden="true" tabindex="-1"></a>stress_campto <span class="ot">&lt;-</span> gg[gg<span class="sc">$</span>classe <span class="sc">==</span> gg[gg<span class="sc">$</span>name <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span>,]<span class="sc">$</span>classe,]<span class="sc">$</span>name</span>
-<span id="cb6-2"><a href="classif2.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stress_campto, <span class="at">file =</span> <span class="st">&quot;stress_campto.rds&quot;</span>)</span></code></pre></div>
+<span id="cb6-2"><a href="classif2.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">saveRDS</span>(stress_campto, <span class="at">file =</span> <span class="st">&quot;data/stress_campto.rds&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="classif2.html#cb7-1" aria-hidden="true" tabindex="-1"></a>gg_campto <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> stress_campto, <span class="at">Type =</span> stress_campto <span class="sc">%&gt;%</span> <span class="fu">sapply</span>(<span class="cf">function</span>(y){</span>
 <span id="cb7-2"><a href="classif2.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  tab<span class="sc">$</span>Type[y <span class="sc">==</span> tab<span class="sc">$</span>x]</span>
 <span id="cb7-3"><a href="classif2.html#cb7-3" aria-hidden="true" tabindex="-1"></a>}))</span>
@@ -644,30 +654,40 @@ div.csl-indent {
 <span id="cb8-13"><a href="classif2.html#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-14"><a href="classif2.html#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gg_compar)<span class="sc">+</span></span>
 <span id="cb8-15"><a href="classif2.html#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> groupe, <span class="at">fill =</span> Type, <span class="at">y =</span> Count) <span class="sc">+</span></span>
-<span id="cb8-16"><a href="classif2.html#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)</span></code></pre></div>
+<span id="cb8-16"><a href="classif2.html#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_fill_ipsum() +</span></span>
+<span id="cb8-17"><a href="classif2.html#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_fill_brewer(palette = &quot;Pastel1&quot;)+</span></span>
+<span id="cb8-18"><a href="classif2.html#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_fill_viridis_d(option = &quot;A&quot;)+</span></span>
+<span id="cb8-19"><a href="classif2.html#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_npg</span>()<span class="sc">+</span></span>
+<span id="cb8-20"><a href="classif2.html#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-21"><a href="classif2.html#cb8-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Types de stress du groupe Camptothecine&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Groupe&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Comparaison avec les proportions initiales&quot;</span>)<span class="sc">+</span></span>
+<span id="cb8-22"><a href="classif2.html#cb8-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/plotb-1.png" width="672" /></p>
 <p>Mesure de l’enrichissement dans chacune des catégories :</p>
 <p>On réalise un test de fisher exact pour les 16 catégories (loi hypergéométrique)</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="classif2.html#cb9-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">=</span> <span class="fl">0.05</span></span>
 <span id="cb9-2"><a href="classif2.html#cb9-2" aria-hidden="true" tabindex="-1"></a>tests <span class="ot">=</span> <span class="cn">NULL</span></span>
 <span id="cb9-3"><a href="classif2.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (categorie <span class="cf">in</span> full_count<span class="sc">$</span>Type) {</span>
-<span id="cb9-4"><a href="classif2.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">==</span> categorie] <span class="co"># total white balls</span></span>
-<span id="cb9-5"><a href="classif2.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">c</span>(campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie]<span class="sc">:</span>m) <span class="co"># white balls tirées (hits)</span></span>
-<span id="cb9-6"><a href="classif2.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">!=</span> categorie] <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># black balls total</span></span>
-<span id="cb9-7"><a href="classif2.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">=</span> campto_count<span class="sc">$</span>Count <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># tirage</span></span>
+<span id="cb9-4"><a href="classif2.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  m <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">==</span> categorie] <span class="co"># boules blanches totales</span></span>
+<span id="cb9-5"><a href="classif2.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">c</span>(campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie]<span class="sc">:</span>m) <span class="co"># boules blanches tirées </span></span>
+<span id="cb9-6"><a href="classif2.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">=</span> full_count<span class="sc">$</span>Count[full_count<span class="sc">$</span>Type <span class="sc">!=</span> categorie] <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># boules totales</span></span>
+<span id="cb9-7"><a href="classif2.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  k <span class="ot">=</span> campto_count<span class="sc">$</span>Count <span class="sc">%&gt;%</span> <span class="fu">sum</span>() <span class="co"># nb tirage</span></span>
 <span id="cb9-8"><a href="classif2.html#cb9-8" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
 <span id="cb9-9"><a href="classif2.html#cb9-9" aria-hidden="true" tabindex="-1"></a>                 k<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
 <span id="cb9-10"><a href="classif2.html#cb9-10" aria-hidden="true" tabindex="-1"></a>                 m<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie], </span>
 <span id="cb9-11"><a href="classif2.html#cb9-11" aria-hidden="true" tabindex="-1"></a>                 n<span class="sc">-</span>(k<span class="sc">-</span>campto_count<span class="sc">$</span>Count[campto_count<span class="sc">$</span>Type <span class="sc">==</span> categorie])), </span>
 <span id="cb9-12"><a href="classif2.html#cb9-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb9-13"><a href="classif2.html#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="co">#print(fisher.test(mat)$p.value)</span></span>
+<span id="cb9-13"><a href="classif2.html#cb9-13" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-14"><a href="classif2.html#cb9-14" aria-hidden="true" tabindex="-1"></a>  tests <span class="ot">=</span> <span class="fu">c</span>(tests, <span class="fu">dhyper</span>(x, m, n, k, <span class="at">log =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> <span class="fu">sum</span>())</span>
-<span id="cb9-15"><a href="classif2.html#cb9-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-16"><a href="classif2.html#cb9-16" aria-hidden="true" tabindex="-1"></a>tf <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">categories =</span> full_count<span class="sc">$</span>Type, <span class="at">p_val =</span> tests)</span>
-<span id="cb9-17"><a href="classif2.html#cb9-17" aria-hidden="true" tabindex="-1"></a>tf[tf<span class="sc">$</span>p_val <span class="sc">&lt;</span> alpha,]</span></code></pre></div>
-<pre><code>##                                     categories      p_val
-## 1                                  Cytotoxique 0.03581433
-## 12 Inhibiteur de la synthèse d&#39;acide nucléique 0.03313218</code></pre>
+<span id="cb9-15"><a href="classif2.html#cb9-15" aria-hidden="true" tabindex="-1"></a>  <span class="co">#équivaut à fisher.test(mat)$p.value</span></span>
+<span id="cb9-16"><a href="classif2.html#cb9-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-17"><a href="classif2.html#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Correction de Bonferonni</span></span>
+<span id="cb9-18"><a href="classif2.html#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="co">#tests = tests / (full_count$Type %&gt;% length())</span></span>
+<span id="cb9-19"><a href="classif2.html#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="classif2.html#cb9-20" aria-hidden="true" tabindex="-1"></a>tf <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">categories =</span> full_count<span class="sc">$</span>Type, <span class="at">p_val =</span> tests)</span>
+<span id="cb9-21"><a href="classif2.html#cb9-21" aria-hidden="true" tabindex="-1"></a>tf[tf<span class="sc">$</span>p_val <span class="sc">&lt;</span> alpha,]</span></code></pre></div>
+<pre><code>##                                    categories      p_val
+## 1                                 Cytotoxique 0.03581433
+## 7 Inhibiteur de la synthèse d&#39;acide nucléique 0.03313218</code></pre>
 <p>Ce groupe est enrichis en composants <strong>cyctotoxiques</strong> et <strong>inhibiteurs de la synthèse d’acides nucléiques</strong>. Ces deux points coincident avec les trouvailles de la GO enrichissement.</p>
 
 </div>

@@ -5,6 +5,7 @@ library(tidyr)
 library(stringr)
 library(FactoMineR)
 library(ggplot2)
+library(ggsci)
 library(hrbrthemes)
 ```
 
@@ -20,7 +21,7 @@ ggplot(cpt) +
   aes(x = Reponse_cpt) +
   theme_ipsum()+
   #geom_histogram(aes(y = after_stat(density)), color = "grey", fill = "#4DBBD5FF") +
-  labs(title = "Réponses à la Campthotecine par stress", x = "Perte de fitness (log)", y = "Densité", subtitle = "Parmis les 448 stress distincts")+
+  labs(title = "Réponses à la Camptothécine par stress", x = "Perte de fitness (log)", y = "Densité", subtitle = "Parmis les 448 stress distincts")+
   geom_density(color = "grey", fill = "#E64B35FF", alpha = 0.4)
 ```
 
@@ -105,11 +106,11 @@ RPL30 = d_merge[d_merge$Gene == "RPL30",][-c(1,2)] %>% unlist()
 
 ggplot(data.frame(Fitness_d = RPL30)) +
   aes(x = Fitness_d)+
-  geom_density()+
-  geom_vline(xintercept = 0, color = "black") + # 0
-  geom_vline(xintercept = RPL30 %>% mean(), color = "blue", linetype = "dashed") + #moyenne
-  geom_vline(xintercept = d_merge[d_merge$Gene == "RPL30",]$camptothecin_500um, color = "green") + #CPT response
-  theme_classic()
+  geom_density(color = "#4DBBD5FF", fill = "#4DBBD5FF", alpha = 0.4)+
+  geom_vline(xintercept = RPL30 %>% mean(), color = "#E64B35FF", linetype = "dashed", size = 1) + #moyenne
+  geom_vline(xintercept = d_merge[d_merge$Gene == "RPL30",]$camptothecin_500um, color = "#00A087FF", size = 1) + #CPT response
+  labs(title = "Réponse aux stress du mutant RPL30", x = "Fitness Defect (FD)", y = "Densité", subtitle = "Moyenne des réponses (rouge) et réponse à CPT (vert)")+
+  theme_ipsum()
 ```
 
 
@@ -177,11 +178,11 @@ write.table(selection, file = "data/top_+genes.txt", quote = FALSE, row.names = 
 
 ### GO enrichissement
 
-Ya rien qui marche bordel
+Ya rien qui marche bon sang
 
 ### Preuve que la première approche est fausse
 
-En selectionnant les mutant dont la medianne de fitness defect est la plus basse, on obtient le même enrichissement :
+En selectionnant les mutants dont la medianne de fitness defect est la plus basse, on obtient le même enrichissement :
 
 ```{r}
 med = data.frame(medianne = d_merge[-c(1,2)] %>% apply(1, function(x){median(x)}), gene = d_merge$Gene)

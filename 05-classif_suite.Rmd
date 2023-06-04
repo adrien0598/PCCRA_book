@@ -20,7 +20,7 @@ tab = read.csv2("data/All_stress_annotated.csv", sep = "\t", header = TRUE)
 y = data.frame(type1 = tab$Type %>% unique(), type2 = c("Cytotoxique", "Divers", "Divers", "Divers", 
                                                         "Divers", "Antifongique",
                                                         "Cytotoxique", "Divers", "Antibactériens / Antiviral", "Divers", "Inhibiteur de kinase",
-                                                        "Divers", "Divers", "Inhbiteur de la synthèse protéique", 
+                                                        "Divers", "Divers", "Inihbiteur de la synthèse protéique", 
                                                         "Inhibiteur de la synthèse d'acide nucléique",
                                                         "Divers", "Divers", "Cytotoxique", "Divers", "Cytotoxique", "Divers",
                                                         "Divers", "Divers", "Antibactériens / Antiviral", "Inhibiteur de phosphatase", 
@@ -93,7 +93,7 @@ ggplot(gg_compar)+
   #scale_fill_viridis_d(option = "A")+
   scale_fill_npg()+
   geom_col(position = "fill") +
-  labs(title = "Types de stress du groupe Camptothecine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
+  labs(title = "Types de stress du groupe Camptothécine", x = "Groupe", subtitle = "Comparaison avec les proportions initiales")+
   theme_ipsum()
 ```
 
@@ -108,7 +108,7 @@ tests = NULL
 for (categorie in full_count$Type) {
   m = full_count$Count[full_count$Type == categorie] # boules blanches totales
   x = c(campto_count$Count[campto_count$Type == categorie]:m) # boules blanches tirées 
-  n = full_count$Count[full_count$Type != categorie] %>% sum() # boules noires totales
+  n = full_count$Count[full_count$Type != categorie] %>% sum() # boules totales
   k = campto_count$Count %>% sum() # nb tirage
   mat = matrix(c(campto_count$Count[campto_count$Type == categorie], 
                  k-campto_count$Count[campto_count$Type == categorie], 

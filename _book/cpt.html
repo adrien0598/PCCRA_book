@@ -23,7 +23,7 @@
 <meta name="author" content="Adrien" />
 
 
-<meta name="date" content="2023-05-30" />
+<meta name="date" content="2023-06-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -203,6 +203,11 @@ div.csl-indent {
 <li class="chapter" data-level="7.2.1" data-path="ccor.html"><a href="ccor.html#stress-du-groupe-camptothecine"><i class="fa fa-check"></i><b>7.2.1</b> Stress du groupe Camptothecine</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="TEG.html"><a href="TEG.html"><i class="fa fa-check"></i><b>8</b> TEG virtuel</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="TEG.html"><a href="TEG.html#basique"><i class="fa fa-check"></i><b>8.1</b> Basique</a></li>
+<li class="chapter" data-level="8.2" data-path="TEG.html"><a href="TEG.html#comparaison-vrais-teg"><i class="fa fa-check"></i><b>8.2</b> Comparaison vrais teg</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -229,31 +234,86 @@ div.csl-indent {
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="cpt.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb1-2"><a href="cpt.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb1-3"><a href="cpt.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
-<span id="cb1-4"><a href="cpt.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<span id="cb1-4"><a href="cpt.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="cpt.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span></code></pre></div>
 <div id="réponse-des-mutants-à-cpt" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Réponse des mutants à CPT<a href="cpt.html#réponse-des-mutants-à-cpt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="cpt.html#cb2-1" aria-hidden="true" tabindex="-1"></a>cpt <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>ORF, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)</span>
 <span id="cb2-2"><a href="cpt.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cpt) <span class="sc">+</span></span>
 <span id="cb2-3"><a href="cpt.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Reponse_cpt) <span class="sc">+</span></span>
-<span id="cb2-4"><a href="cpt.html#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
-<span id="cb2-5"><a href="cpt.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)), <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="cpt.html#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#F85700&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<span id="cb2-4"><a href="cpt.html#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()<span class="sc">+</span></span>
+<span id="cb2-5"><a href="cpt.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_histogram(aes(y = after_stat(density)), color = &quot;grey&quot;, fill = &quot;#4DBBD5FF&quot;) +</span></span>
+<span id="cb2-6"><a href="cpt.html#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Réponses à la Campthotecine par stress&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Perte de fitness (log)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Densité&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Parmis les 448 stress distincts&quot;</span>)<span class="sc">+</span></span>
+<span id="cb2-7"><a href="cpt.html#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#E64B35FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<pre><code>## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): famille de
+## police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): famille de
+## police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): famille de
+## police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): famille de
+## police introuvable dans la base de données des polices Windows</code></pre>
+<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows</code></pre>
+<pre><code>## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows</code></pre>
+<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows</code></pre>
 <p><img src="bookdown-demo_files/figure-html/histo-1.png" width="672" /></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="cpt.html#cb3-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">2.5</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="cpt.html#cb7-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">2.5</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="cpt.html#cb5-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="dv">2</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="cpt.html#cb9-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="dv">2</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="cpt.html#cb7-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">1.5</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="cpt.html#cb11-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">1.5</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 43</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="cpt.html#cb9-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="cpt.html#cb13-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">1</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="cpt.html#cb11-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">8</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="cpt.html#cb15-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">8</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="cpt.html#cb13-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">7</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="cpt.html#cb17-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">7</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 13</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="cpt.html#cb15-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">6</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="cpt.html#cb19-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">6</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="cpt.html#cb17-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">5</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="cpt.html#cb21-1" aria-hidden="true" tabindex="-1"></a>cpt<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">5</span>] <span class="sc">%&gt;%</span> <span class="fu">length</span>()</span></code></pre></div>
 <pre><code>## [1] 61</code></pre>
 </div>
 <div id="go-enrichissement" class="section level2 hasAnchor" number="4.2">
@@ -261,18 +321,18 @@ div.csl-indent {
 <p>En utilisant <a href="https://yeastgenome.org/goTermFinder" class="uri">https://yeastgenome.org/goTermFinder</a>, on regarde si le groupe des gènes dont la mutation entraine une plus grande sensibilité à cpt est enrichis par rapport au génome ebntier dans certaines fonctions moléculaire, localisations cellulaires ou processus biologiques :</p>
 <div id="mutants-les-plus-resistants-à-cpt" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Mutants les plus resistants à CPT<a href="cpt.html#mutants-les-plus-resistants-à-cpt" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="cpt.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 43 plus resistant à cpt</span></span>
-<span id="cb19-2"><a href="cpt.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">1.5</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_15.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="cpt.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 43 plus resistant à cpt</span></span>
+<span id="cb23-2"><a href="cpt.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&gt;</span> <span class="fl">1.5</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_15.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>rien de ouf, marche pas trop</p>
 </div>
 <div id="les-24-plus-sensibles" class="section level3 hasAnchor" number="4.2.2">
 <h3><span class="header-section-number">4.2.2</span> Les 24 plus sensibles<a href="cpt.html#les-24-plus-sensibles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="cpt.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 24 plus senssible à cpt</span></span>
-<span id="cb20-2"><a href="cpt.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">6</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_-6.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="cpt.html#cb21-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_process.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb21-2"><a href="cpt.html#cb21-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb21-3"><a href="cpt.html#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="cpt.html#cb21-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Biological Process&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="cpt.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les 24 plus senssible à cpt</span></span>
+<span id="cb24-2"><a href="cpt.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(<span class="fu">data.frame</span>(<span class="at">ORF =</span> d_merge<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge<span class="sc">$</span>camptothecin_500um)<span class="sc">$</span>ORF[cpt<span class="sc">$</span>Reponse_cpt <span class="sc">&lt;</span> <span class="sc">-</span>.<span class="dv">6</span>], <span class="at">file =</span> <span class="st">&quot;data/gene_-6.txt&quot;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="cpt.html#cb25-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_process.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb25-2"><a href="cpt.html#cb25-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb25-3"><a href="cpt.html#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="cpt.html#cb25-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Biological Process&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-8">Table 4.1: </span>Biological Process</caption>
 <colgroup>
@@ -304,10 +364,10 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="cpt.html#cb22-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb22-2"><a href="cpt.html#cb22-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb22-3"><a href="cpt.html#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="cpt.html#cb22-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="cpt.html#cb26-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb26-2"><a href="cpt.html#cb26-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb26-3"><a href="cpt.html#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="cpt.html#cb26-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-8">Table 4.1: </span>Molecular Function</caption>
 <colgroup>
@@ -339,10 +399,10 @@ div.csl-indent {
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="cpt.html#cb23-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_component.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-2"><a href="cpt.html#cb23-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb23-3"><a href="cpt.html#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="cpt.html#cb23-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Cellular Component&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="cpt.html#cb27-1" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/24_component.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-2"><a href="cpt.html#cb27-2" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb27-3"><a href="cpt.html#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="cpt.html#cb27-4" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Cellular Component&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-8">Table 4.1: </span>Cellular Component</caption>
 <colgroup>
@@ -388,90 +448,137 @@ div.csl-indent {
 </table>
 <p>les mutant “les plus senssible” à cpt sont en réalité des mutants qui ont des fitness defect significatif dans pratiquement toutes les conditions. Ces mutant sont probablement les plus senssible à tout type de stress/drogue car leurs mutations sont graves.</p>
 <p>Exemple de RPL30 :</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="cpt.html#cb24-1" aria-hidden="true" tabindex="-1"></a>RPL30 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
-<span id="cb24-2"><a href="cpt.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="cpt.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Fitness_d =</span> RPL30)) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="cpt.html#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Fitness_d)<span class="sc">+</span></span>
-<span id="cb24-5"><a href="cpt.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()<span class="sc">+</span></span>
-<span id="cb24-6"><a href="cpt.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span> <span class="co"># 0</span></span>
-<span id="cb24-7"><a href="cpt.html#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> RPL30 <span class="sc">%&gt;%</span> <span class="fu">mean</span>(), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span> <span class="co">#moyenne</span></span>
-<span id="cb24-8"><a href="cpt.html#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,]<span class="sc">$</span>camptothecin_500um, <span class="at">color =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="co">#CPT response</span></span>
-<span id="cb24-9"><a href="cpt.html#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="cpt.html#cb28-1" aria-hidden="true" tabindex="-1"></a>RPL30 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>()</span>
+<span id="cb28-2"><a href="cpt.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="cpt.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">Fitness_d =</span> RPL30)) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="cpt.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Fitness_d)<span class="sc">+</span></span>
+<span id="cb28-5"><a href="cpt.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;#4DBBD5FF&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;#4DBBD5FF&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)<span class="sc">+</span></span>
+<span id="cb28-6"><a href="cpt.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> RPL30 <span class="sc">%&gt;%</span> <span class="fu">mean</span>(), <span class="at">color =</span> <span class="st">&quot;#E64B35FF&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co">#moyenne</span></span>
+<span id="cb28-7"><a href="cpt.html#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> d_merge[d_merge<span class="sc">$</span>Gene <span class="sc">==</span> <span class="st">&quot;RPL30&quot;</span>,]<span class="sc">$</span>camptothecin_500um, <span class="at">color =</span> <span class="st">&quot;#00A087FF&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="co">#CPT response</span></span>
+<span id="cb28-8"><a href="cpt.html#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Réponse aux stress du mutant RPL30&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Fitness Defect (FD)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Densité&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;Moyenne des réponses (rouge) et réponse à CPT (vert)&quot;</span>)<span class="sc">+</span></span>
+<span id="cb28-9"><a href="cpt.html#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows</code></pre>
+<pre><code>## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows</code></pre>
+<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+## famille de police introuvable dans la base de données des polices Windows</code></pre>
 <p><img src="bookdown-demo_files/figure-html/density_rpl30-1.png" width="672" /></p>
 </div>
 </div>
 <div id="nouvelle-approche-pénalisée" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Nouvelle approche (pénalisée)<a href="cpt.html#nouvelle-approche-pénalisée" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Pour être considéré comme sensible à CPT, un gène doit être plus senssible à CPT qu’aux autres stress :</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="cpt.html#cb25-1" aria-hidden="true" tabindex="-1"></a>gene <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
-<span id="cb25-2"><a href="cpt.html#cb25-2" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
-<span id="cb25-3"><a href="cpt.html#cb25-3" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="cpt.html#cb33-1" aria-hidden="true" tabindex="-1"></a>gene <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
+<span id="cb33-2"><a href="cpt.html#cb33-2" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&lt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb33-3"><a href="cpt.html#cb33-3" aria-hidden="true" tabindex="-1"></a>cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">dim</span>()</span></code></pre></div>
 <pre><code>## [1] 1848  448</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="cpt.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correction par rapport à la médianne </span></span>
-<span id="cb27-2"><a href="cpt.html#cb27-2" aria-hidden="true" tabindex="-1"></a>tmp_med <span class="ot">=</span> cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){</span>
-<span id="cb27-3"><a href="cpt.html#cb27-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">-</span> <span class="fu">median</span>(x)</span>
-<span id="cb27-4"><a href="cpt.html#cb27-4" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
-<span id="cb27-5"><a href="cpt.html#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="cpt.html#cb27-6" aria-hidden="true" tabindex="-1"></a>tmp_med<span class="sc">$</span>camptothecin_500um <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="cpt.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correction par rapport à la médianne </span></span>
+<span id="cb35-2"><a href="cpt.html#cb35-2" aria-hidden="true" tabindex="-1"></a>tmp_med <span class="ot">=</span> cpt_d_merge <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){</span>
+<span id="cb35-3"><a href="cpt.html#cb35-3" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">-</span> <span class="fu">median</span>(x)</span>
+<span id="cb35-4"><a href="cpt.html#cb35-4" aria-hidden="true" tabindex="-1"></a>}) <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>()</span>
+<span id="cb35-5"><a href="cpt.html#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="cpt.html#cb35-6" aria-hidden="true" tabindex="-1"></a>tmp_med<span class="sc">$</span>camptothecin_500um <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ## -1.54474 -0.26967 -0.17085 -0.19652 -0.09517  0.31935</code></pre>
 <p>Marche pas du tout à cause du bazard négatif positif etc. Pas le temps de ce pencher dessus pour de vrai.</p>
 <p>Autre approche : prendre pour chaque mutant les 5% stress qui le mette le plus en pls. On part en fait de l’hypothèse que comme CPT est très toxique (introduction), elle est parmis les drogues les plus efficace pour eliminer les souches mutantes dans des voies liées à son mode d’action.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="cpt.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les plus sensible</span></span>
-<span id="cb29-2"><a href="cpt.html#cb29-2" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
-<span id="cb29-3"><a href="cpt.html#cb29-3" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">25</span></span>
-<span id="cb29-4"><a href="cpt.html#cb29-4" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.4</span></span>
-<span id="cb29-5"><a href="cpt.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
-<span id="cb29-6"><a href="cpt.html#cb29-6" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge), <span class="at">fd =</span> cpt_d_merge[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
-<span id="cb29-7"><a href="cpt.html#cb29-7" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(tmp<span class="sc">$</span>fd),]</span>
-<span id="cb29-8"><a href="cpt.html#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
-<span id="cb29-9"><a href="cpt.html#cb29-9" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
-<span id="cb29-10"><a href="cpt.html#cb29-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb29-11"><a href="cpt.html#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
-<span id="cb29-12"><a href="cpt.html#cb29-12" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
-<span id="cb29-13"><a href="cpt.html#cb29-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb29-14"><a href="cpt.html#cb29-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-15"><a href="cpt.html#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-16"><a href="cpt.html#cb29-16" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&lt;</span> cutoff]</span>
-<span id="cb29-17"><a href="cpt.html#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_-genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb29-18"><a href="cpt.html#cb29-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-19"><a href="cpt.html#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-20"><a href="cpt.html#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Les moins sensibles</span></span>
-<span id="cb29-21"><a href="cpt.html#cb29-21" aria-hidden="true" tabindex="-1"></a>gene2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
-<span id="cb29-22"><a href="cpt.html#cb29-22" aria-hidden="true" tabindex="-1"></a>cpt_d_merge2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
-<span id="cb29-23"><a href="cpt.html#cb29-23" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
-<span id="cb29-24"><a href="cpt.html#cb29-24" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">15</span></span>
-<span id="cb29-25"><a href="cpt.html#cb29-25" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb29-26"><a href="cpt.html#cb29-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene2 <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
-<span id="cb29-27"><a href="cpt.html#cb29-27" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge2), <span class="at">fd =</span> cpt_d_merge2[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
-<span id="cb29-28"><a href="cpt.html#cb29-28" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(<span class="sc">-</span>tmp<span class="sc">$</span>fd),]</span>
-<span id="cb29-29"><a href="cpt.html#cb29-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
-<span id="cb29-30"><a href="cpt.html#cb29-30" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
-<span id="cb29-31"><a href="cpt.html#cb29-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb29-32"><a href="cpt.html#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
-<span id="cb29-33"><a href="cpt.html#cb29-33" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
-<span id="cb29-34"><a href="cpt.html#cb29-34" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb29-35"><a href="cpt.html#cb29-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb29-36"><a href="cpt.html#cb29-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-37"><a href="cpt.html#cb29-37" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&gt;</span> cutoff]</span>
-<span id="cb29-38"><a href="cpt.html#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_+genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="cpt.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># les plus sensible</span></span>
+<span id="cb37-2"><a href="cpt.html#cb37-2" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb37-3"><a href="cpt.html#cb37-3" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">25</span></span>
+<span id="cb37-4"><a href="cpt.html#cb37-4" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.4</span></span>
+<span id="cb37-5"><a href="cpt.html#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
+<span id="cb37-6"><a href="cpt.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge), <span class="at">fd =</span> cpt_d_merge[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
+<span id="cb37-7"><a href="cpt.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(tmp<span class="sc">$</span>fd),]</span>
+<span id="cb37-8"><a href="cpt.html#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
+<span id="cb37-9"><a href="cpt.html#cb37-9" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
+<span id="cb37-10"><a href="cpt.html#cb37-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb37-11"><a href="cpt.html#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb37-12"><a href="cpt.html#cb37-12" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
+<span id="cb37-13"><a href="cpt.html#cb37-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb37-14"><a href="cpt.html#cb37-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-15"><a href="cpt.html#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="cpt.html#cb37-16" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&lt;</span> cutoff]</span>
+<span id="cb37-17"><a href="cpt.html#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_-genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb37-18"><a href="cpt.html#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="cpt.html#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="cpt.html#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Les moins sensibles</span></span>
+<span id="cb37-21"><a href="cpt.html#cb37-21" aria-hidden="true" tabindex="-1"></a>gene2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,]<span class="sc">$</span>Gene</span>
+<span id="cb37-22"><a href="cpt.html#cb37-22" aria-hidden="true" tabindex="-1"></a>cpt_d_merge2 <span class="ot">=</span> d_merge[d_merge<span class="sc">$</span>camptothecin_500um <span class="sc">&gt;</span> <span class="dv">0</span>,][<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
+<span id="cb37-23"><a href="cpt.html#cb37-23" aria-hidden="true" tabindex="-1"></a>classement <span class="ot">=</span> <span class="cn">NULL</span></span>
+<span id="cb37-24"><a href="cpt.html#cb37-24" aria-hidden="true" tabindex="-1"></a>nb <span class="ot">=</span> <span class="dv">15</span></span>
+<span id="cb37-25"><a href="cpt.html#cb37-25" aria-hidden="true" tabindex="-1"></a>cutoff <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb37-26"><a href="cpt.html#cb37-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>(gene2 <span class="sc">%&gt;%</span> <span class="fu">length</span>()))) {</span>
+<span id="cb37-27"><a href="cpt.html#cb37-27" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">stress =</span> <span class="fu">colnames</span>(cpt_d_merge2), <span class="at">fd =</span> cpt_d_merge2[i,] <span class="sc">%&gt;%</span> <span class="fu">unlist</span>())</span>
+<span id="cb37-28"><a href="cpt.html#cb37-28" aria-hidden="true" tabindex="-1"></a>  tmp <span class="ot">=</span> tmp[<span class="fu">order</span>(<span class="sc">-</span>tmp<span class="sc">$</span>fd),]</span>
+<span id="cb37-29"><a href="cpt.html#cb37-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (classement <span class="sc">%&gt;%</span> <span class="fu">is.null</span>()){</span>
+<span id="cb37-30"><a href="cpt.html#cb37-30" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb])</span>
+<span id="cb37-31"><a href="cpt.html#cb37-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb37-32"><a href="cpt.html#cb37-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb37-33"><a href="cpt.html#cb37-33" aria-hidden="true" tabindex="-1"></a>    classement <span class="ot">=</span> classement <span class="sc">%&gt;%</span> <span class="fu">rbind</span>(<span class="fu">data.frame</span>(<span class="at">gene =</span> <span class="fu">rep</span>(gene2[i], nb), <span class="at">stress =</span> tmp<span class="sc">$</span>stress[<span class="dv">1</span><span class="sc">:</span>nb], <span class="at">fd =</span> tmp<span class="sc">$</span>fd[<span class="dv">1</span><span class="sc">:</span>nb]))</span>
+<span id="cb37-34"><a href="cpt.html#cb37-34" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb37-35"><a href="cpt.html#cb37-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb37-36"><a href="cpt.html#cb37-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-37"><a href="cpt.html#cb37-37" aria-hidden="true" tabindex="-1"></a>selection <span class="ot">=</span> classement<span class="sc">$</span>gene[classement<span class="sc">$</span>stress <span class="sc">==</span> <span class="st">&quot;camptothecin_500um&quot;</span> <span class="sc">&amp;</span> classement<span class="sc">$</span>fd <span class="sc">&gt;</span> cutoff]</span>
+<span id="cb37-38"><a href="cpt.html#cb37-38" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(selection, <span class="at">file =</span> <span class="st">&quot;data/top_+genes.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div id="go-enrichissement-1" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> GO enrichissement<a href="cpt.html#go-enrichissement-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Ya rien qui marche bordel</p>
+<p>Ya rien qui marche bon sang</p>
 </div>
 <div id="preuve-que-la-première-approche-est-fausse" class="section level3 hasAnchor" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Preuve que la première approche est fausse<a href="cpt.html#preuve-que-la-première-approche-est-fausse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>En selectionnant les mutant dont la medianne de fitness defect est la plus basse, on obtient le même enrichissement :</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="cpt.html#cb30-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">medianne =</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){<span class="fu">median</span>(x)}), <span class="at">gene =</span> d_merge<span class="sc">$</span>Gene)</span>
-<span id="cb30-2"><a href="cpt.html#cb30-2" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> med[<span class="fu">order</span>(med<span class="sc">$</span>medianne),]</span>
-<span id="cb30-3"><a href="cpt.html#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-4"><a href="cpt.html#cb30-4" aria-hidden="true" tabindex="-1"></a>week_mut <span class="ot">=</span> med<span class="sc">$</span>gene[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
-<span id="cb30-5"><a href="cpt.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(week_mut, <span class="at">file =</span> <span class="st">&quot;data/week_mut.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb30-6"><a href="cpt.html#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="cpt.html#cb30-7" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/preuve_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb30-8"><a href="cpt.html#cb30-8" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
-<span id="cb30-9"><a href="cpt.html#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="cpt.html#cb30-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
+<p>En selectionnant les mutants dont la medianne de fitness defect est la plus basse, on obtient le même enrichissement :</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="cpt.html#cb38-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">medianne =</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="dv">1</span>, <span class="cf">function</span>(x){<span class="fu">median</span>(x)}), <span class="at">gene =</span> d_merge<span class="sc">$</span>Gene)</span>
+<span id="cb38-2"><a href="cpt.html#cb38-2" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> med[<span class="fu">order</span>(med<span class="sc">$</span>medianne),]</span>
+<span id="cb38-3"><a href="cpt.html#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="cpt.html#cb38-4" aria-hidden="true" tabindex="-1"></a>week_mut <span class="ot">=</span> med<span class="sc">$</span>gene[<span class="dv">1</span><span class="sc">:</span><span class="dv">40</span>]</span>
+<span id="cb38-5"><a href="cpt.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(week_mut, <span class="at">file =</span> <span class="st">&quot;data/week_mut.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb38-6"><a href="cpt.html#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="cpt.html#cb38-7" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">read.table</span>(<span class="st">&quot;data/go/preuve_function.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-8"><a href="cpt.html#cb38-8" aria-hidden="true" tabindex="-1"></a>tmp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Term =</span> tmp<span class="sc">$</span>TERM, <span class="at">p_value =</span> tmp<span class="sc">$</span>CORRECTED_PVALUE, <span class="at">FDR =</span> tmp<span class="sc">$</span>FDR_RATE, <span class="at">Gene =</span> tmp<span class="sc">$</span>ANNOTATED_GENES)</span>
+<span id="cb38-9"><a href="cpt.html#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="cpt.html#cb38-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tmp, <span class="at">caption =</span> <span class="st">&quot;Molecular Function&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-11">Table 4.2: </span>Molecular Function</caption>
 <colgroup>
@@ -526,22 +633,22 @@ div.csl-indent {
 <div id="encore-une-autre-approche" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Encore une autre approche<a href="cpt.html#encore-une-autre-approche" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Répartition de la médianne des fitness defect de chaque mutant</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="cpt.html#cb31-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="cf">function</span>(x){</span>
-<span id="cb31-2"><a href="cpt.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median</span>(x)</span>
-<span id="cb31-3"><a href="cpt.html#cb31-3" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb31-4"><a href="cpt.html#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="cpt.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">medianne =</span> med)) <span class="sc">+</span></span>
-<span id="cb31-6"><a href="cpt.html#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> medianne)<span class="sc">+</span></span>
-<span id="cb31-7"><a href="cpt.html#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="cpt.html#cb39-1" aria-hidden="true" tabindex="-1"></a>med <span class="ot">=</span> d_merge[<span class="sc">-</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)] <span class="sc">%&gt;%</span> <span class="fu">apply</span>(<span class="at">MARGIN =</span> <span class="dv">1</span>, <span class="cf">function</span>(x){</span>
+<span id="cb39-2"><a href="cpt.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">median</span>(x)</span>
+<span id="cb39-3"><a href="cpt.html#cb39-3" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb39-4"><a href="cpt.html#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="cpt.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">medianne =</span> med)) <span class="sc">+</span></span>
+<span id="cb39-6"><a href="cpt.html#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> medianne)<span class="sc">+</span></span>
+<span id="cb39-7"><a href="cpt.html#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code></pre></div>
 <p><img src="bookdown-demo_files/figure-html/density_med-1.png" width="672" /></p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="cpt.html#cb32-1" aria-hidden="true" tabindex="-1"></a>seuil_min <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.1</span></span>
-<span id="cb32-2"><a href="cpt.html#cb32-2" aria-hidden="true" tabindex="-1"></a>seuil_max <span class="ot">=</span> <span class="fl">0.2</span></span>
-<span id="cb32-3"><a href="cpt.html#cb32-3" aria-hidden="true" tabindex="-1"></a>d_merge_filtre <span class="ot">=</span> d_merge[med <span class="sc">&gt;</span> seuil_min <span class="sc">&amp;</span> med <span class="sc">&lt;</span> seuil_max,]</span>
-<span id="cb32-4"><a href="cpt.html#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-5"><a href="cpt.html#cb32-5" aria-hidden="true" tabindex="-1"></a>cpt_filtre <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Gene =</span> d_merge_filtre<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge_filtre<span class="sc">$</span>camptothecin_500um)</span>
-<span id="cb32-6"><a href="cpt.html#cb32-6" aria-hidden="true" tabindex="-1"></a>nb_gene <span class="ot">=</span> <span class="dv">50</span></span>
-<span id="cb32-7"><a href="cpt.html#cb32-7" aria-hidden="true" tabindex="-1"></a>top_x <span class="ot">=</span> cpt_filtre[<span class="fu">order</span>(cpt_filtre<span class="sc">$</span>Reponse_cpt),]<span class="sc">$</span>Gene[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>nb_gene)]</span>
-<span id="cb32-8"><a href="cpt.html#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(top_x, <span class="at">file =</span> <span class="st">&quot;data/top_x_gene.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="cpt.html#cb40-1" aria-hidden="true" tabindex="-1"></a>seuil_min <span class="ot">=</span> <span class="sc">-</span><span class="fl">0.1</span></span>
+<span id="cb40-2"><a href="cpt.html#cb40-2" aria-hidden="true" tabindex="-1"></a>seuil_max <span class="ot">=</span> <span class="fl">0.2</span></span>
+<span id="cb40-3"><a href="cpt.html#cb40-3" aria-hidden="true" tabindex="-1"></a>d_merge_filtre <span class="ot">=</span> d_merge[med <span class="sc">&gt;</span> seuil_min <span class="sc">&amp;</span> med <span class="sc">&lt;</span> seuil_max,]</span>
+<span id="cb40-4"><a href="cpt.html#cb40-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="cpt.html#cb40-5" aria-hidden="true" tabindex="-1"></a>cpt_filtre <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">Gene =</span> d_merge_filtre<span class="sc">$</span>Gene, <span class="at">Reponse_cpt =</span> d_merge_filtre<span class="sc">$</span>camptothecin_500um)</span>
+<span id="cb40-6"><a href="cpt.html#cb40-6" aria-hidden="true" tabindex="-1"></a>nb_gene <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb40-7"><a href="cpt.html#cb40-7" aria-hidden="true" tabindex="-1"></a>top_x <span class="ot">=</span> cpt_filtre[<span class="fu">order</span>(cpt_filtre<span class="sc">$</span>Reponse_cpt),]<span class="sc">$</span>Gene[<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span>nb_gene)]</span>
+<span id="cb40-8"><a href="cpt.html#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">write.table</span>(top_x, <span class="at">file =</span> <span class="st">&quot;data/top_x_gene.txt&quot;</span>, <span class="at">quote =</span> <span class="cn">FALSE</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Rien d’enrichis non plus… Sauf si on prend un seuil baas plus petit que -0.3 auquel cas on retrouve ce foutu ribosome</p>
 
 </div>
